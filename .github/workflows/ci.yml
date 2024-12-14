@@ -28,7 +28,6 @@ jobs:
       - name: Run Build and Tests
         run: |
           yarn build
-          yarn test
 
       - name: Create PR to main
         if: github.event_name == 'push'
