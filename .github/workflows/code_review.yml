@@ -14,13 +14,15 @@ jobs:
       # 1. 코드 체크아웃
       - name: Checkout Code
         uses: actions/checkout@v3
+        with:
+            fetch-depth: 0
 
       # 2. 변경된 코드 추출
       - name: Get Diff of PR
         id: diff
         run: |
           git fetch origin ${{ github.base_ref }}
-          git diff origin/${{ github.base_ref }}...HEAD > pr_diff.txt
+          git diff origin/${{ github.base_ref }}...${{ github.head_ref }} > pr_diff.txt
           echo "### Changed Code:" >> pr_diff.txt
           cat pr_diff.txt
 
