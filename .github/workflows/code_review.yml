@@ -29,7 +29,7 @@ jobs:
           echo "### Fetching the diff between dev and HEAD..."
           git fetch --no-tags --prune --depth=1 origin +refs/heads/dev:refs/remotes/origin/dev
           git diff origin/dev...HEAD > pr_diff.txt
-          echo "### Changed Code:" >> pr_diff.txt
+          echo "### Changed Code:"
           cat pr_diff.txt
 
       # 4. OpenAI API 호출 및 에러 로그 출력
@@ -37,6 +37,11 @@ jobs:
         id: review
         run: |
           echo "### Calling OpenAI API for Code Review..."
+
+          # pr_diff.txt 내용을 JSON-safe 문자열로 변환
+          DIFF_CONTENT=$(jq -Rs . < pr_diff.txt)
+
+          # OpenAI API 호출
           RESPONSE=$(curl -s -w "\nHTTP_STATUS:%{http_code}" https://api.openai.com/v1/chat/completions \
             -H "Content-Type: application/json" \
             -H "Authorization: Bearer ${{ secrets.OPENAI_API_KEY }}" \
@@ -44,7 +49,7 @@ jobs:
               "model": "gpt-4",
               "messages": [
                 {"role": "system", "content": "You are a professional code reviewer. Review the following code changes and provide concise, constructive feedback."},
-                {"role": "user", "content": "'"$(cat pr_diff.txt)"'"}
+                {"role": "user", "content": '"$DIFF_CONTENT"'}
               ],
               "temperature": 0.3
             }')
