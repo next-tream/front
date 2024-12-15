@@ -61,6 +61,9 @@
 ---
 
 🔍 코드 리뷰 피드백:
+✅ [잘한 점]
+src/app/page.tsx - TailwindCSS 클래스 사용이 깔끔하고 명확합니다! 유지보수가 쉬워질 거예요. 🎉
+src/components/UserProfile.tsx - 재사용 가능한 컴포넌트 구조로 작성된 점이 인상적입니다. 잘하셨습니다! 🚀
 
 1. [네이밍] src/app/page.tsx - 3번째 줄
 
