@@ -10,36 +10,40 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
+      # 1. 코드 체크아웃 (fetch-depth 0으로 설정)
       - name: Checkout code
         uses: actions/checkout@v3
+        with:
+          fetch-depth: 0  # 모든 브랜치와 히스토리를 가져옵니다.
 
+      # 2. Node.js 및 Yarn 설정
       - name: Setup Node.js and Yarn
         uses: actions/setup-node@v3
         with:
           node-version: 18
           cache: 'yarn'
 
+      # 3. 의존성 설치
       - name: Install dependencies
         run: yarn install
 
+      # 4. 빌드 실행
       - name: Run Build
         run: |
           yarn build
 
+      # 5. Merge dev into main
       - name: Merge dev into main
         if: ${{ success() }}
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
-          git fetch origin dev:dev
-          git fetch origin main:main
+          
+          # 최신 상태로 fetch (강제로 가져오기)
+          git fetch origin main:main --force
           git checkout main
           git pull origin main
-          echo "Current main branch log:"
-          git log --oneline -n 5
-          echo "Merging dev into main..."
-          git merge --no-ff dev --strategy-option theirs || echo "Merge failed"
-          echo "Push merged changes to main"
-          git push origin main || echo "Push failed"
+          git merge --no-ff dev
+          git push origin main
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
