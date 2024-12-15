@@ -18,6 +18,7 @@ jobs:
       # 2. 디버깅: 현재 브랜치 및 원격 상태 확인
       - name: Debug Current Branch
         run: |
+          echo "### Debugging Branch Information"
           git branch -a
           git remote -v
 
@@ -25,17 +26,18 @@ jobs:
       - name: Get Diff of PR
         id: diff
         run: |
+          echo "### Fetching the diff between dev and HEAD..."
           git fetch --no-tags --prune --depth=1 origin +refs/heads/dev:refs/remotes/origin/dev
           git diff origin/dev...HEAD > pr_diff.txt
           echo "### Changed Code:" >> pr_diff.txt
           cat pr_diff.txt
 
-      # 4. OpenAI API 호출
+      # 4. OpenAI API 호출 및 에러 로그 출력
       - name: Call OpenAI API for Code Review
         id: review
         run: |
-          echo "Calling OpenAI API for Code Review..."
-          RESPONSE=$(curl -s https://api.openai.com/v1/chat/completions \
+          echo "### Calling OpenAI API for Code Review..."
+          RESPONSE=$(curl -s -w "\nHTTP_STATUS:%{http_code}" https://api.openai.com/v1/chat/completions \
             -H "Content-Type: application/json" \
             -H "Authorization: Bearer ${{ secrets.OPENAI_API_KEY }}" \
             -d '{
@@ -45,12 +47,33 @@ jobs:
                 {"role": "user", "content": "'"$(cat pr_diff.txt)"'"}
               ],
               "temperature": 0.3
-            }' | jq -r '.choices[0].message.content')
+            }')
+
+          # API 응답과 HTTP 상태 코드 출력
+          HTTP_STATUS=$(echo "$RESPONSE" | grep "HTTP_STATUS" | cut -d ":" -f2)
+          API_BODY=$(echo "$RESPONSE" | sed '/HTTP_STATUS/d')
+
+          echo "### API Raw Response:"
+          echo "$API_BODY"
+
+          echo "### HTTP Status Code:"
+          echo "$HTTP_STATUS"
+
+          # HTTP 상태 코드 확인
+          if [ "$HTTP_STATUS" -ne 200 ]; then
+            echo "❌ OpenAI API 호출 실패 (HTTP $HTTP_STATUS)"
+            exit 1
+          fi
+
+          # API 응답에서 message.content 추출
+          REVIEW_CONTENT=$(echo "$API_BODY" | jq -r '.choices[0].message.content // "No feedback returned from OpenAI API."')
 
           echo "REVIEW_OUTPUT<<EOF" >> $GITHUB_ENV
-          echo "$RESPONSE" >> $GITHUB_ENV
+          echo "$REVIEW_CONTENT" >> $GITHUB_ENV
           echo "EOF" >> $GITHUB_ENV
-          echo "API Response: $RESPONSE"
+
+          echo "### Final Review Output:"
+          echo "$REVIEW_CONTENT"
 
       # 5. GitHub PR 코멘트 추가
       - name: Add Review Comment to PR
