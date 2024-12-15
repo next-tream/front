@@ -24,35 +24,31 @@ jobs:
       # 3. 의존성 설치 및 빌드 실행
       - name: Install and Build
         run: |
-          yarn install
+          yarn install --frozen-lockfile
           yarn build
 
-      # 4. AWS EC2에 배포
-      - name: Deploy to AWS EC2
-        uses: appleboy/scp-action@v0.1.4
-        with:
-          host: ${{ secrets.AWS_HOST }}
-          username: ${{ secrets.AWS_USERNAME }}
-          key: ${{ secrets.AWS_KEY }}
-          source: .next/  # 빌드된 파일만 전송
-          target: /home/${{ secrets.AWS_USERNAME }}/nextream-front/.next
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      # 4. SSH Key 설정
+      - name: Set up SSH Key
+        run: |
+          echo "${{ secrets.AWS_KEY }}" > aws_key.pem
+          chmod 600 aws_key.pem
 
-      # 5. 애플리케이션 재시작 및 상태 확인
+      # 5. AWS EC2에 배포 (빌드된 .next 파일만 전송)
+      - name: Deploy to AWS EC2
+        run: |
+          scp -i aws_key.pem -r .next ec2-user@${{ secrets.AWS_HOST }}:/home/ec2-user/nextream-front/.next
+
+      # 6. 애플리케이션 재시작 및 상태 확인
       - name: Restart Application on EC2
-        uses: appleboy/ssh-action@v0.1.4
-        with:
-          host: ${{ secrets.AWS_HOST }}
-          username: ${{ secrets.AWS_USERNAME }}
-          key: ${{ secrets.AWS_KEY }}
-          script: |
-            set -e  # 에러 발생 시 즉시 종료
-            cd /home/${{ secrets.AWS_USERNAME }}/nextream-front
-            echo "✅ Installing dependencies..."
-            yarn install --production
-            echo "✅ Restarting application using PM2..."
-            pm2 restart nextream-front || pm2 start yarn --name "nextream-front" -- start
-            echo "✅ Saving PM2 state..."
-            pm2 save
-            echo "🚀 Application successfully deployed and restarted."
+        run: |
+          ssh -i aws_key.pem ec2-user@${{ secrets.AWS_HOST }} << 'EOF'
+          set -e  # 에러 발생 시 즉시 종료
+          cd /home/ec2-user/nextream-front
+          echo "✅ Installing dependencies..."
+          yarn install --production
+          echo "✅ Restarting application using PM2..."
+          pm2 restart nextream-front || pm2 start yarn --name "nextream-front" -- start
+          echo "✅ Saving PM2 state..."
+          pm2 save
+          echo "🚀 Application successfully deployed and restarted."
+          EOF
