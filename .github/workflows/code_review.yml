@@ -1,4 +1,4 @@
-name: AI Code Review and Build Check
+name: AI Code Review
 
 on:
   pull_request:
@@ -6,7 +6,7 @@ on:
       - dev  # dev 브랜치에 대한 PR에서만 실행
 
 jobs:
-  code-review-and-build:
+  code-review:
     runs-on: ubuntu-latest
 
     steps:
@@ -21,7 +21,7 @@ jobs:
           node-version: 18
           cache: 'yarn'
 
-      # 4. 변경된 코드 추출
+      # 3. 변경된 코드 추출
       - name: Get Diff of PR
         id: diff
         run: |
@@ -30,7 +30,23 @@ jobs:
           echo "변경된 코드:"
           cat pr_diff.txt
 
-      # 5. OpenAI API 호출 (한국어 응답 요청)
+      # 4. 코드 리뷰 프롬프트 준비
+      - name: Prepare Review Prompt
+        run: |
+          echo "AI 코드 리뷰 프롬프트를 생성합니다..."
+          echo "다음은 코드 리뷰 요청 사항입니다:" > review_prompt.txt
+          echo "" >> review_prompt.txt
+          echo "### 코드 리뷰 요청:" >> review_prompt.txt
+          cat pr_diff.txt >> review_prompt.txt
+          echo "" >> review_prompt.txt
+          echo "### 리뷰 지침:" >> review_prompt.txt
+          echo "- 명확한 코드 가독성 평가" >> review_prompt.txt
+          echo "- 잘못된 네이밍이나 불필요한 코드 제거" >> review_prompt.txt
+          echo "- TailwindCSS 클래스 오류 검토" >> review_prompt.txt
+          echo "- 간단한 개선 사항 제안" >> review_prompt.txt
+          echo "### 응답 언어: 한국어" >> review_prompt.txt
+
+      # 5. OpenAI API 호출 (review_prompt.txt 사용)
       - name: Call OpenAI API for Code Review
         id: review
         run: |
@@ -41,8 +57,8 @@ jobs:
             -d '{
               "model": "gpt-4",
               "messages": [
-                {"role": "system", "content": "당신은 한국어로 응답하는 전문 코드 리뷰어입니다. 다음 코드 변경 사항을 리뷰하고, 개선 사항이나 주의할 점을 한국어로 작성하세요. 또한 빌드가 실패했을 경우 해당 문제점을 간략히 설명해주세요."},
-                {"role": "user", "content": "'"$(cat pr_diff.txt)"'"}
+                {"role": "system", "content": "당신은 전문 코드 리뷰어입니다. 주어진 코드 변경 사항을 검토하고 한국어로 피드백을 작성하세요."},
+                {"role": "user", "content": "'"$(cat review_prompt.txt)"'"}
               ],
               "temperature": 0.3
             }' | jq -r '.choices[0].message.content')
@@ -55,9 +71,7 @@ jobs:
       - name: Add AI Review Comment to PR
         uses: marocchino/sticky-pull-request-comment@v2
         with:
-          header: "🧑‍💻 AI 코드 리뷰 및 빌드 검증 결과"
+          header: "🧑‍💻 AI 코드 리뷰 결과"
           message: |
             **🔍 코드 리뷰 결과:**
             ${{ env.REVIEW_OUTPUT }}
-            ---
-            **🔨 빌드 상태:** ${{ env.BUILD_STATUS == 'SUCCESS' && '✅ 성공' || '❌ 실패' }}
