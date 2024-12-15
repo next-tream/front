@@ -44,7 +44,7 @@ jobs:
           username: ${{ secrets.AWS_USERNAME }}
           key: ${{ secrets.AWS_KEY }}
           source: .next/
-          target: /home/${{ secrets.AWS_USERNAME }}/nextapp/.next
+          target: /home/${{ secrets.AWS_USERNAME }}/nextream-front/.next
 
       # 6. 애플리케이션 재시작 (Push to main 시만 실행)
       - name: Restart Application on EC2
@@ -56,9 +56,9 @@ jobs:
           key: ${{ secrets.AWS_KEY }}
           script: |
             set -e  # 에러 발생 시 즉시 종료
-            cd /home/${{ secrets.AWS_USERNAME }}/nextapp
+            cd /home/${{ secrets.AWS_USERNAME }}/nextream-front
             yarn install --production
             echo "✅ Restarting application using PM2..."
-            pm2 restart nextapp || pm2 start yarn --name "nextapp" -- start
+            pm2 restart nextream-front || pm2 start yarn --name "nextream-front" -- start
             echo "🚀 Application successfully deployed and restarted."
           debug: true
