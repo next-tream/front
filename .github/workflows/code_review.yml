@@ -1,0 +1,56 @@
+name: AI Code Review
+
+on:
+  pull_request:
+    branches:
+        - dev
+    types: [opened, synchronize, reopened]
+
+jobs:
+  code-review:
+    runs-on: ubuntu-latest
+
+    steps:
+      # 1. 코드 체크아웃
+      - name: Checkout Code
+        uses: actions/checkout@v3
+
+      # 2. 변경된 코드 추출
+      - name: Get Diff of PR
+        id: diff
+        run: |
+          git fetch origin ${{ github.base_ref }}
+          git diff origin/${{ github.base_ref }}...HEAD > pr_diff.txt
+          echo "### Changed Code:" >> pr_diff.txt
+          cat pr_diff.txt
+
+      # 3. OpenAI API 호출
+      - name: Call OpenAI API for Code Review
+        id: review
+        run: |
+          echo "Calling OpenAI API for Code Review..."
+          RESPONSE=$(curl -s https://api.openai.com/v1/chat/completions \
+            -H "Content-Type: application/json" \
+            -H "Authorization: Bearer ${{ secrets.OPENAI_API_KEY }}" \
+            -d '{
+              "model": "gpt-4",
+              "messages": [
+                {"role": "system", "content": "You are a professional code reviewer. Review the following code changes and provide concise, constructive feedback."},
+                {"role": "user", "content": "'"$(cat pr_diff.txt)"'"}
+              ],
+              "temperature": 0.3
+            }' | jq -r '.choices[0].message.content')
+
+          echo "REVIEW_OUTPUT<<EOF" >> $GITHUB_ENV
+          echo "$RESPONSE" >> $GITHUB_ENV
+          echo "EOF" >> $GITHUB_ENV
+
+      # 4. GitHub PR 코멘트 추가
+      - name: Add Review Comment to PR
+        uses: marocchino/sticky-pull-request-comment@v2
+        with:
+          header: AI Code Review
+          message: |
+            👨‍💻 **AI Code Review Feedback**:
+            ---
+            ${{ env.REVIEW_OUTPUT }}
