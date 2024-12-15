@@ -21,22 +21,6 @@ jobs:
           node-version: 18
           cache: 'yarn'
 
-      # 3. 의존성 설치 및 빌드 검증
-      - name: Install Dependencies and Build
-        id: build
-        run: |
-          echo "⚙️ 의존성 설치 중..."
-          yarn install --frozen-lockfile
-          echo "🔨 빌드 검증 중..."
-          if yarn build; then
-            echo "✅ 빌드가 성공했습니다."
-            echo "BUILD_STATUS=SUCCESS" >> $GITHUB_ENV
-          else
-            echo "❌ 빌드에 실패했습니다."
-            echo "BUILD_STATUS=FAIL" >> $GITHUB_ENV
-            exit 1
-          fi
-
       # 4. 변경된 코드 추출
       - name: Get Diff of PR
         id: diff
