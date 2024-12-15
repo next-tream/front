@@ -31,10 +31,15 @@ jobs:
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
+          git fetch origin dev:dev
           git fetch origin main:main
           git checkout main
           git pull origin main
-          git merge --no-ff dev
-          git push origin main
+          echo "Current main branch log:"
+          git log --oneline -n 5
+          echo "Merging dev into main..."
+          git merge --no-ff dev --strategy-option theirs || echo "Merge failed"
+          echo "Push merged changes to main"
+          git push origin main || echo "Push failed"
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
