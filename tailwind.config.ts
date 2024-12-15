@@ -10,7 +10,8 @@ const config: Config = {
 	theme: {
 		extend: {},
 		colors: {
-			primary: '#FC6B2D',
+			main: '#FC6B2D',
+			error: '#D32F2F',
 			gray: '#6B6B6B',
 			lightGray: '#E2E4E9',
 			white: '#FFFFFF',
