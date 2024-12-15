@@ -1,4 +1,9 @@
+'use client';
+
+import { useState } from 'react';
+
 export default function Home() {
+	const [state, setState] = useState();
 	return (
 		<>
 			<div>홍홍홍321312식식 CD 하이루루~~</div>
