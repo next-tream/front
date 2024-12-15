@@ -1,0 +1,62 @@
+name: CI/CD to AWS EC2
+
+on:
+  pull_request:
+    branches:
+      - main  # main으로 PR 시 실행
+  push:
+    branches:
+      - main  # main에 병합된 후 실행
+
+jobs:
+  build-and-deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+      # 1. 코드 체크아웃
+      - name: Checkout Code
+        uses: actions/checkout@v3
+
+      # 2. Node.js 및 Yarn 설정
+      - name: Setup Node.js and Yarn
+        uses: actions/setup-node@v3
+        with:
+          node-version: 18
+          cache: 'yarn'
+
+      # 3. 의존성 설치 및 빌드 실행
+      - name: Install and Build
+        run: |
+          yarn install
+          yarn build
+
+      # 4. 빌드 검증 (Pull Request 시만 실행)
+      - name: Verify Build Success
+        if: github.event_name == 'pull_request'
+        run: echo "✅ Build verification successful for PR."
+
+      # 5. AWS EC2에 배포 (Push to main 시만 실행)
+      - name: Deploy to AWS EC2
+        if: github.event_name == 'push'
+        uses: appleboy/scp-action@v0.1.4
+        with:
+          host: ${{ secrets.AWS_HOST }}
+          username: ${{ secrets.AWS_USERNAME }}
+          key: ${{ secrets.AWS_KEY }}
+          source: .next/
+          target: /home/${{ secrets.AWS_USERNAME }}/nextapp/.next
+
+      # 6. 애플리케이션 재시작 (Push to main 시만 실행)
+      - name: Restart Application on EC2
+        if: github.event_name == 'push'
+        uses: appleboy/ssh-action@v0.1.4
+        with:
+          host: ${{ secrets.AWS_HOST }}
+          username: ${{ secrets.AWS_USERNAME }}
+          script: |
+            set -e  # 에러 발생 시 즉시 종료
+            cd /home/${{ secrets.AWS_USERNAME }}/nextapp
+            yarn install --production
+            echo "✅ Restarting application using PM2..."
+            pm2 restart nextapp || pm2 start yarn --name "nextapp" -- start
+            echo "🚀 Application successfully deployed and restarted."
