@@ -50,6 +50,7 @@ jobs:
           echo "REVIEW_OUTPUT<<EOF" >> $GITHUB_ENV
           echo "$RESPONSE" >> $GITHUB_ENV
           echo "EOF" >> $GITHUB_ENV
+          echo "API Response: $RESPONSE"
 
       # 5. GitHub PR 코멘트 추가
       - name: Add Review Comment to PR
