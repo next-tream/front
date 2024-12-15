@@ -1,91 +1,79 @@
-name: AI Code Review
+name: AI Code Review and Build Check
 
 on:
   pull_request:
-    types: [opened, synchronize, reopened]
+    branches:
+      - dev  # dev 브랜치에 대한 PR에서만 실행
 
 jobs:
-  code-review:
+  code-review-and-build:
     runs-on: ubuntu-latest
 
     steps:
-      # 1. 코드 체크아웃 (전체 이력 가져오기)
+      # 1. 코드 체크아웃
       - name: Checkout Code
         uses: actions/checkout@v3
+
+      # 2. Node.js 및 Yarn 설정
+      - name: Setup Node.js and Yarn
+        uses: actions/setup-node@v3
         with:
-          fetch-depth: 0
+          node-version: 18
+          cache: 'yarn'
 
-      # 2. 디버깅: 현재 브랜치 및 원격 상태 확인
-      - name: Debug Current Branch
+      # 3. 의존성 설치 및 빌드 검증
+      - name: Install Dependencies and Build
+        id: build
         run: |
-          echo "### Debugging Branch Information"
-          git branch -a
-          git remote -v
+          echo "⚙️ 의존성 설치 중..."
+          yarn install --frozen-lockfile
+          echo "🔨 빌드 검증 중..."
+          if yarn build; then
+            echo "✅ 빌드가 성공했습니다."
+            echo "BUILD_STATUS=SUCCESS" >> $GITHUB_ENV
+          else
+            echo "❌ 빌드에 실패했습니다."
+            echo "BUILD_STATUS=FAIL" >> $GITHUB_ENV
+            exit 1
+          fi
 
-      # 3. 변경된 코드 추출
+      # 4. 변경된 코드 추출
       - name: Get Diff of PR
         id: diff
         run: |
-          echo "### Fetching the diff between dev and HEAD..."
-          git fetch --no-tags --prune --depth=1 origin +refs/heads/dev:refs/remotes/origin/dev
-          git diff origin/dev...HEAD > pr_diff.txt
-          echo "### Changed Code:"
+          git fetch origin ${{ github.base_ref }}
+          git diff origin/${{ github.base_ref }}...HEAD > pr_diff.txt
+          echo "변경된 코드:"
           cat pr_diff.txt
 
-      # 4. OpenAI API 호출 및 에러 로그 출력
+      # 5. OpenAI API 호출 (한국어 응답 요청)
       - name: Call OpenAI API for Code Review
         id: review
         run: |
-          echo "### Calling OpenAI API for Code Review..."
-
-          # pr_diff.txt 내용을 JSON-safe 문자열로 변환
-          DIFF_CONTENT=$(jq -Rs . < pr_diff.txt)
-
-          # OpenAI API 호출
-          RESPONSE=$(curl -s -w "\nHTTP_STATUS:%{http_code}" https://api.openai.com/v1/chat/completions \
+          echo "OpenAI API를 호출하여 코드 리뷰를 진행합니다..."
+          RESPONSE=$(curl -s https://api.openai.com/v1/chat/completions \
             -H "Content-Type: application/json" \
             -H "Authorization: Bearer ${{ secrets.OPENAI_API_KEY }}" \
             -d '{
               "model": "gpt-4",
               "messages": [
-                {"role": "system", "content": "You are a professional code reviewer. Review the following code changes and provide concise, constructive feedback."},
-                {"role": "user", "content": '"$DIFF_CONTENT"'}
+                {"role": "system", "content": "당신은 한국어로 응답하는 전문 코드 리뷰어입니다. 다음 코드 변경 사항을 리뷰하고, 개선 사항이나 주의할 점을 한국어로 작성하세요. 또한 빌드가 실패했을 경우 해당 문제점을 간략히 설명해주세요."},
+                {"role": "user", "content": "'"$(cat pr_diff.txt)"'"}
               ],
               "temperature": 0.3
-            }')
-
-          # API 응답과 HTTP 상태 코드 출력
-          HTTP_STATUS=$(echo "$RESPONSE" | grep "HTTP_STATUS" | cut -d ":" -f2)
-          API_BODY=$(echo "$RESPONSE" | sed '/HTTP_STATUS/d')
-
-          echo "### API Raw Response:"
-          echo "$API_BODY"
-
-          echo "### HTTP Status Code:"
-          echo "$HTTP_STATUS"
-
-          # HTTP 상태 코드 확인
-          if [ "$HTTP_STATUS" -ne 200 ]; then
-            echo "❌ OpenAI API 호출 실패 (HTTP $HTTP_STATUS)"
-            exit 1
-          fi
-
-          # API 응답에서 message.content 추출
-          REVIEW_CONTENT=$(echo "$API_BODY" | jq -r '.choices[0].message.content // "No feedback returned from OpenAI API."')
+            }' | jq -r '.choices[0].message.content')
 
           echo "REVIEW_OUTPUT<<EOF" >> $GITHUB_ENV
-          echo "$REVIEW_CONTENT" >> $GITHUB_ENV
+          echo "$RESPONSE" >> $GITHUB_ENV
           echo "EOF" >> $GITHUB_ENV
 
-          echo "### Final Review Output:"
-          echo "$REVIEW_CONTENT"
-
-      # 5. GitHub PR 코멘트 추가
-      - name: Add Review Comment to PR
+      # 6. GitHub PR에 코드 리뷰 피드백 추가
+      - name: Add AI Review Comment to PR
         uses: marocchino/sticky-pull-request-comment@v2
         with:
-          header: AI Code Review
+          header: "🧑‍💻 AI 코드 리뷰 및 빌드 검증 결과"
           message: |
-            👨‍💻 **AI Code Review Feedback**:
-            ---
+            **🔍 코드 리뷰 결과:**
             ${{ env.REVIEW_OUTPUT }}
+            ---
+            **🔨 빌드 상태:** ${{ env.BUILD_STATUS == 'SUCCESS' && '✅ 성공' || '❌ 실패' }}
