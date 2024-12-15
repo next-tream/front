@@ -9,60 +9,43 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      # 1. 코드 체크아웃 (전체 이력 가져오기)
+      # 1. 코드 체크아웃
       - name: Checkout Code
         uses: actions/checkout@v3
         with:
           fetch-depth: 0
 
-      # 2. 디버깅: 현재 브랜치 및 원격 상태 확인
-      - name: Debug Current Branch
-        run: |
-          echo "### Debugging Branch Information"
-          git branch -a
-          git remote -v
-
-      # 3. 변경된 코드 추출
+      # 2. 변경된 코드 추출
       - name: Get Diff of PR
         id: diff
         run: |
-          echo "### Fetching the diff between dev and HEAD..."
           git fetch --no-tags --prune --depth=1 origin +refs/heads/dev:refs/remotes/origin/dev
           git diff origin/dev...HEAD > pr_diff.txt
-          echo "### Changed Code:"
-          cat pr_diff.txt
 
-      # 4. OpenAI API 호출 및 에러 로그 출력
+      # 3. OpenAI API 호출
       - name: Call OpenAI API for Code Review
         id: review
         run: |
           echo "### Calling OpenAI API for Code Review..."
 
-          # pr_diff.txt 내용을 JSON-safe 문자열로 변환
+          # JSON-safe로 변환
           DIFF_CONTENT=$(jq -Rs . < pr_diff.txt)
+          PROMPT=$(jq -Rs . < review_prompt.txt)
 
-          # OpenAI API 호출
           RESPONSE=$(curl -s -w "\nHTTP_STATUS:%{http_code}" https://api.openai.com/v1/chat/completions \
             -H "Content-Type: application/json" \
             -H "Authorization: Bearer ${{ secrets.OPENAI_API_KEY }}" \
             -d '{
               "model": "gpt-4",
               "messages": [
-                {"role": "system", "content": "You are a professional code reviewer. Review the following code changes and provide concise, constructive feedback."},
+                {"role": "system", "content": '"$PROMPT"'},
                 {"role": "user", "content": '"$DIFF_CONTENT"'}
               ],
               "temperature": 0.3
             }')
 
-          # API 응답과 HTTP 상태 코드 출력
           HTTP_STATUS=$(echo "$RESPONSE" | grep "HTTP_STATUS" | cut -d ":" -f2)
           API_BODY=$(echo "$RESPONSE" | sed '/HTTP_STATUS/d')
-
-          echo "### API Raw Response:"
-          echo "$API_BODY"
-
-          echo "### HTTP Status Code:"
-          echo "$HTTP_STATUS"
 
           # HTTP 상태 코드 확인
           if [ "$HTTP_STATUS" -ne 200 ]; then
@@ -70,17 +53,14 @@ jobs:
             exit 1
           fi
 
-          # API 응답에서 message.content 추출
-          REVIEW_CONTENT=$(echo "$API_BODY" | jq -r '.choices[0].message.content // "No feedback returned from OpenAI API."')
+          # 응답에서 피드백 추출
+          REVIEW_CONTENT=$(echo "$API_BODY" | jq -r '.choices[0].message.content // "No feedback returned."')
 
           echo "REVIEW_OUTPUT<<EOF" >> $GITHUB_ENV
           echo "$REVIEW_CONTENT" >> $GITHUB_ENV
           echo "EOF" >> $GITHUB_ENV
 
-          echo "### Final Review Output:"
-          echo "$REVIEW_CONTENT"
-
-      # 5. GitHub PR 코멘트 추가
+      # 4. GitHub PR에 리뷰 코멘트 추가
       - name: Add Review Comment to PR
         uses: marocchino/sticky-pull-request-comment@v2
         with:
