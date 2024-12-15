@@ -61,3 +61,4 @@ jobs:
             echo "✅ Restarting application using PM2..."
             pm2 restart nextapp || pm2 start yarn --name "nextapp" -- start
             echo "🚀 Application successfully deployed and restarted."
+          debug: true
