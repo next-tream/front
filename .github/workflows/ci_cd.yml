@@ -33,21 +33,24 @@ jobs:
           echo "${{ secrets.AWS_KEY }}" > aws_key.pem
           chmod 600 aws_key.pem
 
-      # 5. AWS EC2에 배포 (빌드된 .next 파일만 전송)
+      # 5. AWS EC2에 배포 (빌드된 .next 파일 전송)
       - name: Deploy to AWS EC2
         run: |
+          ssh -o StrictHostKeyChecking=no -i aws_key.pem ec2-user@${{ secrets.AWS_HOST }} "rm -rf /home/ec2-user/nextream-front/.next"
           scp -o StrictHostKeyChecking=no -i aws_key.pem -r .next ec2-user@${{ secrets.AWS_HOST }}:/home/ec2-user/nextream-front/.next
 
       # 6. 애플리케이션 재시작 및 상태 확인
       - name: Restart Application on EC2
         run: |
-          ssh -i aws_key.pem ec2-user@${{ secrets.AWS_HOST }} << 'EOF'
+          ssh -o StrictHostKeyChecking=no -i aws_key.pem ec2-user@${{ secrets.AWS_HOST }} << 'EOF'
           set -e  # 에러 발생 시 즉시 종료
           cd /home/ec2-user/nextream-front
           echo "✅ Installing dependencies..."
           yarn install --production
-          echo "✅ Restarting application using PM2..."
-          pm2 restart nextream-front || pm2 start yarn --name "nextream-front" -- start
+          echo "✅ Deleting old PM2 process..."
+          pm2 delete nextream-front || true
+          echo "✅ Starting application using PM2..."
+          pm2 start yarn --name "nextream-front" -- start
           echo "✅ Saving PM2 state..."
           pm2 save
           echo "🚀 Application successfully deployed and restarted."
