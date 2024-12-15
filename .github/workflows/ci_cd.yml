@@ -53,6 +53,7 @@ jobs:
         with:
           host: ${{ secrets.AWS_HOST }}
           username: ${{ secrets.AWS_USERNAME }}
+          key: ${{ secrets.AWS_KEY }}
           script: |
             set -e  # 에러 발생 시 즉시 종료
             cd /home/${{ secrets.AWS_USERNAME }}/nextapp
