@@ -1,5 +1,5 @@
 import React from 'react';
-import { IPrimaryButtonProps } from '@/common/types/children.interface';
+import { IBaseButtonProps } from '@/common/types/children.interface';
 
 const buttonPropsObject = {
 	primary: {
@@ -10,6 +10,6 @@ const buttonPropsObject = {
 	},
 };
 
-export default function BaseButton({ style, children }: IPrimaryButtonProps) {
+export default function BaseButton({ style, children }: IBaseButtonProps) {
 	return <button className={buttonPropsObject[style].style}>{children}</button>;
 }
