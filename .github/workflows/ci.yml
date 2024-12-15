@@ -1,4 +1,4 @@
-name: CI Workflow
+name: CI and Auto PR to Main
 
 on:
   push:
@@ -6,15 +6,15 @@ on:
       - dev
 
 jobs:
-  build:
+  build-and-auto-pr:
     runs-on: ubuntu-latest
 
     steps:
-      # 1. 코드 체크아웃 (fetch-depth 0으로 설정)
+      # 1. 코드 체크아웃
       - name: Checkout code
         uses: actions/checkout@v3
         with:
-          fetch-depth: 0  # 모든 브랜치와 히스토리를 가져옵니다.
+          fetch-depth: 0
 
       # 2. Node.js 및 Yarn 설정
       - name: Setup Node.js and Yarn
@@ -32,18 +32,36 @@ jobs:
         run: |
           yarn build
 
-      # 5. Merge dev into main
-      - name: Merge dev into main
-        if: ${{ success() }}
-        run: |
-          git config user.name "github-actions[bot]"
-          git config user.email "github-actions[bot]@users.noreply.github.com"
-          
-          # 최신 상태로 fetch (강제로 가져오기)
-          git fetch origin main:main --force
-          git checkout main
-          git pull origin main
-          git merge --no-ff dev
-          git push origin main
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      # 5. PR 생성: dev → main
+      - name: Create PR to main
+        uses: peter-evans/create-pull-request@v5
+        with:
+          branch: dev
+          base: main
+          title: "Automated PR: Merge dev into main"
+          body: "This PR was automatically created to sync dev with main."
+          token: ${{ secrets.GITHUB_TOKEN }}
+
+      # 6. 자동 병합 (PR 승인 및 병합)
+      - name: Auto Merge PR
+        uses: actions/github-script@v6
+        with:
+          script: |
+            const { data: pulls } = await github.pulls.list({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              state: 'open',
+              head: `${context.repo.owner}:dev`,
+              base: 'main'
+            });
+
+            if (pulls.length > 0) {
+              const pr = pulls[0];
+              console.log(`Merging PR #${pr.number}`);
+              await github.pulls.merge({
+                owner: context.repo.owner,
+                repo: context.repo.repo,
+                pull_number: pr.number,
+                merge_method: 'merge'
+              });
+            }
