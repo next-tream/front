@@ -39,8 +39,8 @@ export default function ThemeSelectionButton() {
 						key={theme.id}
 						className={`flex h-[62px] w-32 flex-col items-center justify-center rounded-xl border border-solid ${
 							isSelected
-								? 'bg-main border-main text-white'
-								: 'border-lightGray text-gray bg-white'
+								? 'bg-main border-main text-mainWhite'
+								: 'border-lightGray text-subBlack bg-mainWhite'
 						}`}
 					>
 						<input
