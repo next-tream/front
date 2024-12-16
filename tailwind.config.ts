@@ -1,4 +1,5 @@
 import type { Config } from 'tailwindcss';
+import plugin from 'tailwindcss/plugin';
 
 const config: Config = {
 	content: [
@@ -19,6 +20,23 @@ const config: Config = {
 			mainWhite: '#E2E4E9',
 		},
 	},
-	plugins: [],
+	plugins: [
+		plugin(function ({ addComponents }) {
+			addComponents({
+				'.center': { '@apply flex items-center justify-center': {} },
+				'.btn': { '@apply center py-2 text-xl': {} },
+				'.roundBtn': { '@apply btn px-4 rounded-3xl font-semibold': {} },
+				'.baseBtn': { '@apply center btn w-full rounded-xl font-bold text-mainWhite': {} },
+				'.basePrimaryBtn': { '@apply baseBtn bg-main': {} },
+				'.baseSubBtn': { '@apply baseBtn bg-subBlack': {} },
+				'.iconLeadingBtn': { '@apply center roundBtn gap-1': {} },
+				'.iconLeadingPrimaryBtn': { '@apply iconLeadingBtn text-mainWhite bg-main': {} },
+				'.iconLeadingSubBtn': { '@apply iconLeadingBtn text-mainBlack bg-lightGray': {} },
+				'.profileEditBtn': { '@apply center roundBtn border border-solid border-main': {} },
+				'.profileEditPrimaryBtn': { '@apply profileEditBtn text-mainWhite bg-main': {} },
+				'.profileEditSubBtn': { '@apply profileEditBtn text-main bg-mainWhite': {} },
+			});
+		}),
+	],
 };
 export default config;
