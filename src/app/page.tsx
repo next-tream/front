@@ -1,8 +1,8 @@
 export default function Home() {
 	return (
 		<>
-			<div>jiseung 하이루~~</div>
-			<div className="bg-black text-white">git main test55</div>
+			<div>홍홍홍32131555식식 CD 하이루루~~</div>
+			<div className="text-wh44t bg-red-550 bg-black">git main test55</div>
 		</>
 	);
 }
