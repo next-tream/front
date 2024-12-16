@@ -1,5 +1,6 @@
 'use client';
 
+import { IThemesProps } from '@/common/types/children.interface';
 import { useState } from 'react';
 
 export default function ThemeSelectionButton() {
@@ -15,7 +16,7 @@ export default function ThemeSelectionButton() {
 		}
 	};
 
-	const themes = [
+	const themes: IThemesProps[] = [
 		{ id: 'cook', name: '요리', icon: '🧑🏻‍🍳' },
 		{ id: 'game', name: '게임', icon: '🎮' },
 		{ id: 'eat', name: '먹방', icon: '🍴' },
