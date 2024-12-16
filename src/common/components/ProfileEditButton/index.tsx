@@ -1,6 +1,6 @@
 import { IProfileEditButtonProps } from '@/common/types/children.interface';
 
-const buttonPropsObject = {
+const buttonStyles = {
 	primary: {
 		style: 'h-10 w-[120px] rounded-3xl text-xl font-semibold text-white flex justify-center items-center bg-main',
 	},
@@ -10,5 +10,5 @@ const buttonPropsObject = {
 };
 
 export default function ProfileEditButton({ style, children }: IProfileEditButtonProps) {
-	return <button className={buttonPropsObject[style].style}>{children}</button>;
+	return <button className={buttonStyles[style].style}>{children}</button>;
 }
