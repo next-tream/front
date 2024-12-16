@@ -9,7 +9,11 @@ const config: Config = {
 		'./src/common/**/*.{js,ts,jsx,tsx,mdx}',
 	],
 	theme: {
-		extend: {},
+		extend: {
+			aspectRatio: {
+				'2/3': '2 / 3',
+			},
+		},
 		colors: {
 			main: '#FC6B2D',
 			mainBlack: '#111111',
