@@ -1,7 +1,10 @@
 import Image from 'next/image';
-import React, { InputHTMLAttributes } from 'react';
+import { InputHTMLAttributes } from 'react';
 
-interface ISearchBarProps extends InputHTMLAttributes<HTMLInputElement> {}
+interface ISearchBarProps extends InputHTMLAttributes<HTMLInputElement> {
+	// 빌드 시 오류 발생으로 인해 임의로 속성을 넣음.
+	id?: string;
+}
 
 export default function SearchBar({ ...rest }: ISearchBarProps) {
 	return (
