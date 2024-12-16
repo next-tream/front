@@ -1,5 +1,5 @@
 import React from 'react';
-import CircleImage from '../CircleImage';
+import CircleImage from './CircleImage';
 
 interface IStreamerInfoContainerProps {
 	title?: string;
