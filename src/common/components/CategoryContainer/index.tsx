@@ -1,35 +1,35 @@
 import Image from 'next/image';
 
-interface ICategoryContainer {
+interface ICategoryContainerProps {
 	title: string;
 	image: string;
-	watchingCount: string;
-	isSelected?: boolean;
+	watchingCount: number;
 }
 
 export default function CategoryContainer({
 	title,
 	image,
 	watchingCount,
-	isSelected = false,
-}: ICategoryContainer) {
+}: ICategoryContainerProps) {
 	return (
-		<div className="relative flex w-[20%] flex-col gap-[0.5rem]">
-			<div className="absolute left-[0.5rem] top-[0.5rem] flex items-center justify-center gap-[0.25rem] rounded-[0.25rem] bg-[#121B16] px-[0.25rem] py-[0.125rem]">
-				<div className="h-[0.5rem] w-[0.5rem] rounded-full bg-[#e02020]" />
-				<p className="text-[0.75rem] font-bold text-white">{watchingCount}</p>
+		<div className="relative flex w-1/5 max-w-36 flex-col gap-2">
+			<div className="group">
+				<div className="bg-mainBlack absolute left-2 top-2 z-10 flex items-center justify-center gap-1 rounded-md px-1 py-0.5 transition-transform group-hover:scale-110">
+					<div className="bg-mainRed size-2 rounded-full" />
+					<p className="text-mainWhite text-xs font-bold">{watchingCount}</p>
+				</div>
+				<Image
+					src={image}
+					alt={`${image}_image`}
+					width={0}
+					height={0}
+					sizes="100vw"
+					className={
+						'group-hover:border-main aspect-2/3 w-full cursor-pointer rounded-xl object-cover transition-transform group-hover:scale-105 group-hover:border-2'
+					}
+				/>
 			</div>
-			<Image
-				src={image}
-				alt={`${image}_image`}
-				width={0}
-				height={0}
-				sizes="100vw"
-				className={`aspect-[2/3] w-full max-w-[8.75rem] cursor-pointer rounded-[0.75rem] object-cover ${
-					isSelected ? 'border-main border-2' : ''
-				}`}
-			/>
-			<p className="text-lightGray text-[1rem] font-semibold">{title}</p>
+			<p className="text-lightGray text-base font-semibold">{title}</p>
 		</div>
 	);
 }
