@@ -1,8 +1,12 @@
 'use client';
 
-import { IThemeSelectionButtonProps } from "../types/children.interface";
+import { IThemeSelectionButtonProps } from '../types/children.interface';
 
-export default function ThemeSelectionButton({ theme, isSelected=false, onChangeThemeHandler }: IThemeSelectionButtonProps) {
+export default function ThemeSelectionButton({
+	theme,
+	isSelected = false,
+	onChangeThemeHandler,
+}: IThemeSelectionButtonProps) {
 	return (
 		<label
 			key={theme.id}
