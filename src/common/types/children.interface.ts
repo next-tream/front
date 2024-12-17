@@ -21,3 +21,8 @@ export interface IThemeSelectionButtonProps {
 	isSelected?: boolean;
 	onChangeThemeHandler: (id: string, checked: boolean) => void;
 }
+
+export interface IMenuItem {
+	name: string;
+	icon: React.ReactNode;
+}
