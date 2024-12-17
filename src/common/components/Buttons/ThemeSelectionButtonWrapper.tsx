@@ -1,7 +1,7 @@
 'use client';
 
-import { themes } from '../constants/themeSelectionButton.const';
-import useThemeSelectionButton from '../hooks/useThemeSelectionButton';
+import { themes } from '../../constants/themeSelectionButton.const';
+import useThemeSelectionButton from '../../hooks/useThemeSelectionButton';
 import ThemeSelectionButton from './ThemeSelectionButton';
 
 export default function ThemeSelectionButtonsWrapper() {
