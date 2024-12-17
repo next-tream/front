@@ -1,9 +1,9 @@
 'use client';
 
 import { ChevronUpIcon } from '@heroicons/react/24/outline';
-import MenuItem from '../../components/MenuItem';
-import { mainMenuItems } from '../../constants/menuItems.const';
-import StreamerInfoContainer from '../../components/StreamerInfoContainer';
+import MenuItem from '@/common/components/MenuItem';
+import { mainMenuItems } from '@/common/constants/menuItems.const';
+import StreamerInfoContainer from '@/common/components/StreamerInfoContainer';
 import { useState } from 'react';
 
 export default function Aside() {

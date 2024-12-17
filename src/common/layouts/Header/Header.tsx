@@ -1,6 +1,6 @@
 import { Bars3Icon } from '@heroicons/react/24/solid';
-import SearchBar from '../../components/SearchBar';
-import BaseButton from '../../components/Buttons/BaseButton';
+import SearchBar from '@/common/components/SearchBar';
+import BaseButton from '@/common/components/Buttons/BaseButton';
 
 export default function Header() {
 	return (

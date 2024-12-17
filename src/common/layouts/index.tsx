@@ -1,6 +1,6 @@
-import { IChildrenProps } from '../types/children.interface';
-import Aside from './Aside';
-import Header from './Header/Header';
+import { IChildrenProps } from '@/common/types/children.interface';
+import Aside from '@/common/layouts/Aside';
+import Header from '@/common/layouts/Header/Header';
 
 export default function Layout({ children }: IChildrenProps) {
 	return (

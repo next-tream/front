@@ -1,4 +1,4 @@
-import { IMenuItem } from '../types/children.interface';
+import { IMenuItem } from '@/common/types/children.interface';
 import {
 	StarIcon,
 	UserIcon,

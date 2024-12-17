@@ -1,8 +1,8 @@
 'use client';
 
-import { themes } from '../../constants/themeSelectionButton.const';
-import useThemeSelectionButton from '../../hooks/useThemeSelectionButton';
-import ThemeSelectionButton from './ThemeSelectionButton';
+import { themes } from '@/common/constants/themeSelectionButton.const';
+import useThemeSelectionButton from '@/common/hooks/useThemeSelectionButton';
+import ThemeSelectionButton from '@/common/components/Buttons/ThemeSelectionButton';
 
 export default function ThemeSelectionButtonsWrapper() {
 	const { onChangeThemeHandler, selectedThemes } = useThemeSelectionButton();

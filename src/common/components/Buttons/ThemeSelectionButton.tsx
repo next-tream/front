@@ -1,6 +1,6 @@
 'use client';
 
-import { IThemeSelectionButtonProps } from '../types/children.interface';
+import { IThemeSelectionButtonProps } from '@/common/types/children.interface';
 
 export default function ThemeSelectionButton({
 	theme,
