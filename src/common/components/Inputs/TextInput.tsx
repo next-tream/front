@@ -14,7 +14,7 @@ export default function TextInput({ title, ...rest }: ITextInputProps) {
 			<input
 				type={rest.type}
 				placeholder={rest.placeholder}
-				className="h-12 w-full rounded-lg border border-[#D0D1D3] bg-[transparent] px-5 text-sm font-medium text-mainBlack outline-none focus:border-main"
+				className="h-12 w-full rounded-lg border border-lightGray bg-[transparent] px-5 text-sm font-medium text-mainBlack outline-none focus:border-main"
 			/>
 		</div>
 	);
