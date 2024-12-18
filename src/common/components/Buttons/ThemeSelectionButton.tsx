@@ -1,6 +1,6 @@
 'use client';
 
-import { IThemeSelectionButtonProps } from '../types/children.interface';
+import { IThemeSelectionButtonProps } from '@/common/types/children.interface';
 
 export default function ThemeSelectionButton({
 	theme,
@@ -12,8 +12,8 @@ export default function ThemeSelectionButton({
 			key={theme.id}
 			className={`flex h-[62px] w-32 flex-col items-center justify-center rounded-xl border border-solid ${
 				isSelected
-					? 'bg-main border-main text-mainWhite'
-					: 'border-lightGray text-subBlack bg-mainWhite'
+					? 'border-main bg-main text-mainWhite'
+					: 'border-lightGray bg-mainWhite text-subBlack'
 			}`}
 		>
 			<input
