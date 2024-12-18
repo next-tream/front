@@ -6,12 +6,7 @@ import Timer from '@/common/components/Timer';
 
 export default function KakaoAuthModal({ authenticationTime }: IKakaoAuthModalProps) {
 	return (
-		<BaseModal
-			title="카카오톡 인증"
-			description="인증 번호를 입력해 주세요. 인증번호 6자리는 카카오톡으로 전송됩니다."
-			mainButtonLabel="다음"
-			subButtonLabel="이전"
-		>
+		<BaseModal type="kakaoAuth">
 			<div className="center flex-col gap-4">
 				<div className="flex flex-col items-end gap-4">
 					<div className="center relative w-full">

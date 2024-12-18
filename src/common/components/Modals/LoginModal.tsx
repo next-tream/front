@@ -4,7 +4,7 @@ import LoginInputsWrapper from '@/common/components/Wrapper/LoginInputsWrapper';
 
 export default function LoginModal() {
 	return (
-		<BaseModal title="Nextream">
+		<BaseModal type="login">
 			<div className="flex flex-col gap-16">
 				<div className="flex flex-col gap-6">
 					<LoginInputsWrapper />
