@@ -1,11 +1,6 @@
 import Image from 'next/image';
 import { formatWatchingCount } from '@/common/utils/formatWatchingCount';
-
-interface ICategoryContainerProps {
-	title: string;
-	image: string;
-	watchingCount: number;
-}
+import { ICategoryContainerProps } from '@/common/types/container.interface';
 
 export default function CategoryContainer({
 	title,

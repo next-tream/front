@@ -1,4 +1,3 @@
-import { IMenuItem } from '@/common/types/children.interface';
 import {
 	StarIcon,
 	UserIcon,
@@ -14,6 +13,7 @@ import {
 	PhoneArrowDownLeftIcon,
 	ArrowRightStartOnRectangleIcon,
 } from '@heroicons/react/24/outline';
+import { IMenuItem } from '../types/object.interface';
 
 export const mainMenuItems: IMenuItem[] = [
 	{ anchor: 'recommendation', name: '추천', icon: <HandThumbUpIcon className="size-7" /> },

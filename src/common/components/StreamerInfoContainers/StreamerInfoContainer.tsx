@@ -1,11 +1,5 @@
-import React from 'react';
 import CircleImage from '@/common/components/CircleImage';
-
-interface IStreamerInfoContainerProps {
-	title?: string;
-	name: string;
-	category: string;
-}
+import { IStreamerInfoContainerProps } from '@/common/types/container.interface';
 
 export default function StreamerInfoContainer({
 	title,
@@ -14,7 +8,7 @@ export default function StreamerInfoContainer({
 }: IStreamerInfoContainerProps) {
 	return (
 		<div className="flex cursor-pointer gap-2">
-			<div className='lg:size-8 2xl:size-14'>
+			<div className="lg:size-8 2xl:size-14">
 				<CircleImage src="/images/sample.jpg" />
 			</div>
 			<div className="flex flex-col gap-0.5">
