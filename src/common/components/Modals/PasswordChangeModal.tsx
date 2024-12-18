@@ -1,11 +1,10 @@
 import BaseModal from '@/common/components/Modals/BaseModal';
-import PasswordChangeInputsWrapper from '@/common/components/Wrapper/PasswordChangeInputsWrapper';
-import MODAL_CONSTANTS from '@/common/constants/modal.const';
+import TextInputsWrapper from '@/common/components/Wrapper/TextInputsWrapper';
 
 export default function PasswordChangeModal() {
 	return (
 		<BaseModal type="passwordChange">
-			<PasswordChangeInputsWrapper />
+			<TextInputsWrapper type="passwordChange" />
 		</BaseModal>
 	);
 }

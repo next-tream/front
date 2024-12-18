@@ -1,6 +1,6 @@
 import BaseButton from '@/common/components/Buttons/BaseButton';
 import CloseButton from '@/common/components/Buttons/CloseButton';
-import MODAL_CONSTANTS from '@/common/constants/modal.const';
+import MODAL_CONFIG from '@/common/constants/modal.const';
 import { IBaseModalProps } from '@/common/types/modal.interface';
 import { splitByDotAndRenderParagraphs } from '@/common/utils/splitByDotAndRenderParagraphs';
 
@@ -11,7 +11,7 @@ export default function BaseModal({
 	onMainButtonClick,
 	onSubButtonClick,
 }: IBaseModalProps) {
-	const { title, description, mainButtonLabel, subButtonLabel } = MODAL_CONSTANTS[type];
+	const { title, description, mainButtonLabel, subButtonLabel } = MODAL_CONFIG[type];
 
 	return (
 		<div className="relative flex h-[544px] max-h-full w-1/3 max-w-md flex-col gap-8 rounded-2xl bg-mainWhite px-6 pb-4 pt-11">

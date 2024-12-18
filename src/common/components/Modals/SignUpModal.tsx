@@ -1,10 +1,10 @@
 import BaseModal from '@/common/components/Modals/BaseModal';
-import SignUpInputWrapper from '@/common/components/Wrapper/SignUpInputsWrapper';
+import TextInputsWrapper from '@/common/components/Wrapper/TextInputsWrapper';
 
 export default function SignUpModal() {
 	return (
 		<BaseModal type="signUp">
-			<SignUpInputWrapper />
+			<TextInputsWrapper type="signUp" />
 		</BaseModal>
 	);
 }

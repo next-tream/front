@@ -1,13 +1,13 @@
 import BaseModal from '@/common/components/Modals/BaseModal';
 import BaseButton from '@/common/components/Buttons/BaseButton';
-import LoginInputsWrapper from '@/common/components/Wrapper/LoginInputsWrapper';
+import TextInputsWrapper from '@/common/components/Wrapper/TextInputsWrapper';
 
 export default function LoginModal() {
 	return (
 		<BaseModal type="login">
 			<div className="flex flex-col gap-16">
 				<div className="flex flex-col gap-6">
-					<LoginInputsWrapper />
+					<TextInputsWrapper type="login" />
 					<BaseButton className="basePrimaryBtn">로그인</BaseButton>
 					<div className="flex w-full items-center gap-2">
 						<div className="h-0 w-1/2 border border-lightGray" />
