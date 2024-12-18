@@ -14,9 +14,9 @@ export default function CategoryContainer({
 }: ICategoryContainerProps) {
 	const viewCount = formatWatchingCount(watchingCount);
 	return (
-		<div className="relative flex max-w-36 flex-col gap-2">
+		<div className="relative flex w-full flex-col gap-2">
 			<div className="group">
-				<div className="bg-mainBlack absolute left-2 top-2 z-10 center gap-1 rounded-md px-1 py-0.5 transition-transform group-hover:scale-110">
+				<div className="bg-mainBlack center absolute left-2 top-2 z-10 gap-1 rounded-md px-1 py-0.5 transition-transform group-hover:scale-110">
 					<div className="bg-mainRed size-2 rounded-full" />
 					<p className="text-mainWhite text-xs font-bold">{viewCount}</p>
 				</div>
