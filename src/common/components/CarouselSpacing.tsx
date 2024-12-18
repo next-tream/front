@@ -9,7 +9,7 @@ export function CarouselSpacing() {
 			<CarouselContent className="">
 				{Array.from({ length: 12 }).map((_, index) => (
 					<CarouselItem key={index} className="pl-1 md:basis-1/6 lg:basis-1/6">
-						<div className="p-2">
+						<div className="p-3">
 							<CategoryContainer
 								title="바람의나라"
 								image="/images/sample.jpg"
