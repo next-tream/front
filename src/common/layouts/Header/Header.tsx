@@ -1,11 +1,12 @@
 import { Bars3Icon } from '@heroicons/react/24/solid';
-import SearchBar from '@/common/components/SearchBar';
 import BaseButton from '@/common/components/Buttons/BaseButton';
+import SearchBar from '@/common/components/SearchBar';
 
 export default function Header() {
 	return (
-		<div className="border-darkGray bg-mainBlack sticky top-0 z-50 flex flex-row items-center justify-between border-b border-solid py-5">
-			<div className="flex flex-row items-center justify-between">
+		<div className="sticky top-0 z-50 flex items-center justify-between border-b border-solid border-darkGray bg-mainBlack py-5">
+			<div className="flex items-center justify-between">
+				{/* NOTE 컴포넌트 분리 추후 eventlistener 생각 */}
 				<Bars3Icon className="size-14" />
 				<p className="text-5xl font-semibold">Nextream</p>
 			</div>
