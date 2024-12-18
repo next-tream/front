@@ -2,14 +2,11 @@
 
 import { ChevronDownIcon, ChevronUpIcon } from '@heroicons/react/24/outline';
 import StreamerInfoContainer from '@/common/components/StreamerInfoContainer';
-import { useState } from 'react';
 import MenuItemWrapper from '@/common/components/MenuItemWrapper';
+import { useToggle } from '@/common/hooks/useToggle';
 
 export default function Aside() {
-	const [isHidden, setIsHidden] = useState(true);
-	const onclick = () => {
-		setIsHidden((prev) => !prev);
-	};
+	const { isToggle, onClickToggle } = useToggle();
 
 	return (
 		<div className="border-darkGray relative flex min-h-[90dvh] w-60 flex-col border-r border-solid py-5 pl-2 pr-3">
@@ -18,15 +15,15 @@ export default function Aside() {
 				<div>
 					<div className="flex flex-row items-center justify-between pt-3 text-xl">
 						<p>추천 채널</p>
-						<div onClick={onclick}>
-							{isHidden ? (
+						<div onClick={onClickToggle}>
+							{isToggle ? (
 								<ChevronUpIcon className="size-6" />
 							) : (
 								<ChevronDownIcon className="size-6" />
 							)}
 						</div>
 					</div>
-					{isHidden && (
+					{isToggle && (
 						<div className="flex flex-col gap-3 py-3">
 							<StreamerInfoContainer name="우주최강냥이" category="고양이 라이프" />
 							<StreamerInfoContainer name="뷰티풀윤정" category="뷰티/패션" />
