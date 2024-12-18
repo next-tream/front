@@ -18,7 +18,7 @@ export default function CategoryContainer({
 			<div className="group">
 				<div className="bg-mainBlack center absolute left-2 top-2 z-10 gap-1 rounded-md px-1 py-0.5 transition-transform group-hover:scale-110">
 					<div className="bg-mainRed size-2 rounded-full" />
-					<p className="text-mainWhite text-xs font-bold">{viewCount}</p>
+					<p className="text-mainWhite font-bold lg:text-xs 2xl:text-lg">{viewCount}</p>
 				</div>
 				<Image
 					src={image}
@@ -31,7 +31,7 @@ export default function CategoryContainer({
 					}
 				/>
 			</div>
-			<p className="text-lightGray text-base font-semibold">{title}</p>
+			<p className="text-lightGray font-semibold lg:text-base 2xl:text-2xl">{title}</p>
 		</div>
 	);
 }

@@ -9,8 +9,8 @@ export default function Aside() {
 	const { isToggle, onClickToggle } = useToggle();
 
 	return (
-		<div className="border-darkGray relative flex min-h-[90dvh] w-60 flex-col border-r border-solid py-5 pl-2 pr-3">
-			<div className="fixed w-48">
+		<div className="border-darkGray relative flex min-h-[90dvh] w-1/4 flex-col border-r border-solid py-5 pl-2 pr-3">
+			<div className="fixed w-[18%]">
 				<MenuItemWrapper />
 				<div>
 					<div className="flex flex-row items-center justify-between pt-3 text-xl">
