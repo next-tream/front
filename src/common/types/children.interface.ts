@@ -23,6 +23,7 @@ export interface IThemeSelectionButtonProps {
 }
 
 export interface IMenuItem {
+	anchor: string;
 	name: string;
 	icon: React.ReactNode;
 }
