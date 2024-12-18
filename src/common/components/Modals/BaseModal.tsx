@@ -1,4 +1,3 @@
-import React from 'react';
 import { IChildrenProps } from '@/common/types/children.interface';
 import BaseButton from '@/common/components/Buttons/BaseButton';
 import CloseButton from '@/common/components/Buttons/CloseButton';
