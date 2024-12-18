@@ -2,6 +2,8 @@ export interface IChildrenProps {
 	children: React.ReactNode;
 }
 
+export type TInputChangeEvent = React.ChangeEvent<HTMLInputElement>;
+
 export interface IBaseButtonStyleProps extends IChildrenProps {
 	className: string;
 }
