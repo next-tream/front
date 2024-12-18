@@ -1,6 +1,6 @@
 'use client';
 
-import { IThemeSelectionButtonProps } from '@/common/types/children.interface';
+import { IThemeSelectionButtonProps, TInputChangeEvent } from '@/common/types/children.interface';
 
 export default function ThemeSelectionButton({
 	theme,
@@ -21,7 +21,7 @@ export default function ThemeSelectionButton({
 				type="checkbox"
 				id={theme.id}
 				checked={isSelected}
-				onChange={(e) => onChangeThemeHandler(theme.id, e.target.checked)}
+				onChange={(event: TInputChangeEvent) => onChangeThemeHandler(theme.id, event.target.checked)}
 			/>
 			<div className="text-2xl">{theme.icon}</div>
 			<p className="text-sm font-semibold">{theme.name}</p>
