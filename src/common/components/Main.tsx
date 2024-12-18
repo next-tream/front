@@ -1,7 +1,7 @@
 import MainVideo from '@/common/components/Video/MainVideo';
 import RecommendVideo from '@/common/components/Video/RecommendVideo';
-import CategoryContainer from './CategoryContainer';
-import MenuContainer from './MenuContainer';
+import CategoryContainer from '@/common/components/CategoryContainer';
+import MenuContainer from '@/common/components/MenuContainer';
 
 export default function Main() {
 	return (
