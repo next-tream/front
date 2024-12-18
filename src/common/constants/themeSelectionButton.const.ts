@@ -1,4 +1,4 @@
-import { ITheme } from '../types/children.interface';
+import { ITheme } from '@/common/types/children.interface';
 
 export const themes: ITheme[] = [
 	{ id: 'cook', name: '요리', icon: '🧑🏻‍🍳' },

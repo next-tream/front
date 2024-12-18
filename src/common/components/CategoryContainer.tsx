@@ -1,4 +1,5 @@
 import Image from 'next/image';
+import { formatWatchingCount } from '@/common/utils/formatWatchingCount';
 
 interface ICategoryContainerProps {
 	title: string;
@@ -11,12 +12,13 @@ export default function CategoryContainer({
 	image,
 	watchingCount,
 }: ICategoryContainerProps) {
+	const viewCount = formatWatchingCount(watchingCount);
 	return (
-		<div className="relative flex w-1/5 max-w-36 flex-col gap-2">
+		<div className="relative flex max-w-36 flex-col gap-2">
 			<div className="group">
-				<div className="bg-mainBlack absolute left-2 top-2 z-10 flex items-center justify-center gap-1 rounded-md px-1 py-0.5 transition-transform group-hover:scale-110">
+				<div className="bg-mainBlack absolute left-2 top-2 z-10 center gap-1 rounded-md px-1 py-0.5 transition-transform group-hover:scale-110">
 					<div className="bg-mainRed size-2 rounded-full" />
-					<p className="text-mainWhite text-xs font-bold">{watchingCount}</p>
+					<p className="text-mainWhite text-xs font-bold">{viewCount}</p>
 				</div>
 				<Image
 					src={image}
