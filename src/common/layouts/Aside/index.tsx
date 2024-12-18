@@ -1,10 +1,9 @@
 'use client';
 
 import { ChevronDownIcon, ChevronUpIcon } from '@heroicons/react/24/outline';
-import MenuItem from '@/common/components/MenuItem';
-import { mainMenuItems } from '@/common/constants/menuItems.const';
 import StreamerInfoContainer from '@/common/components/StreamerInfoContainer';
 import { useState } from 'react';
+import MenuItemWrapper from '@/common/components/MenuItemWrapper';
 
 export default function Aside() {
 	const [isHidden, setIsHidden] = useState(true);
@@ -15,13 +14,7 @@ export default function Aside() {
 	return (
 		<div className="border-darkGray relative flex min-h-[90dvh] w-60 flex-col border-r border-solid py-5 pl-2 pr-3">
 			<div className="fixed w-48">
-				<div className="border-darkGray flex flex-col gap-6 border-b border-solid pb-5">
-					{mainMenuItems.map((item) => (
-						<MenuItem anchor={item.anchor} key={item.name} name={item.name}>
-							{item.icon}
-						</MenuItem>
-					))}
-				</div>
+				<MenuItemWrapper />
 				<div>
 					<div className="flex flex-row items-center justify-between pt-3 text-xl">
 						<p>추천 채널</p>
