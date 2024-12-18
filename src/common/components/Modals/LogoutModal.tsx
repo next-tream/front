@@ -1,4 +1,3 @@
-import React from 'react';
 import BaseModal from '@/common/components/Modals/BaseModal';
 
 export default function LogoutModal() {
