@@ -30,7 +30,9 @@ const config: Config = {
 				'.center': { '@apply flex items-center justify-center': {} },
 				'.btn': { '@apply center py-2 text-xl': {} },
 				'.roundBtn': { '@apply btn px-4 rounded-3xl font-semibold': {} },
-				'.baseBtn': { '@apply center btn w-full rounded-xl font-bold text-mainWhite': {} },
+				'.baseBtn': {
+					'@apply center btn w-full rounded-xl font-bold text-mainWhite flex-1': {},
+				},
 				'.basePrimaryBtn': { '@apply baseBtn bg-main': {} },
 				'.baseSubBtn': { '@apply baseBtn bg-subBlack': {} },
 				'.iconLeadingBtn': { '@apply center roundBtn gap-1': {} },
