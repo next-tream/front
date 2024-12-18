@@ -1,4 +1,3 @@
-import React from 'react';
 import BaseModal from '@/common/components/Modals/BaseModal';
 import TextInput from '@/common/components/Inputs/TextInput';
 
