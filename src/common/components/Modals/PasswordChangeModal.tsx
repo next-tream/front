@@ -1,5 +1,5 @@
 import BaseModal from '@/common/components/Modals/BaseModal';
-import TextInput from '@/common/components/Inputs/TextInput';
+import PasswordChangeInputsWrapper from '@/common/components/Wrapper/PasswordChangeInputsWrapper';
 
 export default function PasswordChangeModal() {
 	return (
@@ -9,10 +9,7 @@ export default function PasswordChangeModal() {
 			mainButtonLabel="변경"
 			subButtonLabel="이전"
 		>
-			<div className="flex flex-col gap-4">
-				<TextInput title="새 비밀번호" placeholder="비밀번호를 입력해 주세요." />
-				<TextInput title="새 비밀번호 확인" placeholder="새 비밀번호를 입력해 주세요." />
-			</div>
+			<PasswordChangeInputsWrapper />
 		</BaseModal>
 	);
 }
