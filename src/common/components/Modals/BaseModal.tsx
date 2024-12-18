@@ -1,15 +1,7 @@
-import React from 'react';
-import { IChildrenProps } from '@/common/types/children.interface';
 import BaseButton from '@/common/components/Buttons/BaseButton';
 import CloseButton from '@/common/components/Buttons/CloseButton';
-
-interface IBaseModalProps extends IChildrenProps {
-	title: string;
-	description?: string;
-	mainButtonLabel?: string;
-	subButtonLabel?: string;
-	showCloseButton?: boolean;
-}
+import { IBaseModalProps } from '@/common/types/modal.interface';
+import { splitByDotAndRenderParagraphs } from '@/common/utils/splitByDotAndRenderParagraphs';
 
 export default function BaseModal({
 	children,
@@ -18,18 +10,18 @@ export default function BaseModal({
 	mainButtonLabel,
 	subButtonLabel,
 	showCloseButton = true,
+	onMainButtonClick,
+	onSubButtonClick,
 }: IBaseModalProps) {
 	return (
 		<div className="relative flex h-[544px] max-h-full w-1/3 max-w-md flex-col gap-8 rounded-2xl bg-mainWhite px-6 pb-4 pt-11">
 			{showCloseButton && <CloseButton />}
 			<div className="center flex-col gap-7">
-				<h3 className="text-4xl font-bold text-mainBlack">{title}</h3>
+				<div className="text-4xl font-bold text-mainBlack">{title}</div>
 
 				{description && (
 					<div className="center flex-col font-semibold text-mainBlack">
-						{description
-							.split('.')
-							.map((part, index) => part.trim() && <p key={index}>{part.trim()}.</p>)}
+						{splitByDotAndRenderParagraphs(description)}
 					</div>
 				)}
 			</div>
@@ -38,10 +30,14 @@ export default function BaseModal({
 
 			<div className="flex gap-5">
 				{subButtonLabel && (
-					<BaseButton className="roundBtn baseSubBtn">{subButtonLabel}</BaseButton>
+					<BaseButton className="baseSubBtn" onClick={onSubButtonClick}>
+						{subButtonLabel}
+					</BaseButton>
 				)}
 				{mainButtonLabel && (
-					<BaseButton className="roundBtn basePrimaryBtn">{mainButtonLabel}</BaseButton>
+					<BaseButton className="basePrimaryBtn" onClick={onMainButtonClick}>
+						{mainButtonLabel}
+					</BaseButton>
 				)}
 			</div>
 		</div>
