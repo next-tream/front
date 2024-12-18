@@ -3,28 +3,29 @@ name: AI Code Review
 on:
   pull_request:
     branches:
-      - dev       # dev 브랜치로 향하는 PR에만 실행
+      - dev       
     types: [opened, synchronize, reopened]
 
 jobs:
   code-review:
+    if: contains(github.event.pull_request.title, 'Review')
     runs-on: ubuntu-latest
 
     steps:
-      # 1. 코드 체크아웃
+      
       - name: Checkout Code
         uses: actions/checkout@v3
         with:
           fetch-depth: 0
 
-      # 2. 변경된 코드 추출
+      
       - name: Get Diff of PR
         id: diff
         run: |
           git fetch --no-tags --prune --depth=1 origin +refs/heads/dev:refs/remotes/origin/dev
           git diff origin/dev...HEAD > pr_diff.txt
 
-      # 3. OpenAI API 호출
+      
       - name: Call OpenAI API for Code Review
         id: review
         run: |
@@ -62,7 +63,7 @@ jobs:
           echo "$REVIEW_CONTENT" >> $GITHUB_ENV
           echo "EOF" >> $GITHUB_ENV
 
-      # 4. GitHub PR에 리뷰 코멘트 추가
+      
       - name: Add Review Comment to PR
         uses: marocchino/sticky-pull-request-comment@v2
         with:
