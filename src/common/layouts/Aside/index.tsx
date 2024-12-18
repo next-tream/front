@@ -13,7 +13,7 @@ export default function Aside() {
 			<div className="fixed w-[18%]">
 				<MenuItemWrapper />
 				<div>
-					<div className="flex flex-row items-center justify-between pt-3 text-xl">
+					<div className="betweenCenter flex-row pt-3 text-xl">
 						<p>추천 채널</p>
 						<div onClick={onClickToggle}>
 							{isToggle ? (

@@ -9,7 +9,7 @@ interface ISearchBarProps {
 
 export default function SearchBar({ value, onChange, onClick }: ISearchBarProps) {
 	return (
-		<div className="border-mainWhite flex h-12 w-full justify-between rounded-2xl border px-5 py-3.5">
+		<div className="border-mainWhite between h-12 w-full rounded-2xl border px-5 py-3.5">
 			<input
 				type="text"
 				placeholder="스트리머 게임 검색"

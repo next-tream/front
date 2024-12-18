@@ -6,7 +6,7 @@ export default function SearchHistoryList() {
 				<li>예슬콩</li>
 				<li>강예슬 회장님</li>
 			</ul>
-			<div className="border-mainWhite flex w-full justify-between border-t border-solid pt-2">
+			<div className="border-mainWhite between w-full border-t border-solid pt-2">
 				<button>자동저장 끄기</button>
 				<button>닫기</button>
 			</div>
