@@ -1,5 +1,5 @@
 import { mainMenuItems } from '@/common/constants/menuItems.const';
-import MenuItem from '@/common/components/MenuItem';
+import MenuItem from '@/common/components/MenuItems/MenuItem';
 
 export default function MenuItemWrapper() {
 	return (

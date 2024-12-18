@@ -1,9 +1,9 @@
 'use client';
 
 import { useToggle } from '@/common/hooks/useToggle';
-import MenuItemWrapper from '@/common/components/MenuItemWrapper';
+import MenuItemWrapper from '@/common/components/MenuItems/MenuItemWrapper';
 import { ChevronDownIcon, ChevronUpIcon } from '@heroicons/react/24/outline';
-import StreamerInfoContainerWrapper from '@/common/components/StreamerInfoContainer/StreamerInfoContainerWrapper';
+import StreamerInfoContainerWrapper from '@/common/components/StreamerInfoContainers/StreamerInfoContainerWrapper';
 
 export default function Aside() {
 	const { isToggle, onClickToggle } = useToggle();

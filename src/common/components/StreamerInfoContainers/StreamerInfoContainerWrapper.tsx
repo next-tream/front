@@ -1,4 +1,4 @@
-import StreamerInfoContainer from '@/common/components/StreamerInfoContainer/StreamerInfoContainer';
+import StreamerInfoContainer from '@/common/components/StreamerInfoContainers/StreamerInfoContainer';
 
 export default function StreamerInfoContainerWrapper() {
 	return (
