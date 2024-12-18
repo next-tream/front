@@ -1,9 +1,9 @@
 'use client';
 
-import { ChevronDownIcon, ChevronUpIcon } from '@heroicons/react/24/outline';
-import StreamerInfoContainer from '@/common/components/StreamerInfoContainer';
-import MenuItemWrapper from '@/common/components/MenuItemWrapper';
 import { useToggle } from '@/common/hooks/useToggle';
+import MenuItemWrapper from '@/common/components/MenuItemWrapper';
+import { ChevronDownIcon, ChevronUpIcon } from '@heroicons/react/24/outline';
+import StreamerInfoContainerWrapper from '@/common/components/StreamerInfoContainer/StreamerInfoContainerWrapper';
 
 export default function Aside() {
 	const { isToggle, onClickToggle } = useToggle();
@@ -23,15 +23,7 @@ export default function Aside() {
 							)}
 						</div>
 					</div>
-					{isToggle && (
-						<div className="flex flex-col gap-3 py-3">
-							<StreamerInfoContainer name="우주최강냥이" category="고양이 라이프" />
-							<StreamerInfoContainer name="뷰티풀윤정" category="뷰티/패션" />
-							<StreamerInfoContainer name="대상혁" category="리그 오브 레전드" />
-							<StreamerInfoContainer name="밥주세요히밥" category="먹방 크리에이터" />
-							<StreamerInfoContainer name="빠니보틀" category="여행/일상" />
-						</div>
-					)}
+					{isToggle && <StreamerInfoContainerWrapper />}
 				</div>
 			</div>
 		</div>
