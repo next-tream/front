@@ -1,5 +1,5 @@
 import Image from 'next/image';
-import StreamerInfoContainer from '@/common/components/StreamerInfoContainer';
+import StreamerInfoContainer from '@/common/components/StreamerInfoContainer/StreamerInfoContainer';
 import LiveStatusContainer from '@/common/components/LiveStatusContainer';
 
 export default function RecommendVideo() {
