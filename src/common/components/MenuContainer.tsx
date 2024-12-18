@@ -13,8 +13,8 @@ export default function MenuContainer({
 		>
 			<div>{menu}</div>
 			<div className={`grid h-full w-full grid-cols-${category ? '6' : '3'} gap-3`}>
-				{new Array(6).fill(0).map(() => (
-					<div>{container} </div>
+				{new Array(6).fill(0).map((_, index) => (
+					<div key={index}>{container} </div>
 				))}
 			</div>
 		</div>
