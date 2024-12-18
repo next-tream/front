@@ -1,25 +1,19 @@
-import { TInputChangeEvent } from '@/common/types/children.interface';
+import { ISearchBarProps } from '@/common/types/search.interface';
 import { MagnifyingGlassIcon, XCircleIcon } from '@heroicons/react/24/outline';
 
-interface ISearchBarProps {
-	value: string;
-	onChange: (event: TInputChangeEvent) => void;
-	onClick: () => void;
-}
-
-export default function SearchBar({ value, onChange, onClick }: ISearchBarProps) {
+export default function SearchBar({ inputText, onChangeInput, onClickReset, onClickSearch }: ISearchBarProps) {
 	return (
 		<div className="border-mainWhite between h-12 w-full rounded-2xl border px-5 py-3.5">
 			<input
 				type="text"
 				placeholder="스트리머 게임 검색"
-				value={value}
+				value={inputText}
 				className="w-full bg-[transparent] text-base font-medium outline-none"
-				onChange={onChange}
+				onChange={onChangeInput}
 			/>
 			<div className="flex gap-1">
-				{value && <XCircleIcon onClick={onClick} />}
-				<MagnifyingGlassIcon />
+				{inputText && <XCircleIcon onClick={onClickReset} />}
+				<MagnifyingGlassIcon onClick={onClickSearch} />
 			</div>
 		</div>
 	);
