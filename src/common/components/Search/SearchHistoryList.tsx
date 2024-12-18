@@ -1,15 +1,17 @@
+import SearchHistoryFooterButton from './SearchHistoryFooterButton';
+import SearchHistoryItem from './SearchHistoryItem';
+
 export default function SearchHistoryList() {
+	const searchHistoryList: string[] = JSON.parse(localStorage.getItem('search') || '[]');
+
 	return (
-		<div className="bg-darkGray mt-2 h-auto w-full rounded-md p-3">
-			<ul className="flex flex-col gap-1 pb-3">
-				<li>바보 예슬</li>
-				<li>예슬콩</li>
-				<li>강예슬 회장님</li>
+		<div className="bg-subBlack absolute mt-2 h-auto w-full rounded-lg px-4 pt-5">
+			<ul className="flex flex-col gap-3 pb-3">
+				{searchHistoryList?.map((searchItem, index) => (
+					<SearchHistoryItem key={index}>{searchItem}</SearchHistoryItem>
+				))}
 			</ul>
-			<div className="border-mainWhite between w-full border-t border-solid pt-2">
-				<button>자동저장 끄기</button>
-				<button>닫기</button>
-			</div>
+			<SearchHistoryFooterButton />
 		</div>
 	);
 }
