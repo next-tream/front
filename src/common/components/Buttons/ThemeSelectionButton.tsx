@@ -7,14 +7,17 @@ export default function ThemeSelectionButton({
 	theme,
 	isSelected = false,
 	onChangeThemeHandler,
+	isTag = false,
 }: IThemeSelectionButtonProps) {
 	return (
 		<label
 			key={theme.id}
-			className={`flex h-[62px] w-32 flex-col items-center justify-center rounded-xl border border-solid ${
+			className={`${isTag ? 'text-mainWhite text-nowrap rounded-md border p-1.5 text-xs font-medium' : 'flexColCenter h-[62px] w-32 rounded-xl border border-solid'} ${
 				isSelected
 					? 'border-main bg-main text-mainWhite'
-					: 'border-lightGray bg-mainWhite text-subBlack'
+					: isTag
+						? 'text-mainWhite border-lightGray'
+						: 'border-lightGray bg-mainWhite text-subBlack'
 			}`}
 		>
 			<input
@@ -26,7 +29,7 @@ export default function ThemeSelectionButton({
 					onChangeThemeHandler(theme.id, event.target.checked)
 				}
 			/>
-			<div className="text-2xl">{theme.icon}</div>
+			{!isTag && <div className="text-2xl">{theme.icon}</div>}
 			<p className="text-sm font-semibold">{theme.name}</p>
 		</label>
 	);
