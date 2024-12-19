@@ -1,18 +1,19 @@
 import {
-	StarIcon,
-	UserIcon,
-	PlayIcon,
-	HeartIcon,
+	ArrowRightStartOnRectangleIcon,
 	ClockIcon,
 	Cog6ToothIcon,
 	CreditCardIcon,
-	Squares2X2Icon,
-	VideoCameraIcon,
-	HandThumbUpIcon,
 	CurrencyDollarIcon,
+	HandThumbUpIcon,
+	HeartIcon,
 	PhoneArrowDownLeftIcon,
-	ArrowRightStartOnRectangleIcon,
+	PlayIcon,
+	Squares2X2Icon,
+	StarIcon,
+	UserIcon,
+	VideoCameraIcon,
 } from '@heroicons/react/24/outline';
+
 import { IMenuItemWrapperProps } from '../types/object.interface';
 
 export const mainMenuItems: IMenuItemWrapperProps[] = [
