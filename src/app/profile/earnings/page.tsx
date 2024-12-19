@@ -1,5 +1,5 @@
-import Earnings from '@/common/components/Earnings';
 import PageTitle from '@/common/components/PageTitle';
+import Earnings from '@/common/components/earnings/Earnings';
 
 export default function EarningsPage() {
 	return (
