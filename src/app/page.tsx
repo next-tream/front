@@ -10,7 +10,7 @@ export default function Home() {
 				<MainVideo />
 			</div>
 			<MenuContainer menu="추천">
-				<RecommendVideo />
+				<RecommendVideo showLiveStatus={true} />
 			</MenuContainer>
 			<div className="flexCol w-full gap-3 text-3xl font-semibold">
 				<div>카테고리</div>
@@ -19,10 +19,10 @@ export default function Home() {
 				</div>
 			</div>
 			<MenuContainer menu="팔로잉">
-				<RecommendVideo />
+				<RecommendVideo showLiveStatus={true} />
 			</MenuContainer>
 			<MenuContainer menu="라이브">
-				<RecommendVideo />
+				<RecommendVideo showLiveStatus={true} />
 			</MenuContainer>
 		</div>
 	);
