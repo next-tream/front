@@ -1,8 +1,8 @@
-import CircleImage from './CircleImage';
 import { PencilIcon } from '@heroicons/react/24/outline';
-import ProfileEditButton from './Buttons/ProfileEditButton';
-import ThemeSelectionButtonsWrapper from './Buttons/ThemeSelectionButtonWrapper';
+import CircleImage from '@/common/components/CircleImage';
 import { IProfileContainerProps } from '@/common/types/profile.interface';
+import ProfileEditButton from '@/common/components/Buttons/ProfileEditButton';
+import ThemeSelectionButtonsWrapper from '@/common/components/Buttons/ThemeSelectionButtonWrapper';
 
 export default function ProfileContainer({ nickName, introduceYourself }: IProfileContainerProps) {
 	return (
