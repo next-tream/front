@@ -30,6 +30,7 @@ const config: Config = {
 				'.center': { '@apply flex items-center justify-center': {} },
 				'.betweenCenter': { '@apply flex items-center justify-between': {} },
 				'.between': { '@apply flex justify-between': {} },
+				'.flexCol': { '@apply flex flex-col': {} },
 				'.btn': { '@apply center py-2 text-xl': {} },
 				'.roundBtn': { '@apply btn px-4 rounded-3xl font-semibold': {} },
 				'.baseBtn': {
