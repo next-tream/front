@@ -14,7 +14,7 @@ import {
 	VideoCameraIcon,
 } from '@heroicons/react/24/outline';
 
-import { IMenuItemWrapperProps } from '../types/object.interface';
+import { IMenuItemWrapperProps } from '@/common/types/object.interface';
 
 export const mainMenuItems: IMenuItemWrapperProps[] = [
 	{ anchor: 'recommendation', name: '추천', icon: <HandThumbUpIcon className="size-7" /> },

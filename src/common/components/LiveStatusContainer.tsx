@@ -1,5 +1,5 @@
 import { UserIcon } from '@heroicons/react/24/solid';
-import { ILiveStatusContainerProps } from '../types/container.interface';
+import { ILiveStatusContainerProps } from '@/common/types/container.interface';
 
 export default function LiveStatusContainer({ watchingCount }: ILiveStatusContainerProps) {
 	return (

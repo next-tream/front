@@ -1,4 +1,4 @@
-import { userMenuItems } from '../constants/menuItems.const';
+import { userMenuItems } from '@/common/constants/menuItems.const';
 import MenuItemWrapper from './MenuItems/MenuItemWrapper';
 import StreamerInfoContainer from './StreamerInfoContainers/StreamerInfoContainer';
 
