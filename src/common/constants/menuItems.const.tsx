@@ -14,16 +14,16 @@ import {
 	VideoCameraIcon,
 } from '@heroicons/react/24/outline';
 
-import { IMenuItemWrapperProps } from '@/common/types/object.interface';
+import { IMenuItems } from '@/common/types/object.interface';
 
-export const mainMenuItems: IMenuItemWrapperProps[] = [
+export const mainMenuItems: IMenuItems[] = [
 	{ anchor: 'recommendation', name: '추천', icon: <HandThumbUpIcon className="size-7" /> },
 	{ anchor: 'category', name: '카테고리', icon: <Squares2X2Icon className="size-7" /> },
 	{ anchor: 'following', name: '팔로잉', icon: <HeartIcon className="size-7" /> },
 	{ anchor: 'live', name: '라이브', icon: <PlayIcon className="size-7" /> },
 ];
 
-export const streamerMenuItems: IMenuItemWrapperProps[] = [
+export const streamerMenuItems: IMenuItems[] = [
 	{ name: '내 프로필', icon: <UserIcon className="size-4" /> },
 	{
 		name: '스트리밍 시작하기',
@@ -42,7 +42,7 @@ export const streamerMenuItems: IMenuItemWrapperProps[] = [
 	},
 ];
 
-export const userMenuItems: IMenuItemWrapperProps[] = [
+export const userMenuItems: IMenuItems[] = [
 	{ name: '내 프로필', icon: <UserIcon className="size-4" /> },
 	{ name: '넥스트림 포인트', icon: <CreditCardIcon className="size-4" /> },
 	{ name: '내 구독', icon: <StarIcon className="size-4" /> },
