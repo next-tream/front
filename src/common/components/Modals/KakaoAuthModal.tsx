@@ -7,7 +7,7 @@ import Timer from '@/common/components/Timer';
 export default function KakaoAuthModal({ authenticationTime }: IKakaoAuthModalProps) {
 	return (
 		<BaseModal type="kakaoAuth">
-			<div className="center flex-col gap-4">
+			<div className="flexColCenter gap-4">
 				<div className="flexCol items-end gap-4">
 					<div className="center relative w-full">
 						<Timer time={authenticationTime} />

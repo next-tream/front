@@ -12,7 +12,7 @@ export default function AsideRecommendChannel() {
 
 	return (
 		path === '/' && (
-			<div className="w-ful flex flex-col gap-4">
+			<div className="w-ful flexCol gap-4">
 				<Divider color="lightGray" />
 				<div>
 					<div className="betweenCenter flex-row text-xl">
