@@ -1,4 +1,4 @@
-import Divider from '../Divider';
+import Divider from '@/common/components/Divider';
 import RankingContain from './RankingContain';
 import { useToggle } from '@/common/hooks/useToggle';
 

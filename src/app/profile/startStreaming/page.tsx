@@ -1,6 +1,6 @@
 'use client';
 
-import Screen from '@/common/components/screen';
+import Screen from '@/common/components/Screen';
 import Chat from '@/common/components/Chat/Chat';
 import { useToggle } from '@/common/hooks/useToggle';
 import PageTitle from '@/common/components/PageTitle';
