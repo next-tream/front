@@ -14,7 +14,7 @@ export default function FollowerCardContainer({
 	tags,
 }: IFollowerCardContainerProps) {
 	return (
-		<div className="w-full rounded-md bg-subBlack py-5 pl-6 pr-10">
+		<div className="bg-subBlack w-full rounded-md py-5 pl-6 pr-10">
 			<div className="flex items-center justify-between">
 				<div className="flex w-full items-center gap-4">
 					<Image
@@ -25,8 +25,8 @@ export default function FollowerCardContainer({
 						className="aspect-[1/1] rounded-full"
 					/>
 
-					<div className="flex flex-col gap-2">
-						<p className="text-4xl text-mainWhite">{name}</p>
+					<div className="flexCol gap-2">
+						<p className="text-mainWhite text-4xl">{name}</p>
 						<p className="text-xl font-extralight">{description}</p>
 						<TagsWrapper tags={tags} />
 					</div>

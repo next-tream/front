@@ -11,7 +11,7 @@ export default function StreamerInfoContainer({
 			<div className="lg:size-8 2xl:size-14">
 				<CircleImage src="/images/sample.jpg" />
 			</div>
-			<div className="flex flex-col gap-0.5">
+			<div className="flexCol gap-0.5">
 				<p className="text-mainWhite font-bold lg:text-sm 2xl:text-2xl">{title}</p>
 				<p className="text-mainWhite font-semibold lg:text-xs 2xl:text-xl">{name}</p>
 				<p className="text-darkGray font-medium lg:text-xs 2xl:text-xl">{category}</p>

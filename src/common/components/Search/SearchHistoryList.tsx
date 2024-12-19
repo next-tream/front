@@ -6,7 +6,7 @@ export default function SearchHistoryList() {
 
 	return (
 		<div className="bg-subBlack absolute mt-2 h-auto w-full rounded-lg px-4 pt-5">
-			<ul className="flex flex-col gap-3 pb-3">
+			<ul className="flexCol gap-3 pb-3">
 				{searchHistoryList?.map((searchItem, index) => (
 					<SearchHistoryItem key={index}>{searchItem}</SearchHistoryItem>
 				))}

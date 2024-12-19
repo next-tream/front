@@ -2,7 +2,7 @@
 
 import { ChevronDownIcon, ChevronUpIcon, UserCircle } from 'lucide-react';
 import ProfileToggleContainer from './ProfileToggleContainer';
-import { useToggle } from '../hooks/useToggle';
+import { useToggle } from '@/common/hooks/useToggle';
 
 export default function UserState() {
 	const { isToggle, onClickToggle } = useToggle(false);
