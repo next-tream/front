@@ -1,6 +1,8 @@
+import { Context, MouseEvent } from 'react';
 import { IChildrenProps } from '@/common/types/children.interface';
-import { MODAL_CONSTANTS } from '@/common/constants/modal.const';
 import { ITextInput } from './textInput.interface';
+import { TInputChangeEvent } from './handler.type';
+import { MODAL_CONSTANTS } from '@/common/constants/modal.const';
 
 export type ModalKey = keyof typeof MODAL_CONSTANTS;
 
@@ -23,4 +25,23 @@ export interface IBaseModalProps extends IChildrenProps {
 
 export interface IKakaoAuthModalProps {
 	authenticationTime: number;
+}
+
+export interface IPointChargeModalProps {
+	amount: number;
+}
+
+export interface IPointSelectionContainerProps {
+	title: string;
+	context: Context<{
+		point: number;
+		amount: number;
+	}>;
+	onClickPointButtonHandler: (event: MouseEvent<HTMLButtonElement>) => void;
+	onChangePointInputHandler: (event: TInputChangeEvent) => void;
+}
+
+export interface IPointSelectionButtonProps {
+	point: number;
+	onClick: (event: MouseEvent<HTMLButtonElement>) => void;
 }
