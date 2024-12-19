@@ -17,5 +17,5 @@ export interface ILiveStatusContainerProps {
 }
 
 export interface IMenuContainerProps extends IChildrenProps {
-	menu: string;
+	menu?: string;
 }
