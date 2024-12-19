@@ -2,7 +2,7 @@
 
 import { useToggle } from '@/common/hooks/useToggle';
 import { ChevronDownIcon, ChevronUpIcon } from '@heroicons/react/24/outline';
-import StreamerInfoContainerWrapper from '../StreamerInfoContainers/StreamerInfoContainerWrapper';
+import StreamerInfoContainerWrapper from '@/common/components/StreamerInfoContainers/StreamerInfoContainerWrapper';
 
 export default function AsideRecommendChannel() {
 	const { isToggle, onClickToggle } = useToggle(true);

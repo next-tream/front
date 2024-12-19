@@ -1,7 +1,7 @@
 'use client';
 
 import { usePathname } from 'next/navigation';
-import MenuItemWrapper from '../MenuItems/MenuItemWrapper';
+import MenuItemWrapper from '@/common/components/MenuItems/MenuItemWrapper';
 import { mainMenuItems, userMenuItems } from '@/common/constants/menuItems.const';
 
 export default function AsideMenu() {
