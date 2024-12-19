@@ -6,7 +6,7 @@ export default function TextInputsWrapper({ type }: ITextInputsWrapperProps) {
 	const { inputs } = MODAL_CONFIG[type];
 
 	return (
-		<div className="flex flex-col gap-4">
+		<div className="flexCol gap-4">
 			{inputs.map((element, index) => (
 				<TextInput
 					key={index}

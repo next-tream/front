@@ -1,4 +1,4 @@
-import { ITheme } from "../types/object.interface";
+import { ITheme } from "@/common/types/object.interface";
 
 export const themes: ITheme[] = [
 	{ id: 'cook', name: '요리', icon: '🧑🏻‍🍳' },

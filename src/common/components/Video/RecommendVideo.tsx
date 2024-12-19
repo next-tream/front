@@ -4,7 +4,7 @@ import StreamerInfoContainer from '@/common/components/StreamerInfoContainers/St
 
 export default function RecommendVideo() {
 	return (
-		<div className="flex h-full w-full flex-col gap-3">
+		<div className="flexCol h-full w-full gap-3">
 			<div className="relative h-full w-full">
 				<div className="h-full w-full">
 					<Image src="/images/main.png" alt="recommend" fill />

@@ -4,9 +4,9 @@ import { IChildrenProps } from '@/common/types/children.interface';
 
 export default function Layout({ children }: IChildrenProps) {
 	return (
-		<div className="relative">
+		<div className="relative w-full">
 			<Header />
-			<div className="flex">
+			<div className="flex w-full">
 				<Aside />
 				<div className="w-full p-5">{children}</div>
 			</div>

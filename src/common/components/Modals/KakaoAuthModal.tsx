@@ -7,11 +7,11 @@ import Timer from '@/common/components/Timer';
 export default function KakaoAuthModal({ authenticationTime }: IKakaoAuthModalProps) {
 	return (
 		<BaseModal type="kakaoAuth">
-			<div className="center flex-col gap-4">
-				<div className="flex flex-col items-end gap-4">
+			<div className="flexColCenter gap-4">
+				<div className="flexCol items-end gap-4">
 					<div className="center relative w-full">
 						<Timer time={authenticationTime} />
-						<ArrowPathIcon className="absolute right-2 top-0 size-4 text-mainBlack" />
+						<ArrowPathIcon className="text-mainBlack absolute right-2 top-0 size-4" />
 					</div>
 
 					<InputOTP maxLength={6}>

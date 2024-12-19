@@ -4,7 +4,7 @@ export interface ITheme {
 	icon: string;
 }
 
-export interface IMenuItemWrapperProps {
+export interface IMenuItems {
 	anchor?: string;
 	name: string;
 	icon: React.ReactNode;
