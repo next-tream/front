@@ -1,11 +1,6 @@
+import { ICategoryContainerProps } from '@/common/types/container.interface';
 import Image from 'next/image';
 import { formatWatchingCount } from '@/common/utils/formatWatchingCount';
-
-interface ICategoryContainerProps {
-	title: string;
-	image: string;
-	watchingCount: number;
-}
 
 export default function CategoryContainer({
 	title,
@@ -14,11 +9,13 @@ export default function CategoryContainer({
 }: ICategoryContainerProps) {
 	const viewCount = formatWatchingCount(watchingCount);
 	return (
-		<div className="relative flex max-w-36 flex-col gap-2">
+		<div className="relative flex w-full flex-col gap-2">
 			<div className="group">
 				<div className="center absolute left-2 top-2 z-10 gap-1 rounded-md bg-mainBlack px-1 py-0.5 transition-transform duration-500 group-hover:scale-110">
 					<div className="size-2 rounded-full bg-mainRed" />
-					<p className="text-xs font-bold text-mainWhite">{viewCount}</p>
+					<p className="text-xs font-bold text-mainWhite lg:text-xs 2xl:text-lg">
+						{viewCount}
+					</p>
 				</div>
 				<Image
 					src={image}

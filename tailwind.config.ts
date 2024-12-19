@@ -28,6 +28,8 @@ const config: Config = {
 		plugin(function ({ addComponents }) {
 			addComponents({
 				'.center': { '@apply flex items-center justify-center': {} },
+				'.betweenCenter': { '@apply flex items-center justify-between': {} },
+				'.between': { '@apply flex justify-between': {} },
 				'.btn': { '@apply center py-2 text-xl': {} },
 				'.roundBtn': { '@apply btn px-4 rounded-3xl font-semibold': {} },
 				'.baseBtn': {

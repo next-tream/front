@@ -1,7 +1,7 @@
 import BaseButton from '@/common/components/Buttons/BaseButton';
 import CloseButton from '@/common/components/Buttons/CloseButton';
-import MODAL_CONFIG from '@/common/constants/modal.const';
 import { IBaseModalProps } from '@/common/types/modal.interface';
+import MODAL_CONFIG from '@/common/constants/modal.const';
 import { splitByDotAndRenderParagraphs } from '@/common/utils/splitByDotAndRenderParagraphs';
 
 export default function BaseModal({

@@ -7,8 +7,6 @@ import ThemeSelectionButton from '@/common/components/Buttons/ThemeSelectionButt
 export default function ThemeSelectionButtonsWrapper() {
 	const { onChangeThemeHandler, selectedThemes } = useThemeSelectionButton();
 
-	console.log(selectedThemes);
-
 	return (
 		<div className="grid w-96 grid-cols-3 gap-x-4 gap-y-3">
 			{themes.map((theme) => {

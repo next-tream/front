@@ -2,49 +2,33 @@
 
 import { ChevronDownIcon, ChevronUpIcon } from '@heroicons/react/24/outline';
 
-import MenuItem from '@/common/components/MenuItem';
-import StreamerInfoContainer from '@/common/components/StreamerInfoContainer';
+import Divider from '@/common/components/Divider';
+import MenuItemWrapper from '@/common/components/MenuItems/MenuItemWrapper';
+import StreamerInfoContainerWrapper from '@/common/components/StreamerInfoContainers/StreamerInfoContainerWrapper';
 import { mainMenuItems } from '@/common/constants/menuItems.const';
-import { useState } from 'react';
+import { useToggle } from '@/common/hooks/useToggle';
 
 export default function Aside() {
-	// NOTE 여기 custom hook으로 변경
-	const [isHidden, setIsHidden] = useState(true);
-	const onclick = () => {
-		setIsHidden((prev) => !prev);
-	};
+	const { isToggle, onClickToggle } = useToggle(true);
 
 	return (
-		<div className="relative flex min-h-[90dvh] w-60 flex-col border-r border-solid border-darkGray py-5 pl-2 pr-3">
-			<div className="fixed w-48">
-				<div className="flex flex-col gap-6 border-b border-solid border-darkGray pb-5">
-					{/* NOTE 컴포넌트 분리 */}
-					{mainMenuItems.map((item) => (
-						<MenuItem anchor={item.anchor} key={item.name} name={item.name}>
-							{item.icon}
-						</MenuItem>
-					))}
-				</div>
-				{/* NOTE 각각 개별 컴포넌트로 분리 isHidden에 따라서 아니면 isHidden을 관리하는 wrapper 하나 만들기*/}
-				<div className="flex flex-row items-center justify-between pt-3 text-xl">
-					<p>추천 채널</p>
-					<div onClick={onclick}>
-						{isHidden ? (
-							<ChevronUpIcon className="size-6" />
-						) : (
-							<ChevronDownIcon className="size-6" />
-						)}
+		<div className="relative flex min-h-[90dvh] w-1/4 flex-col border-r border-solid border-darkGray py-5 pl-2 pr-3">
+			<div className="fixed flex w-[18%] flex-col gap-4">
+				<MenuItemWrapper items={mainMenuItems} />
+				<Divider color="lightGray" />
+				<div>
+					<div className="betweenCenter flex-row text-xl">
+						<p>추천 채널</p>
+						<div onClick={onClickToggle}>
+							{isToggle ? (
+								<ChevronUpIcon className="size-6" />
+							) : (
+								<ChevronDownIcon className="size-6" />
+							)}
+						</div>
 					</div>
+					{isToggle && <StreamerInfoContainerWrapper />}
 				</div>
-				{isHidden && (
-					<div className="flex flex-col gap-3 py-3">
-						<StreamerInfoContainer name="우주최강냥이" category="고양이 라이프" />
-						<StreamerInfoContainer name="뷰티풀윤정" category="뷰티/패션" />
-						<StreamerInfoContainer name="대상혁" category="리그 오브 레전드" />
-						<StreamerInfoContainer name="밥주세요히밥" category="먹방 크리에이터" />
-						<StreamerInfoContainer name="빠니보틀" category="여행/일상" />
-					</div>
-				)}
 			</div>
 		</div>
 	);

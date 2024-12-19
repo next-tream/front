@@ -1,4 +1,3 @@
-import React from 'react';
 import { IBaseButtonStyleProps } from '@/common/types/children.interface';
 
 export default function BaseButton({ className, children }: IBaseButtonStyleProps) {
