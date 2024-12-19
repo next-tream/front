@@ -2,8 +2,8 @@
 
 import { useState } from 'react';
 
-export const useToggle = () => {
-	const [isToggle, setIsToggle] = useState(true);
+export const useToggle = (boolean: boolean) => {
+	const [isToggle, setIsToggle] = useState(boolean);
 	const onClickToggle = () => {
 		setIsToggle((prev) => !prev);
 	};
