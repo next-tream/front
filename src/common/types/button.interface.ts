@@ -13,4 +13,5 @@ export interface IThemeSelectionButtonProps {
 	theme: ITheme;
 	isSelected?: boolean;
 	onChangeThemeHandler: (id: string, checked: boolean) => void;
+	isTag?: boolean;
 }
