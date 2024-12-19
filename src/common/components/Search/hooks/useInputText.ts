@@ -5,7 +5,7 @@ import { TInputChangeEvent } from '@/common/types/handler.type';
 
 export const useInputText = () => {
 	const [inputText, setInputText] = useState('');
-	let searchHistoryValues = [];
+	const searchHistoryValues: string[] = [];
 
 	const onChangeInput = (event: TInputChangeEvent) => {
 		setInputText(event.target.value);
@@ -17,7 +17,9 @@ export const useInputText = () => {
 
 	const onClickSearch = () => {
 		const searchHistoryList = localStorage.getItem('search');
-		searchHistoryList && searchHistoryValues.push(...JSON.parse(searchHistoryList));
+		if (searchHistoryList) {
+			searchHistoryValues.push(...JSON.parse(searchHistoryList));
+		}
 		searchHistoryValues.push(inputText);
 		localStorage.removeItem('search');
 		localStorage.setItem('search', JSON.stringify(searchHistoryValues));
