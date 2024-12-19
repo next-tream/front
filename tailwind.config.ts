@@ -31,13 +31,18 @@ const config: Config = {
 				'.betweenCenter': { '@apply flex items-center justify-between': {} },
 				'.between': { '@apply flex justify-between': {} },
 				'.flexCol': { '@apply flex flex-col': {} },
+				'.flexColCenter': { '@apply flex flex-col items-center justify-center': {} },
 				'.btn': { '@apply center py-2 text-xl': {} },
 				'.roundBtn': { '@apply btn px-4 rounded-3xl font-semibold': {} },
 				'.baseBtn': {
 					'@apply center btn w-full rounded-xl font-bold text-mainWhite flex-1': {},
 				},
+				'.disableBtn': {
+					'@apply center btn w-full rounded-xl font-bold text-darkGray flex-1': {},
+				},
 				'.basePrimaryBtn': { '@apply baseBtn bg-main': {} },
 				'.baseSubBtn': { '@apply baseBtn bg-subBlack': {} },
+				'.baseDisableBtn': { '@apply disableBtn bg-subBlack': {} },
 				'.iconLeadingBtn': { '@apply center roundBtn gap-1': {} },
 				'.iconLeadingPrimaryBtn': { '@apply iconLeadingBtn text-mainWhite bg-main': {} },
 				'.iconLeadingSubBtn': { '@apply iconLeadingBtn text-mainBlack bg-lightGray': {} },
