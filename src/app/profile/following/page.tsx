@@ -1,5 +1,4 @@
 import FollowerCardContainer from '@/common/components/FollowerCardContainer';
-import React from 'react';
 
 export default function FollowingPage() {
 	return (
