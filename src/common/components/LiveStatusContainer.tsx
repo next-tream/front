@@ -1,16 +1,12 @@
-import Image from 'next/image';
-import React from 'react';
-
-interface ILiveStatusContainerProps {
-	watchingCount: number;
-}
+import { UserIcon } from '@heroicons/react/24/solid';
+import { ILiveStatusContainerProps } from '../types/container.interface';
 
 export default function LiveStatusContainer({ watchingCount }: ILiveStatusContainerProps) {
 	return (
-		<div className="absolute left-2 top-2 flex gap-2">
-			<div className="aline-center bg-mainRed rounded-lg p-1 font-semibold">LIVE</div>
-			<div className="bg-mainBlack text-mainWhite flex gap-1 rounded-lg p-1 text-base font-semibold">
-				<Image src="/images/icon.svg" alt="icon" width={20} height={20} />
+		<div className={`absolute left-2 top-2 flex gap-2 lg:text-sm 2xl:text-xl`}>
+			<div className="center bg-mainRed rounded-lg p-1 font-semibold">LIVE</div>
+			<div className="bg-mainBlack text-mainWhite center gap-1 rounded-lg p-1 font-semibold">
+				<UserIcon className="size-5" />
 				{watchingCount}
 			</div>
 		</div>

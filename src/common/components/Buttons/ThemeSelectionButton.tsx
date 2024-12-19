@@ -1,6 +1,7 @@
 'use client';
 
-import { IThemeSelectionButtonProps } from '../types/children.interface';
+import { TInputChangeEvent } from '@/common/types/handler.type';
+import { IThemeSelectionButtonProps } from '@/common/types/button.interface';
 
 export default function ThemeSelectionButton({
 	theme,
@@ -12,8 +13,8 @@ export default function ThemeSelectionButton({
 			key={theme.id}
 			className={`flex h-[62px] w-32 flex-col items-center justify-center rounded-xl border border-solid ${
 				isSelected
-					? 'bg-main border-main text-mainWhite'
-					: 'border-lightGray text-subBlack bg-mainWhite'
+					? 'border-main bg-main text-mainWhite'
+					: 'border-lightGray bg-mainWhite text-subBlack'
 			}`}
 		>
 			<input
@@ -21,7 +22,9 @@ export default function ThemeSelectionButton({
 				type="checkbox"
 				id={theme.id}
 				checked={isSelected}
-				onChange={(e) => onChangeThemeHandler(theme.id, e.target.checked)}
+				onChange={(event: TInputChangeEvent) =>
+					onChangeThemeHandler(theme.id, event.target.checked)
+				}
 			/>
 			<div className="text-2xl">{theme.icon}</div>
 			<p className="text-sm font-semibold">{theme.name}</p>

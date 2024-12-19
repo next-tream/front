@@ -1,22 +1,21 @@
+import { ICategoryContainerProps } from '@/common/types/container.interface';
 import Image from 'next/image';
-
-interface ICategoryContainerProps {
-	title: string;
-	image: string;
-	watchingCount: number;
-}
+import { formatWatchingCount } from '@/common/utils/formatWatchingCount';
 
 export default function CategoryContainer({
 	title,
 	image,
 	watchingCount,
 }: ICategoryContainerProps) {
+	const viewCount = formatWatchingCount(watchingCount);
 	return (
-		<div className="relative flex w-1/5 max-w-36 flex-col gap-2">
+		<div className="relative flex w-full flex-col gap-2">
 			<div className="group">
-				<div className="bg-mainBlack absolute left-2 top-2 z-10 flex items-center justify-center gap-1 rounded-md px-1 py-0.5 transition-transform group-hover:scale-110">
-					<div className="bg-mainRed size-2 rounded-full" />
-					<p className="text-mainWhite text-xs font-bold">{watchingCount}</p>
+				<div className="center absolute left-2 top-2 z-10 gap-1 rounded-md bg-mainBlack px-1 py-0.5 transition-transform duration-500 group-hover:scale-110">
+					<div className="size-2 rounded-full bg-mainRed" />
+					<p className="text-xs font-bold text-mainWhite lg:text-xs 2xl:text-lg">
+						{viewCount}
+					</p>
 				</div>
 				<Image
 					src={image}
@@ -25,11 +24,11 @@ export default function CategoryContainer({
 					height={0}
 					sizes="100vw"
 					className={
-						'group-hover:border-main aspect-2/3 w-full cursor-pointer rounded-xl object-cover transition-transform group-hover:scale-105 group-hover:border-2'
+						'aspect-2/3 w-full cursor-pointer rounded-xl object-cover transition-transform duration-500 group-hover:scale-105 group-hover:border-2 group-hover:border-main'
 					}
 				/>
 			</div>
-			<p className="text-lightGray text-base font-semibold">{title}</p>
+			<p className="text-base font-semibold text-lightGray">{title}</p>
 		</div>
 	);
 }

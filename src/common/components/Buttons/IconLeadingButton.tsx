@@ -1,5 +1,4 @@
-import { IIconLeadingButtonProps } from '@/common/types/children.interface';
-import React from 'react';
+import { IIconLeadingButtonProps } from "@/common/types/button.interface";
 
 export default function IconLeadingButton({ className, children, icon }: IIconLeadingButtonProps) {
 	return (
