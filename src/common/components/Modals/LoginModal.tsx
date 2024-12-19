@@ -1,6 +1,6 @@
 import BaseModal from '@/common/components/Modals/BaseModal';
 import BaseButton from '@/common/components/Buttons/BaseButton';
-import TextInputsWrapper from '@/common/components/Wrapper/TextInputsWrapper';
+import TextInputsWrapper from '@/common/components/Inputs/TextInputsWrapper';
 
 export default function LoginModal() {
 	return (

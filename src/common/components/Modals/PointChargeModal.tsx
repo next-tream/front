@@ -25,8 +25,8 @@ export default function PointChargeModal({ amount }: IPointChargeModalProps) {
 	return (
 		<PointChargeModalContext.Provider value={{ point, amount }}>
 			<BaseModal type="pointCharge">
-				<div className="flex h-full flex-col justify-between">
-					<div className="flex flex-col gap-3 rounded-xl border border-lightGray px-4 py-3">
+				<div className="flexCol h-full justify-between">
+					<div className="border-lightGray flexCol gap-3 rounded-xl border px-4 py-3">
 						<PointSelectionContainer
 							title="충전할 포인트"
 							context={PointChargeModalContext}
@@ -34,7 +34,7 @@ export default function PointChargeModal({ amount }: IPointChargeModalProps) {
 							onClickPointButtonHandler={onClickPointButtonHandler}
 						/>
 					</div>
-					<div className="flex flex-col gap-2">
+					<div className="flexCol gap-2">
 						<PaymentSummaryContainer context={PointChargeModalContext} />
 						<AgreementSection />
 					</div>

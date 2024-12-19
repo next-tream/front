@@ -1,5 +1,5 @@
 import React from 'react';
-import TagContainer from '@/common/components/TagContainer';
+import TagContainer from '@/common/components/Tags/TagContainer';
 import { ITagWrapperProps } from '@/common/types/tag.interface';
 
 export default function TagsWrapper({ tags }: ITagWrapperProps) {

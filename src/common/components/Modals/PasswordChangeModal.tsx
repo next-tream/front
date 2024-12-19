@@ -1,5 +1,5 @@
 import BaseModal from '@/common/components/Modals/BaseModal';
-import TextInputsWrapper from '@/common/components/Wrapper/TextInputsWrapper';
+import TextInputsWrapper from '@/common/components/Inputs/TextInputsWrapper';
 
 export default function PasswordChangeModal() {
 	return (

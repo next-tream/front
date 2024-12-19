@@ -1,6 +1,6 @@
 import Image from 'next/image';
 import BaseButton from '@/common/components/Buttons/BaseButton';
-import TagsWrapper from '@/common/components/Wrapper/TagsWrapper';
+import TagsWrapper from '@/common/components/Tags/TagsWrapper';
 
 interface IFollowerCardContainerProps {
 	name: string;
