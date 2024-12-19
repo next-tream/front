@@ -78,8 +78,24 @@ export const MODAL_CONSTANTS = {
 		subButtonLabel: '이전',
 		inputs: [],
 	},
+	pointCharge: {
+		title: '충전하기',
+		description: '충전할 포인트를 선택해 주세요.',
+		mainButtonLabel: '충전하기',
+		subButtonLabel: '',
+		inputs: [],
+	},
+	donation: {
+		title: '후원하기',
+		description: '후원할 포인트를 선택해 주세요.',
+		mainButtonLabel: '후원하기',
+		subButtonLabel: '',
+		inputs: [],
+	},
 } as const;
 
 const MODAL_CONFIG: TModal = MODAL_CONSTANTS;
 
 export default MODAL_CONFIG;
+
+export const CHARGE_POINT_OPTIONS = [1000, 5000, 10000, 50000];
