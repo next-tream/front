@@ -1,9 +1,11 @@
+import { ButtonHTMLAttributes } from 'react';
+
 export interface IChildrenProps {
 	children: React.ReactNode;
 }
 
-export interface IBaseButtonStyleProps extends IChildrenProps {
-	className: string;
+export interface IBaseButtonStyleProps extends ButtonHTMLAttributes<HTMLButtonElement> {
+	tmp?: boolean;
 }
 
 export interface IIconLeadingButtonProps extends IBaseButtonStyleProps {
