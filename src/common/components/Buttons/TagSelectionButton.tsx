@@ -1,17 +1,17 @@
 'use client';
 
 import { TInputChangeEvent } from '@/common/types/handler.type';
-import { IThemeSelectionButtonProps } from '@/common/types/button.interface';
+import { ITagSelectionButtonProps } from '@/common/types/button.interface';
 
-export default function ThemeSelectionButton({
-	theme,
+export default function TagSelectionButton({
+	tag,
 	isSelected = false,
-	onChangeThemeHandler,
+	onChangeTagHandler,
 	isTag = false,
-}: IThemeSelectionButtonProps) {
+}: ITagSelectionButtonProps) {
 	return (
 		<label
-			key={theme.id}
+			key={tag.id}
 			className={`${isTag ? 'text-mainWhite text-nowrap rounded-md border p-1.5 text-xs font-medium' : 'flexColCenter h-[62px] w-32 rounded-xl border border-solid'} ${
 				isSelected
 					? 'border-main bg-main text-mainWhite'
@@ -23,14 +23,14 @@ export default function ThemeSelectionButton({
 			<input
 				className="hidden"
 				type="checkbox"
-				id={theme.id}
+				id={tag.id}
 				checked={isSelected}
 				onChange={(event: TInputChangeEvent) =>
-					onChangeThemeHandler(theme.id, event.target.checked)
+					onChangeTagHandler(tag.id, event.target.checked)
 				}
 			/>
-			{!isTag && <div className="text-2xl">{theme.icon}</div>}
-			<p className="text-sm font-semibold">{theme.name}</p>
+			{!isTag && <div className="text-2xl">{tag.icon}</div>}
+			<p className="text-sm font-semibold">{tag.name}</p>
 		</label>
 	);
 }

@@ -71,7 +71,7 @@ export const MODAL_CONSTANTS = {
 		subButtonLabel: '이전',
 		inputs: [],
 	},
-	themeSelection: {
+	tagSelection: {
 		title: '관심 테마 선택하기',
 		description: '좋아하는 테마 5개를 선택해 주세요.',
 		mainButtonLabel: '다음',
