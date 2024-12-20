@@ -1,4 +1,4 @@
-import { INavigationContainerProps } from '@/common/types/container.interface';
+import { INavigationContainerProps } from '../types';
 
 export default function NavigationContainer({
 	isUsageView,

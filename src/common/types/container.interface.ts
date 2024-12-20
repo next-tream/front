@@ -19,8 +19,3 @@ export interface ILiveStatusContainerProps {
 export interface IMenuContainerProps extends IChildrenProps {
 	menu?: string;
 }
-
-export interface INavigationContainerProps {
-	isUsageView: boolean;
-	onClickMenuHandler: () => void;
-}

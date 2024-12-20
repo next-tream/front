@@ -1,12 +1,12 @@
 import { PencilIcon } from '@heroicons/react/24/outline';
 import CircleImage from '@/common/components/CircleImage';
-import { IProfileContainerProps } from '@/common/types/profile.interface';
 import ProfileEditButton from '@/common/components/Buttons/ProfileEditButton';
 import TagSelectionButtonsWrapper from '@/common/components/Buttons/TagSelectionButtonsWrapper';
+import { IProfileContainerProps } from '../type';
 
 export default function ProfileContainer({ nickName, introduceYourself }: IProfileContainerProps) {
 	return (
-		<div className="bg-subBlack betweenCenter rounded-lg p-5">
+		<div className="betweenCenter rounded-lg bg-subBlack p-5">
 			<div className="flex gap-5">
 				<div className="relative size-44">
 					<CircleImage src="/images/sample.jpg" />

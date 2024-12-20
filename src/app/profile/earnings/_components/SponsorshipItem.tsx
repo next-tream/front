@@ -1,5 +1,5 @@
 import Divider from '@/common/components/Divider';
-import { ISponsorshipItemProps } from '@/common/types/earnings.interface';
+import { ISponsorshipItemProps } from '../type';
 
 export default function SponsorshipItem({ date, name, amount }: ISponsorshipItemProps) {
 	return (

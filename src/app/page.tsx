@@ -1,7 +1,7 @@
 import MainVideo from '@/common/components/Video/MainVideo';
 import MenuContainer from '@/common/components/MenuContainer';
-import RecommendVideo from '@/common/components/Video/RecommendVideo';
 import { CarouselSpacing } from '@/common/components/Carousel/CarouselSpacing';
+import Video from '@/common/components/Video/Video';
 
 export default function Home() {
 	return (
@@ -10,7 +10,7 @@ export default function Home() {
 				<MainVideo />
 			</div>
 			<MenuContainer menu="추천">
-				<RecommendVideo showLiveStatus={true} />
+				<Video showLiveStatus={true} />
 			</MenuContainer>
 			<div className="flexCol w-full gap-3 text-3xl font-semibold">
 				<div>카테고리</div>
@@ -19,10 +19,10 @@ export default function Home() {
 				</div>
 			</div>
 			<MenuContainer menu="팔로잉">
-				<RecommendVideo showLiveStatus={true} />
+				<Video showLiveStatus={true} />
 			</MenuContainer>
 			<MenuContainer menu="라이브">
-				<RecommendVideo showLiveStatus={true} />
+				<Video showLiveStatus={true} />
 			</MenuContainer>
 		</div>
 	);

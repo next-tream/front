@@ -1,14 +1,14 @@
-import SubInput from '../SubInput';
+import SubInput from './SubInput';
 import Divider from '@/common/components/Divider';
 import SponsorshipRanking from './SponsorshipRanking';
-import { IChatProps } from '@/common/types/chat.interface';
 import { ChevronLeftIcon, ChevronRightIcon, EllipsisVerticalIcon } from 'lucide-react';
+import { IChatProps } from '../type';
 
 export default function Chat({ isToggle, onClickToggle }: IChatProps) {
 	return (
 		<>
 			{isToggle ? (
-				<div className="flexCol bg-subBlack h-full w-1/3 justify-between gap-3 rounded-md p-3">
+				<div className="flexCol h-full w-1/3 justify-between gap-3 rounded-md bg-subBlack p-3">
 					<div className="h-full w-full">
 						<div className="flex justify-between">
 							<ChevronRightIcon className="size-6" onClick={onClickToggle} />

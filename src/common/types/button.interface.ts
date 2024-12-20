@@ -1,5 +1,5 @@
 import { ButtonHTMLAttributes } from 'react';
-import { ITag } from './object.interface';
+import { ITag } from './tag.interface';
 
 export interface IBaseButtonStyleProps extends ButtonHTMLAttributes<HTMLButtonElement> {
 	tmp?: boolean;
