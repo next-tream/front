@@ -8,25 +8,18 @@ import {
 	PURCHASE_HISTORY_COLUMNS,
 	PURCHASE_HISTORY_SAMPLE,
 } from '@/common/constants/nextreamPoint.const';
-import { useState } from 'react';
 import { ChevronDown } from 'lucide-react';
 import PointChargeContainer from '@/common/components/PointChargeContainer';
 import NavigationContainer from './NavigationContainer';
+import { useToggle } from '@/common/hooks/useToggle';
 
 export default function HistoryContentsContainer() {
-	const [selectedMenu, setSelectedMenu] = useState<'pointUsage' | 'purchase'>('pointUsage');
-
-	const onClickMenuHandler = (selectedMenu: 'pointUsage' | 'purchase') => {
-		setSelectedMenu(selectedMenu);
-	};
+	const { isToggle: isUsageView, onClickToggle } = useToggle(true);
 
 	return (
 		<>
 			<div className="flexCol gap-5">
-				<NavigationContainer
-					selectedMenu={selectedMenu}
-					onClickMenuHandler={onClickMenuHandler}
-				/>
+				<NavigationContainer isUsageView={isUsageView} onClickMenuHandler={onClickToggle} />
 				<div className="betweenCenter">
 					<div className="center gap-1 rounded border border-mainWhite p-2 font-normal">
 						<p>2024년</p>
@@ -36,14 +29,12 @@ export default function HistoryContentsContainer() {
 				</div>
 			</div>
 
-			{selectedMenu === 'pointUsage' && (
+			{isUsageView ? (
 				<div className="flexCol h-full">
 					<HistoryColumnItemsWrapper items={POINT_USAGE_HISTORY_COLUMNS} />
 					<HistoryRowItemsWrapper items={POINT_USAGE_HISTORY_SAMPLE} />
 				</div>
-			)}
-
-			{selectedMenu === 'purchase' && (
+			) : (
 				<div className="flexCol h-full">
 					<HistoryColumnItemsWrapper items={PURCHASE_HISTORY_COLUMNS} />
 					<HistoryRowItemsWrapper items={PURCHASE_HISTORY_SAMPLE} />

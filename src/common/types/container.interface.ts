@@ -21,6 +21,6 @@ export interface IMenuContainerProps extends IChildrenProps {
 }
 
 export interface INavigationContainerProps {
-	selectedMenu: 'pointUsage' | 'purchase';
-	onClickMenuHandler: (selectedMenu: 'pointUsage' | 'purchase') => void;
+	isUsageView: boolean;
+	onClickMenuHandler: () => void;
 }
