@@ -1,4 +1,4 @@
-import { ITimerProps } from '@/common/types/timer.interface';
+import { ITimerProps } from '@/common/types/modal.interface';
 import { formatSecondsToMinutes } from '@/common/utils/formatSecondsToMinutes';
 
 export default function Timer({ time }: ITimerProps) {

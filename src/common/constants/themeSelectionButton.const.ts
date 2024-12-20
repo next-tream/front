@@ -1,4 +1,4 @@
-import { ITag } from "@/common/types/object.interface";
+import { ITag } from '../types/tag.interface';
 
 export const tags: ITag[] = [
 	{ id: 'cook', name: '요리', icon: '🧑🏻‍🍳' },

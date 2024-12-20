@@ -1,7 +1,4 @@
-interface IGuideContainerProps {
-	title: string;
-	items: string[];
-}
+import { IGuideContainerProps } from '../types';
 
 export default function GuideContainer({ title, items }: IGuideContainerProps) {
 	return (

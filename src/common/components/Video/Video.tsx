@@ -2,11 +2,11 @@ import Image from 'next/image';
 import LiveStatusContainer from '@/common/components/LiveStatusContainer';
 import StreamerInfoContainer from '@/common/components/StreamerInfoContainers/StreamerInfoContainer';
 
-interface IRecommendVideoProps {
+interface IVideoProps {
 	showLiveStatus?: boolean;
 }
 
-export default function RecommendVideo({ showLiveStatus = false }: IRecommendVideoProps) {
+export default function Video({ showLiveStatus = false }: IVideoProps) {
 	return (
 		<div className="flexCol h-full w-full gap-3">
 			<div className="relative h-full w-full">

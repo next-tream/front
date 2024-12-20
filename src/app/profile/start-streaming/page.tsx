@@ -1,6 +1,6 @@
 'use client';
 
-import Chat from './_components/Chat/Chat';
+import Chat from './_components/Chat';
 import { useToggle } from '@/common/hooks/useToggle';
 import PageTitle from '@/common/components/PageTitle';
 import Screen from '@/app/profile/start-streaming/_components/Screen';

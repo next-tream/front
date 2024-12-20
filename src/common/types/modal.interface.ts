@@ -45,3 +45,7 @@ export interface IPointSelectionButtonProps {
 	point: number;
 	onClick: (event: MouseEvent<HTMLButtonElement>) => void;
 }
+
+export interface ITimerProps {
+	time: number;
+}

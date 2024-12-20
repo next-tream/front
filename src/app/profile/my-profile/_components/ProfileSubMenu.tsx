@@ -1,5 +1,5 @@
 import { ChevronRightIcon } from 'lucide-react';
-import { IProfileSubMenuProps } from '@/common/types/profile.interface';
+import { IProfileSubMenuProps } from '../type';
 
 export default function ProfileSubMenu({ children, color }: IProfileSubMenuProps) {
 	return (
