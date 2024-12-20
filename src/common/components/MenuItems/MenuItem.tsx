@@ -9,15 +9,16 @@ export default function MenuItem({
 	isSelected = false,
 }: IMenuItemProps) {
 	return (
-		<Link href={`/#${anchor}`}>
-			<div className="hover:text-main flex cursor-pointer items-center gap-3">
-				{children}
-				<p
-					className={`text-semibold text-${isAside ? 'xl' : 'base'} ${isSelected && 'text-main'}`}
-				>
-					{name}
-				</p>
-			</div>
+		<Link
+			href={`/#${anchor}`}
+			className="hover:text-main flex cursor-pointer items-center gap-3"
+		>
+			{children}
+			<p
+				className={`text-semibold text-${isAside ? 'xl' : 'base'} ${isSelected && 'text-main'}`}
+			>
+				{name}
+			</p>
 		</Link>
 	);
 }
