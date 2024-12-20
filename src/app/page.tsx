@@ -1,7 +1,7 @@
 import MainVideo from '@/common/components/Video/MainVideo';
 import MenuContainer from '@/common/components/MenuContainer';
 import RecommendVideo from '@/common/components/Video/RecommendVideo';
-import { CarouselSpacing } from '@/common/components/CarouselSpacing';
+import { CarouselSpacing } from '@/common/components/Carousel/CarouselSpacing';
 
 export default function Home() {
 	return (
