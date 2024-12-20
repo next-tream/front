@@ -10,7 +10,7 @@ export default function Chat({ isToggle, onClickToggle }: IChatProps) {
 			{isToggle ? (
 				<div className="flexCol bg-subBlack h-full w-1/3 justify-between gap-3 rounded-md p-3">
 					<div className="h-full w-full">
-						<div className="flex justify-between">
+						<div className="flex justify-between pb-2">
 							<ChevronRightIcon className="size-6" onClick={onClickToggle} />
 							<p>채팅</p>
 							<EllipsisVerticalIcon className="size-6" />
