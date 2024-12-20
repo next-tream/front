@@ -9,9 +9,7 @@ export default function SubInput({ placeholder }: { placeholder: string }) {
 				className="border-darkGray text-mainWhite focus:border-main bg-darkGray placeholder:text-mainWhite h-12 w-full rounded-lg border px-5 text-sm font-medium outline-none"
 			/>
 			{placeholder.includes('채팅') && (
-				<button>
-					<PaperAirplaneIcon className="absolute right-2 top-[13px] size-5" />
-				</button>
+				<PaperAirplaneIcon className="absolute right-2 top-[13px] size-5 cursor-pointer" />
 			)}
 		</div>
 	);

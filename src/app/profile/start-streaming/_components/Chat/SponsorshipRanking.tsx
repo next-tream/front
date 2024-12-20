@@ -1,5 +1,5 @@
-import Divider from '@/common/components/Divider';
 import RankingContain from './RankingContain';
+import Divider from '@/common/components/Divider';
 import { useToggle } from '@/common/hooks/useToggle';
 
 export default function SponsorshipRanking() {

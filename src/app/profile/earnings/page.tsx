@@ -1,7 +1,7 @@
+import TotalIncome from './_components/TotalIncome';
 import PageTitle from '@/common/components/PageTitle';
-import TotalIncome from '@/common/components/earnings/TotalIncome';
-import ChartContainer from '@/common/components/earnings/ChartContainer';
-import DetailsOfSponsorshipContainer from '@/common/components/earnings/DetailsOfSponsorshipContainer';
+import ChartContainer from './_components/ChartContainer';
+import DetailsOfSponsorshipContainer from './_components/DetailsOfSponsorshipContainer';
 
 export default function EarningsPage() {
 	return (

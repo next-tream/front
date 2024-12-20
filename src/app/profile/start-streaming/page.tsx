@@ -1,12 +1,12 @@
 'use client';
 
-import Screen from '@/common/components/Screen';
-import Chat from '@/common/components/Chat/Chat';
+import Chat from './_components/Chat/Chat';
 import { useToggle } from '@/common/hooks/useToggle';
 import PageTitle from '@/common/components/PageTitle';
-import SubInput from '@/common/components/Inputs/SubInput';
+import Screen from '@/app/profile/start-streaming/_components/Screen';
+import SubInput from '@/app/profile/start-streaming/_components/SubInput';
+import StartStreamingButton from '@/app/profile/start-streaming/_components/StartStreamingButton';
 import ThemeSelectionButtonsWrapper from '@/common/components/Buttons/ThemeSelectionButtonWrapper';
-import StartStreamingButton from '@/common/components/Buttons/StartStreamingButton';
 
 export default function StartStreamingPage() {
 	const { isToggle, onClickToggle } = useToggle(true);

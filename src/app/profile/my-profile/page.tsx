@@ -2,8 +2,8 @@ import BaseButton from '@/common/components/Buttons/BaseButton';
 import Divider from '@/common/components/Divider';
 import TextInput from '@/common/components/Inputs/TextInput';
 import PageTitle from '@/common/components/PageTitle';
-import ProfileContainer from '@/common/components/Profile/ProfileContainer';
-import ProfileSubMenu from '@/common/components/Profile/ProfileSubMenu';
+import ProfileContainer from '@/app/profile/my-profile/_components/ProfileContainer';
+import ProfileSubMenu from '@/app/profile/my-profile/_components/ProfileSubMenu';
 
 export default function myProfilePage() {
 	return (
