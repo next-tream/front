@@ -8,7 +8,7 @@ import SubInput from '@/common/components/Inputs/SubInput';
 import ThemeSelectionButtonsWrapper from '@/common/components/Buttons/ThemeSelectionButtonWrapper';
 import StartStreamingButton from '@/common/components/Buttons/StartStreamingButton';
 
-export default function startStreamingPage() {
+export default function StartStreamingPage() {
 	const { isToggle, onClickToggle } = useToggle(true);
 
 	return (
