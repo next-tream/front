@@ -1,7 +1,7 @@
 import * as React from 'react';
 
 import { Carousel, CarouselContent, CarouselItem, CarouselNext } from '@/components/ui/carousel';
-import CategoryContainer from './CategoryContainer';
+import CategoryContainer from '@/common/components/CategoryContainer';
 
 export function CarouselSpacing() {
 	return (
