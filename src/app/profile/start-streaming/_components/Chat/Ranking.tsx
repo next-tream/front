@@ -1,5 +1,4 @@
 import { TrophyIcon } from 'lucide-react';
-// import { TrophyIcon } from '@heroicons/react/24/solid';
 import { IRankingProps } from '@/common/types/chat.interface';
 
 export default function Ranking({ isFirst, color, name, sponsorshipAmount }: IRankingProps) {

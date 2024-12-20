@@ -1,7 +1,7 @@
+import SubInput from '../SubInput';
 import Divider from '@/common/components/Divider';
+import SponsorshipRanking from './SponsorshipRanking';
 import { IChatProps } from '@/common/types/chat.interface';
-import SubInput from '@/common/components/Inputs/SubInput';
-import SponsorshipRanking from '@/common/components/Chat/SponsorshipRanking';
 import { ChevronLeftIcon, ChevronRightIcon, EllipsisVerticalIcon } from 'lucide-react';
 
 export default function Chat({ isToggle, onClickToggle }: IChatProps) {
