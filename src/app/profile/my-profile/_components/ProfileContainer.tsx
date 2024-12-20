@@ -2,7 +2,7 @@ import { PencilIcon } from '@heroicons/react/24/outline';
 import CircleImage from '@/common/components/CircleImage';
 import { IProfileContainerProps } from '@/common/types/profile.interface';
 import ProfileEditButton from '@/common/components/Buttons/ProfileEditButton';
-import ThemeSelectionButtonsWrapper from '@/common/components/Buttons/ThemeSelectionButtonWrapper';
+import TagSelectionButtonsWrapper from '@/common/components/Buttons/TagSelectionButtonsWrapper';
 
 export default function ProfileContainer({ nickName, introduceYourself }: IProfileContainerProps) {
 	return (
@@ -21,7 +21,7 @@ export default function ProfileContainer({ nickName, introduceYourself }: IProfi
 						&ensp;<p>{introduceYourself}</p>
 					</div>
 					<div>
-						<ThemeSelectionButtonsWrapper isTag={true} />
+						<TagSelectionButtonsWrapper isTag={true} />
 					</div>
 				</div>
 			</div>

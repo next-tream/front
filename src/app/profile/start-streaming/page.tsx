@@ -5,8 +5,8 @@ import { useToggle } from '@/common/hooks/useToggle';
 import PageTitle from '@/common/components/PageTitle';
 import Screen from '@/app/profile/start-streaming/_components/Screen';
 import SubInput from '@/app/profile/start-streaming/_components/SubInput';
+import TagSelectionButtonsWrapper from '@/common/components/Buttons/TagSelectionButtonsWrapper';
 import StartStreamingButton from '@/app/profile/start-streaming/_components/StartStreamingButton';
-import ThemeSelectionButtonsWrapper from '@/common/components/Buttons/ThemeSelectionButtonWrapper';
 
 export default function StartStreamingPage() {
 	const { isToggle, onClickToggle } = useToggle(true);
@@ -18,7 +18,7 @@ export default function StartStreamingPage() {
 				<Screen isLive={false} />
 				<SubInput placeholder="스트리밍 제목" />
 				<div>방송 주제 태그 선택</div>
-				<ThemeSelectionButtonsWrapper isTag={true} />
+				<TagSelectionButtonsWrapper isTag={true} />
 				<SubInput placeholder="스트리밍 설명" />
 				<StartStreamingButton />
 			</div>

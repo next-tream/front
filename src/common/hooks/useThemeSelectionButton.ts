@@ -2,18 +2,18 @@
 
 import { useState } from 'react';
 
-export default function useThemeSelectionButton() {
-	const [selectedThemes, setSelectedThemes] = useState<string[]>([]);
+export default function useTagSelectionButton() {
+	const [selectedTags, setSelectedTags] = useState<string[]>([]);
 
-	const onChangeThemeHandler = (id: string, checked: boolean) => {
+	const onChangeTagHandler = (id: string, checked: boolean) => {
 		if (checked) {
-			if (selectedThemes.length < 5) {
-				setSelectedThemes((prev) => [...prev, id]);
+			if (selectedTags.length < 5) {
+				setSelectedTags((prev) => [...prev, id]);
 			}
 		} else {
-			setSelectedThemes((prev) => prev.filter((theme) => theme !== id));
+			setSelectedTags((prev) => prev.filter((tag) => tag !== id));
 		}
 	};
 
-	return { onChangeThemeHandler, selectedThemes };
+	return { onChangeTagHandler, selectedTags };
 }
