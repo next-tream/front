@@ -1,17 +1,17 @@
 import {
-	ArrowRightStartOnRectangleIcon,
-	ClockIcon,
-	Cog6ToothIcon,
-	CreditCardIcon,
-	CurrencyDollarIcon,
-	HandThumbUpIcon,
-	HeartIcon,
-	PhoneArrowDownLeftIcon,
-	PlayIcon,
-	Squares2X2Icon,
 	StarIcon,
 	UserIcon,
+	PlayIcon,
+	HeartIcon,
+	ClockIcon,
+	Cog6ToothIcon,
+	Squares2X2Icon,
+	CreditCardIcon,
+	HandThumbUpIcon,
 	VideoCameraIcon,
+	CurrencyDollarIcon,
+	PhoneArrowDownLeftIcon,
+	ArrowRightStartOnRectangleIcon,
 } from '@heroicons/react/24/outline';
 import { IMenuItem } from '../types/menuItem.interface';
 
@@ -23,13 +23,22 @@ export const mainMenuItems: IMenuItem[] = [
 ];
 
 export const streamerMenuItems: IMenuItem[] = [
-	{ name: '내 프로필', icon: <UserIcon className="size-4" /> },
+	{ name: '내 프로필', icon: <UserIcon className="size-4" />, path: 'profile/my-profile' },
 	{
 		name: '스트리밍 시작하기',
 		icon: <VideoCameraIcon className="size-4" />,
+		path: 'profile/start-streaming',
 	},
-	{ name: '이벌 달 수익', icon: <CurrencyDollarIcon className="size-4" /> },
-	{ name: '최근 스트리밍 영상', icon: <PlayIcon className="size-4" /> },
+	{
+		name: '이벌 달 수익',
+		icon: <CurrencyDollarIcon className="size-4" />,
+		path: 'profile/earnings',
+	},
+	{
+		name: '최근 스트리밍 영상',
+		icon: <PlayIcon className="size-4" />,
+		path: 'profile/recent-videos',
+	},
 	{ name: '설정', icon: <Cog6ToothIcon className="size-4" /> },
 	{
 		name: '로그아웃',
