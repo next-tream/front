@@ -1,6 +1,6 @@
 import Divider from '@/common/components/Divider';
-import GuideContainer from '@/common/components/GuideContainer';
-import HistoryContentsContainer from '@/common/components/HistoryContentsContainer';
+import GuideContainer from '@/app/profile/nextream-point/_components/GuideContainer';
+import HistoryContentsContainer from '@/app/profile/nextream-point/_components/HistoryContentsContainer';
 import { REFUND_GUIDE_CONST, USAGE_GUIDE_CONST } from '@/common/constants/nextreamPoint.const';
 
 export default function NextreamPointPage() {

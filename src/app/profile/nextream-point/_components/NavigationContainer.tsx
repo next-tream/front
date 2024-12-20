@@ -1,5 +1,4 @@
-import React from 'react';
-import { INavigationContainerProps } from '../types/container.interface';
+import { INavigationContainerProps } from '@/common/types/container.interface';
 
 export default function NavigationContainer({
 	selectedMenu,

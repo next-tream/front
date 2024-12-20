@@ -1,7 +1,7 @@
 'use client';
 
-import HistoryColumnItemsWrapper from '@/common/components/HistoryColumnItems/HistoryColumnItemsWrapper';
-import HistoryRowItemsWrapper from '@/common/components/HistoryRowItems/HistoryRowItemsWrapper';
+import HistoryColumnItemsWrapper from '@/app/profile/nextream-point/_components/HistoryColumnItemsWrapper';
+import HistoryRowItemsWrapper from '@/app/profile/nextream-point/_components/HistoryRowItemsWrapper';
 import {
 	POINT_USAGE_HISTORY_COLUMNS,
 	POINT_USAGE_HISTORY_SAMPLE,
