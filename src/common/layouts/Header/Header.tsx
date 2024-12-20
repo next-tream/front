@@ -11,9 +11,9 @@ export default function Header() {
 				<p className="text-5xl font-semibold">Nextream</p>
 			</div>
 			<SearchWrapper />
-			<div className="w-24">
-				{/* <BaseButton className="basePrimaryBtn">로그인</BaseButton> */}
-			</div>
+			{/* <div className="w-24">
+				<BaseButton className="basePrimaryBtn">로그인</BaseButton>
+			</div> */}
 			<UserState />
 		</div>
 	);
