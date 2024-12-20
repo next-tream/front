@@ -2,14 +2,18 @@ import Image from 'next/image';
 import LiveStatusContainer from '@/common/components/LiveStatusContainer';
 import StreamerInfoContainer from '@/common/components/StreamerInfoContainers/StreamerInfoContainer';
 
-export default function RecommendVideo() {
+interface IRecommendVideoProps {
+	showLiveStatus?: boolean;
+}
+
+export default function RecommendVideo({ showLiveStatus = false }: IRecommendVideoProps) {
 	return (
 		<div className="flexCol h-full w-full gap-3">
 			<div className="relative h-full w-full">
 				<div className="h-full w-full">
 					<Image src="/images/main.png" alt="recommend" fill />
 				</div>
-				<LiveStatusContainer watchingCount={986} />
+				{showLiveStatus && <LiveStatusContainer watchingCount={986} />}
 			</div>
 			<div>
 				<StreamerInfoContainer
