@@ -8,7 +8,7 @@ export default function Layout({ children }: IChildrenProps) {
 			<Header />
 			<div className="flex w-full">
 				<Aside />
-				<div className="w-full p-5">{children}</div>
+				<div className="w-3/4 p-5">{children}</div>
 			</div>
 		</div>
 	);

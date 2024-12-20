@@ -7,5 +7,5 @@ export interface ITheme {
 export interface IMenuItems {
 	anchor?: string;
 	name: string;
-	icon: React.ReactNode;
+	icon?: React.ReactNode;
 }

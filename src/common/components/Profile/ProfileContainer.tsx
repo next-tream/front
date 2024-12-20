@@ -6,7 +6,7 @@ import ThemeSelectionButtonsWrapper from '@/common/components/Buttons/ThemeSelec
 
 export default function ProfileContainer({ nickName, introduceYourself }: IProfileContainerProps) {
 	return (
-		<div className="bg-subBlack flex items-center justify-between rounded-lg p-5">
+		<div className="bg-subBlack betweenCenter rounded-lg p-5">
 			<div className="flex gap-5">
 				<div className="relative size-44">
 					<CircleImage src="/images/sample.jpg" />

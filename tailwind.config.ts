@@ -22,6 +22,9 @@ const config: Config = {
 			lightGray: '#D0D1D3',
 			darkGray: '#787878',
 			mainWhite: '#E2E4E9',
+			gold: '#ffd700',
+			silver: '#c0c0c0',
+			bronze: '#774f2e',
 		},
 	},
 	plugins: [

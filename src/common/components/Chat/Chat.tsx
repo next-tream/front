@@ -1,0 +1,41 @@
+import Divider from '@/common/components/Divider';
+import { IChatProps } from '@/common/types/chat.interface';
+import SubInput from '@/common/components/Inputs/SubInput';
+import SponsorshipRanking from '@/common/components/Chat/SponsorshipRanking';
+import { ChevronLeftIcon, ChevronRightIcon, EllipsisVerticalIcon } from 'lucide-react';
+
+export default function Chat({ isToggle, onClickToggle }: IChatProps) {
+	return (
+		<>
+			{isToggle ? (
+				<div className="flexCol bg-subBlack h-full w-1/3 justify-between gap-3 rounded-md p-3">
+					<div className="h-full w-full">
+						<div className="flex justify-between">
+							<ChevronRightIcon className="size-6" onClick={onClickToggle} />
+							<p>채팅</p>
+							<EllipsisVerticalIcon className="size-6" />
+						</div>
+						<Divider color="lightGray" />
+						<div>
+							<SponsorshipRanking />
+						</div>
+						<Divider color="lightGray" />
+						<div className="flexCol gap-1 px-3 pt-3">
+							{Array.from({ length: 17 }).map((_, index) => (
+								<p key={index} className="flex gap-2">
+									<p className="text-main">예슬콩</p>안녕하세요. 채팅을
+									시작합니다~~~
+								</p>
+							))}
+						</div>
+					</div>
+					<SubInput placeholder="채팅을 입력해주세요." />
+				</div>
+			) : (
+				<div className="flexCol w-[4%] items-center">
+					<ChevronLeftIcon className="size-6" onClick={onClickToggle} />
+				</div>
+			)}
+		</>
+	);
+}
