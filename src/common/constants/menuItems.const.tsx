@@ -57,3 +57,18 @@ export const userMenuItems: IMenuItems[] = [
 		icon: <PhoneArrowDownLeftIcon className="size-4" />,
 	},
 ];
+
+export const calendar = [
+	{ name: '1월' },
+	{ name: '2월' },
+	{ name: '3월' },
+	{ name: '4월' },
+	{ name: '5월' },
+	{ name: '6월' },
+	{ name: '7월' },
+	{ name: '8월' },
+	{ name: '9월' },
+	{ name: '10월' },
+	{ name: '11월' },
+	{ name: '12월' },
+];
