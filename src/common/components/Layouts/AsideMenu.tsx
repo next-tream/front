@@ -9,6 +9,7 @@ export default function AsideMenu() {
 	return (
 		<div>
 			{path === '/' && <MenuItemWrapper items={mainMenuItems} isAside={true} />}
+			{path === '/login' && <MenuItemWrapper items={mainMenuItems} isAside={true} />}
 			{path.includes('profile') && (
 				<MenuItemWrapper items={streamerMenuItems} isAside={true} />
 			)}
