@@ -7,11 +7,12 @@ import { ChevronDownIcon, ChevronUpIcon } from '@heroicons/react/24/outline';
 import StreamerInfoContainerWrapper from '@/common/components/StreamerInfoContainers/StreamerInfoContainerWrapper';
 
 export default function AsideRecommendChannel() {
+	const list = ['/', '/login'];
 	const { isToggle, onClickToggle } = useToggle(true);
 	const path = usePathname();
 
 	return (
-		path === '/' && (
+		list.includes(path) && (
 			<div className="w-ful flexCol gap-4">
 				<Divider color="lightGray" />
 				<div>
