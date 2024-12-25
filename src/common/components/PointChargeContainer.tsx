@@ -1,5 +1,5 @@
-import { CurrencyDollarIcon } from '@heroicons/react/24/outline';
 import BaseButton from '@/common/components/Buttons/BaseButton';
+import { CurrencyDollarIcon } from '@heroicons/react/24/outline';
 
 export default function PointChargeContainer() {
 	return (

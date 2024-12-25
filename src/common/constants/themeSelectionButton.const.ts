@@ -1,6 +1,6 @@
-import { ITheme } from "@/common/types/object.interface";
+import { ITag } from '../types/tag.interface';
 
-export const themes: ITheme[] = [
+export const tags: ITag[] = [
 	{ id: 'cook', name: '요리', icon: '🧑🏻‍🍳' },
 	{ id: 'game', name: '게임', icon: '🎮' },
 	{ id: 'eat', name: '먹방', icon: '🍴' },

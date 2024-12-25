@@ -1,10 +1,10 @@
 import BaseModal from '@/common/components/Modals/BaseModal';
-import ThemeSelectionButtonsWrapper from '@/common/components/Buttons/ThemeSelectionButtonWrapper';
+import TagSelectionButtonsWrapper from '@/common/components/Buttons/TagSelectionButtonsWrapper';
 
-export default function ThemeSelectionModal() {
+export default function TagSelectionModal() {
 	return (
-		<BaseModal type="themeSelection">
-			<ThemeSelectionButtonsWrapper />
+		<BaseModal type="tagSelection">
+			<TagSelectionButtonsWrapper />
 		</BaseModal>
 	);
 }
