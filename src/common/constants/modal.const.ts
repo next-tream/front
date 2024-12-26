@@ -24,14 +24,21 @@ export const MODAL_CONSTANTS = {
 		mainButtonLabel: '다음',
 		subButtonLabel: '이전',
 		inputs: [
-			{ title: '이메일', placeholder: '@를 포함해 주세요.', type: 'text' },
-			{ title: '닉네임', placeholder: '2~8자를 입력해 주세요. ', type: 'text' },
+			{ name: 'email', title: '이메일', placeholder: '@를 포함해 주세요.', type: 'text' },
 			{
+				name: 'nickName',
+				title: '닉네임',
+				placeholder: '2~8자를 입력해 주세요. ',
+				type: 'text',
+			},
+			{
+				name: 'password',
 				title: '비밀번호',
 				placeholder: '8~16자 영문, 숫자, 특수문자 1자리를 포함해 주세요.',
 				type: 'password',
 			},
 			{
+				name: 'tel',
 				title: '전화번호',
 				placeholder: '전화번호를 입력해 주세요.',
 				type: 'tel',
