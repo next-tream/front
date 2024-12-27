@@ -12,6 +12,6 @@ export interface IIconLeadingButtonProps extends IBaseButtonStyleProps {
 export interface ITagSelectionButtonProps {
 	tag: ITag;
 	isSelected?: boolean;
-	onChangeTagHandler: (id: string, checked: boolean) => void;
+	onChangeTagHandler: (id: number, checked: boolean) => void;
 	isTag?: boolean;
 }
