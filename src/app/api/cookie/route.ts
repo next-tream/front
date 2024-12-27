@@ -1,5 +1,7 @@
-import { cookies } from 'next/headers';
 import { NextResponse } from 'next/server';
+import { cookies } from 'next/headers';
+
+// middleware.ts이라는 파일을 만들어서 해야할텐데..? 아마두 ? -> 제가 테스트해보겠습니다.
 
 export async function GET(request: Request) {
 	const accessToken = cookies().get('accessToken');
