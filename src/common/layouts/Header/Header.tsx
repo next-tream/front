@@ -1,6 +1,7 @@
 import { Bars3Icon } from '@heroicons/react/24/solid';
-import BaseButton from '@/common/components/Buttons/BaseButton';
+// import BaseButton from '@/common/components/Buttons/BaseButton';
 import SearchWrapper from '@/common/components/Search/SearchWrapper';
+import Link from 'next/link';
 // import UserState from '@/common/components/UserState';
 
 export default function Header() {
@@ -12,7 +13,9 @@ export default function Header() {
 			</div>
 			<SearchWrapper />
 			<div className="w-24">
-				<BaseButton className="basePrimaryBtn">로그인</BaseButton>
+				<Link href="/login" className="basePrimaryBtn">
+					로그인
+				</Link>
 			</div>
 			{/* <UserState /> */}
 		</div>
