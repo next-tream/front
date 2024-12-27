@@ -3,11 +3,10 @@
 import { useFormState } from 'react-dom';
 import BaseModal from '@/common/components/Modals/BaseModal';
 import { submitAction } from '@/common/validation/formValidation';
-import { IFormData } from '@/common/types/formValidation.interface';
 import TextInputsWrapper from '@/common/components/Inputs/TextInputsWrapper';
 
-export default async function SignUpModal() {
-	const [formData, setFormData] = useFormState<IFormData>(submitAction, {
+export default function SignUpModal() {
+	const [formData, setFormData] = useFormState(submitAction, {
 		email: '',
 		nickName: '',
 		password: '',
