@@ -1,7 +1,7 @@
 import { Bars3Icon } from '@heroicons/react/24/solid';
-// import BaseButton from '@/common/components/Buttons/BaseButton';
+import BaseButton from '@/common/components/Buttons/BaseButton';
 import SearchWrapper from '@/common/components/Search/SearchWrapper';
-import UserState from '@/common/components/UserState';
+// import UserState from '@/common/components/UserState';
 
 export default function Header() {
 	return (
@@ -11,10 +11,10 @@ export default function Header() {
 				<p className="text-5xl font-semibold">Nextream</p>
 			</div>
 			<SearchWrapper />
-			{/* <div className="w-24">
+			<div className="w-24">
 				<BaseButton className="basePrimaryBtn">로그인</BaseButton>
-			</div> */}
-			<UserState />
+			</div>
+			{/* <UserState /> */}
 		</div>
 	);
 }
