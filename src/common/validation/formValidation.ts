@@ -2,6 +2,7 @@
 
 import { schema } from '../zod/schema';
 import { IFormData } from '../types/formValidation.interface';
+import { ZodError } from 'zod';
 
 export const submitAction = (prevState: IFormData, formData: FormData) => {
 	try {
@@ -21,12 +22,16 @@ export const submitAction = (prevState: IFormData, formData: FormData) => {
 
 		return { ...finalData, errors: {} };
 	} catch (error) {
-		if (error) {
-			const fieldErrors = error.errors.reduce((acc, curr) => {
-				const field = curr.path[0];
-				acc[field] = curr.message;
-				return acc;
-			}, {});
+		if (error instanceof ZodError) {
+			const fieldErrors = error.errors.reduce(
+				(acc, cur) => {
+					console.log('acc', acc);
+					const field = cur.path[0];
+					acc[field] = cur.message;
+					return acc;
+				},
+				{} as Record<string, string>,
+			);
 			return { ...prevState, errors: fieldErrors };
 		}
 		return { ...prevState };

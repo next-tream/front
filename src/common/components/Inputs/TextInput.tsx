@@ -5,7 +5,9 @@ export default function TextInput({ errors = {}, title, ...rest }: ITextInputPro
 		<div className="flexCol gap-1">
 			<div className="flex items-center gap-1">
 				<p className="text-sm font-semibold text-mainBlack">{title}</p>
-				<p className="text-xs font-medium text-mainRed">{errors[rest.name]}</p>
+				<p className="text-xs font-medium text-mainRed">
+					{errors[rest.name as keyof typeof errors]}
+				</p>
 			</div>
 			<input
 				name={rest.name}
