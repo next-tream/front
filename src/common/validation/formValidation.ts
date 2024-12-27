@@ -25,7 +25,6 @@ export const submitAction = (prevState: IFormData, formData: FormData) => {
 		if (error instanceof ZodError) {
 			const fieldErrors = error.errors.reduce(
 				(acc, cur) => {
-					console.log('acc', acc);
 					const field = cur.path[0];
 					acc[field] = cur.message;
 					return acc;
