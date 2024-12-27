@@ -12,18 +12,18 @@ export default function TagSelectionButton({
 	return (
 		<label
 			key={tag.id}
-			className={`${isTag ? 'text-mainWhite text-nowrap rounded-md border p-1.5 text-xs font-medium' : 'flexColCenter h-[62px] w-32 rounded-xl border border-solid'} ${
+			className={`${isTag ? 'text-nowrap rounded-md border p-1.5 text-xs font-medium text-mainWhite' : 'flexColCenter h-[62px] w-32 rounded-xl border border-solid'} ${
 				isSelected
 					? 'border-main bg-main text-mainWhite'
 					: isTag
-						? 'text-mainWhite border-lightGray'
+						? 'border-lightGray text-mainWhite'
 						: 'border-lightGray bg-mainWhite text-subBlack'
 			}`}
 		>
 			<input
 				className="hidden"
 				type="checkbox"
-				id={tag.id}
+				id={String(tag.id)}
 				checked={isSelected}
 				onChange={(event: TInputChangeEvent) =>
 					onChangeTagHandler(tag.id, event.target.checked)

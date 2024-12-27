@@ -3,9 +3,9 @@
 import { useState } from 'react';
 
 export default function useTagSelectionButton() {
-	const [selectedTags, setSelectedTags] = useState<string[]>([]);
+	const [selectedTags, setSelectedTags] = useState<number[]>([]);
 
-	const onChangeTagHandler = (id: string, checked: boolean) => {
+	const onChangeTagHandler = (id: number, checked: boolean) => {
 		if (checked) {
 			if (selectedTags.length < 5) {
 				setSelectedTags((prev) => [...prev, id]);

@@ -1,6 +1,7 @@
 import NextAuth, { AuthOptions } from 'next-auth';
 import KakaoProvider from 'next-auth/providers/kakao';
 import NaverProvider from 'next-auth/providers/naver';
+import { setCookieAction } from '@/common/actions/setCookieAction';
 
 const authOptions: AuthOptions = {
 	providers: [
@@ -20,20 +21,30 @@ const authOptions: AuthOptions = {
 	callbacks: {
 		// 로그인 할 때마다 호출됨.
 		async signIn({ account }) {
-			console.log(account);
 			if (account) {
-				const result = await fetch('http://172.31.99.179:3000/social/kakao', {
-					method: 'POST',
+				const response = await fetch(`${process.env.NEXT_PUBLIC_BASE_URL}/social/kakao`, {
+					method: 'GET',
 					headers: {
 						Authorization: `Bearer ${account.access_token}`,
 						'Content-Type': 'application/json',
 					},
 					credentials: 'include',
 				});
-				console.log('서버 응답::::::', result);
+
+				const data = await response.json();
+				setCookieAction(data.accessToken);
+
+				if (response.ok) {
+					// alert('로그인 성공');
+					account.accessToken = data.accessToken;
+					return true;
+				}
+
+				alert('로그인 실패');
+				return false;
 			}
 
-			return true;
+			return false;
 		},
 
 		// 콜백 URL로 리다이렉트될 때마다 호출됨.
@@ -41,14 +52,20 @@ const authOptions: AuthOptions = {
 			return baseUrl;
 		},
 
-		// 세션이 체크될 때 마다 실행된다.
-		async session({ session }) {
-			return session;
+		// jwt 토큰이 생성되거나 업데이트될 때마다 호출됨.
+		async jwt({ token, account }) {
+			if (account) {
+				token.accessToken = account.accessToken;
+			}
+			return token;
 		},
 
-		// jwt 토큰이 생성되거나 업데이트될 때마다 호출됨.
-		async jwt({ token }) {
-			return token;
+		// 세션이 체크될 때 마다 실행된다.
+		async session({ session, token }) {
+			if (typeof token.accessToken === 'string') {
+				session.accessToken = token.accessToken;
+			}
+			return session;
 		},
 	},
 };

@@ -2,11 +2,21 @@
 
 import { signIn } from 'next-auth/react';
 import { ChatBubbleOvalLeftIcon } from '@heroicons/react/24/solid';
+import { redirect } from 'next/navigation';
 
 export default function KakaoLoginButton() {
 	const onClickKakaoLoginHandler = async () => {
-		const result = await signIn('kakao');
-		console.log('KAKAO 로그인:', result);
+		try {
+			await signIn('kakao');
+			const response = await fetch(`/api/cookie`, {
+				method: 'GET',
+				credentials: 'include',
+			});
+
+			if (!response.ok) new Error('카카오 로그인 후 쿠키 요청 실패!');
+		} catch (error) {
+			alert(`카카오 로그인 오류 발생: ${error}`);
+		}
 	};
 
 	return (
