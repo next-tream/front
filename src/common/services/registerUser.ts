@@ -14,6 +14,7 @@ export default async function registerUser(data: IPrevState) {
 				email: data.email,
 			}),
 		});
+		console.log(response);
 	} catch (error) {
 		alert(`회원가입 실패: ${error}`);
 	}
