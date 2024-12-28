@@ -3,6 +3,7 @@ export interface IPrevState {
 	nickName: string;
 	password: string;
 	tel: string;
+	result?: boolean;
 }
 
 export interface IFormData extends IPrevState {
