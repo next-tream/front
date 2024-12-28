@@ -1,7 +1,7 @@
 // 오브젝트
 
 export interface ITag {
-	id: string;
+	id: number;
 	name: string;
 	icon: string;
 }
