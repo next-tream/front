@@ -22,7 +22,7 @@ export const submitAction = async (prevState: IFormData, formData: FormData) => 
 		schema.parse(finalData);
 		const result = await registerUser(finalData);
 
-		return { ...prevState, errors: {}, result };
+		return { ...finalData, errors: {}, result };
 	} catch (error) {
 		if (error instanceof ZodError) {
 			const fieldErrors = error.errors.reduce(
