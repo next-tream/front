@@ -25,45 +25,31 @@ const authOptions: AuthOptions = {
 		// 로그인 할 때마다 호출됨.
 		async signIn({ account }) {
 			if (account) {
-				// axios 쓰기로 했으니 axios에서 처리하면 될 듯
-				// 여기 로직은 try catch로 묶어서 에러 전체에서 처리하기 !
-				/**
-				 * headers: {
-						Authorization: `Bearer ${account.access_token}`,
-						'Content-Type': 'application/json',
-					},
-					credentials: 'include',
-
-					try catch를 사용하지 않으니깐 에러를 아에 못잡네 ㅠㅠ try catch + toast 조합!
-				 */
-				console.log(account);
-				const response = await fetch(
-					`${process.env.NEXT_PUBLIC_BASE_URL}/api/social/naver`,
-					{
-						headers: {
-							Authorization: `Bearer ${account.access_token}`,
-							'Content-Type': 'application/json',
+				try {
+					const provider = account.provider === 'naver' ? 'naver' : 'kakao';
+					const response = await fetch(
+						`${process.env.NEXT_PUBLIC_BASE_URL}/auth/login?social=${provider}`,
+						{
+							headers: {
+								Authorization: `Bearer ${account.access_token}`,
+								'Content-Type': 'application/json',
+							},
+							credentials: 'include',
 						},
-						credentials: 'include',
-					},
-				);
+					);
 
-				const data = await response.json();
-				// 그럼 여기 로직까지 한꺼번에 처리할 수 있습니다.
+					const data = await response.json();
 
-				// 여기서는 response.ok && data.accessToken이 존재하면 ? 해야할 것들 해놓는 게 좋을 듯 합니다.
-				// 이렇게 했으니깐 백엔드에서는 cookie에 access token 안 넘겨줄게용
-
-				setCookieAction(data.accessToken);
-
-				if (response.ok) {
-					account.accessToken = data.accessToken;
-					return true;
+					if (response.ok && data.accessToken) {
+						setCookieAction(data.accessToken);
+						account.accessToken = data.accessToken;
+						return true;
+					}
+				} catch (error) {
+					// toast
+					console.log('로그인 실패', error);
+					return false;
 				}
-
-				// alert -> toast
-				alert('로그인 실패');
-				return false;
 			}
 
 			return false;
