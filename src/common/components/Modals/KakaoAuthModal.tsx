@@ -1,26 +1,22 @@
 'use client';
 
+import { ArrowPathIcon } from '@heroicons/react/24/outline';
 import BaseModal from '@/common/components/Modals/BaseModal';
 import { IKakaoAuthModalProps } from '@/common/types/modal.interface';
-import { ArrowPathIcon } from '@heroicons/react/24/outline';
-import Timer from '@/common/components/Modals/Timer';
 import OtpInput from '@/common/components/Inputs/OtpInput';
+import Timer from '@/common/components/Modals/Timer';
+import { submitAction } from '@/common/validation/emailAuthFormValidation';
 import { useFormState } from 'react-dom';
 import useOtpInput from '../Inputs/hooks/useOtpInput';
-import { submitAction } from '@/common/validation/emailAuthFormValidation';
-import { useSearchParams } from 'next/navigation';
 
-export default function KakaoAuthModal({ authenticationTime }: IKakaoAuthModalProps) {
+export default function KakaoAuthModal({ authenticationTime, email = '' }: IKakaoAuthModalProps) {
 	const { otpCode, onChangeOtpHandle } = useOtpInput();
-	const searchParams = useSearchParams();
-	const email = searchParams.get('email') || '';
 
+	// eslint-disable-next-line @typescript-eslint/no-unused-vars
 	const [formData, setFormData] = useFormState(submitAction, {
 		code: otpCode,
-		email: email,
+		email,
 	});
-
-	console.log(formData);
 
 	return (
 		<form action={setFormData}>
