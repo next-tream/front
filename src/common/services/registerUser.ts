@@ -15,6 +15,9 @@ export default async function registerUser(data: IPrevState) {
 			}),
 		});
 		console.log(response);
+		if (response.status === 201) {
+			return true;
+		}
 	} catch (error) {
 		alert(`회원가입 실패: ${error}`);
 	}

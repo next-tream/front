@@ -11,3 +11,9 @@ export interface IValidationErrors {
 	password?: string;
 	tel?: string;
 }
+
+export interface IOtpInputProps {
+	onChangeOtpHandle: (value: string) => void;
+	otpCode: string;
+	name: string;
+}
