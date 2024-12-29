@@ -46,6 +46,7 @@ const authOptions: AuthOptions = {
 						return true;
 					}
 				} catch (error) {
+					// toast
 					console.log('로그인 실패', error);
 					return false;
 				}
