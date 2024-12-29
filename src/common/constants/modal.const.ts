@@ -24,7 +24,12 @@ export const MODAL_CONSTANTS = {
 		mainButtonLabel: '다음',
 		subButtonLabel: '이전',
 		inputs: [
-			{ name: 'email', title: '이메일', placeholder: '@를 포함해 주세요.', type: 'text' },
+			{
+				name: 'email',
+				title: '이메일',
+				placeholder: '이메일 형식을 맞춰주세요.',
+				type: 'text',
+			},
 			{
 				name: 'nickName',
 				title: '닉네임',

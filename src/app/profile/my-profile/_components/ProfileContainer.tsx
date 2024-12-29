@@ -1,8 +1,7 @@
-import { PencilIcon } from '@heroicons/react/24/outline';
 import CircleImage from '@/common/components/CircleImage';
-import ProfileEditButton from '@/common/components/Buttons/ProfileEditButton';
-import TagSelectionButtonsWrapper from '@/common/components/Buttons/TagSelectionButtonsWrapper';
 import { IProfileContainerProps } from '../type';
+import { PencilIcon } from '@heroicons/react/24/outline';
+import ProfileEditButton from '@/common/components/Buttons/ProfileEditButton';
 
 export default function ProfileContainer({ nickName, introduceYourself }: IProfileContainerProps) {
 	return (
@@ -20,9 +19,9 @@ export default function ProfileContainer({ nickName, introduceYourself }: IProfi
 						<PencilIcon className="mt-[0.4rem] size-6 border-b-[0.09rem] pb-1" />
 						&ensp;<p>{introduceYourself}</p>
 					</div>
-					<div>
+					{/* <div>
 						<TagSelectionButtonsWrapper isTag={true} />
-					</div>
+					</div> */}
 				</div>
 			</div>
 			<div>

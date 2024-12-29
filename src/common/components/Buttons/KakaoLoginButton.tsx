@@ -1,8 +1,7 @@
 'use client';
 
-import { signIn } from 'next-auth/react';
 import { ChatBubbleOvalLeftIcon } from '@heroicons/react/24/solid';
-import { redirect } from 'next/navigation';
+import { signIn } from 'next-auth/react';
 
 export default function KakaoLoginButton() {
 	const onClickKakaoLoginHandler = async () => {
