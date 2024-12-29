@@ -1,6 +1,6 @@
-import { NextResponse } from 'next/server';
+import { NextRequest, NextResponse } from 'next/server';
 
-export function middleware(req: Request) {
+export function middleware(req: NextRequest) {
 	const authHeader = req.headers.get('Authorization');
 	const cookies = req.cookies.get('accessToken');
 	console.log(cookies);

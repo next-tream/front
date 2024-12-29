@@ -24,7 +24,12 @@ export const MODAL_CONSTANTS = {
 		mainButtonLabel: '다음',
 		subButtonLabel: '이전',
 		inputs: [
-			{ name: 'email', title: '이메일', placeholder: '@를 포함해 주세요.', type: 'text' },
+			{
+				name: 'email',
+				title: '이메일',
+				placeholder: '이메일 형식을 맞춰주세요.',
+				type: 'text',
+			},
 			{
 				name: 'nickName',
 				title: '닉네임',
@@ -73,7 +78,7 @@ export const MODAL_CONSTANTS = {
 	},
 	kakaoAuth: {
 		title: '인증하기',
-		description: '인증 번호를 입력해 주세요. 인증번호 6자리는 카카오톡으로 전송됩니다.',
+		description: '인증 번호를 입력해 주세요. 인증번호 6자리는 이메일로 전송됩니다.',
 		mainButtonLabel: '다음',
 		subButtonLabel: '이전',
 		inputs: [],

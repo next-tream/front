@@ -36,8 +36,9 @@ const authOptions: AuthOptions = {
 
 					try catch를 사용하지 않으니깐 에러를 아에 못잡네 ㅠㅠ try catch + toast 조합!
 				 */
+				console.log(account);
 				const response = await fetch(
-					`${process.env.NEXT_PUBLIC_BASE_URL}/api/social/kakao`,
+					`${process.env.NEXT_PUBLIC_BASE_URL}/api/social/naver`,
 					{
 						headers: {
 							Authorization: `Bearer ${account.access_token}`,

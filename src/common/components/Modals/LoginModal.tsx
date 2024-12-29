@@ -3,6 +3,7 @@ import BaseButton from '@/common/components/Buttons/BaseButton';
 import TextInputsWrapper from '@/common/components/Inputs/TextInputsWrapper';
 import KakaoLoginButton from '../Buttons/KakaoLoginButton';
 import NaverLoginButton from '../Buttons/NaverLoginButton';
+import Link from 'next/link';
 
 export default function LoginModal() {
 	return (
@@ -25,9 +26,13 @@ export default function LoginModal() {
 					</div>
 				</div>
 				<div className="center gap-3">
-					<p className="text-nowrap text-xs font-semibold text-lightGray">가입하기</p>
+					<Link href="/signup">
+						<p className="cursor-pointer text-nowrap text-xs font-semibold text-lightGray">
+							가입하기
+						</p>
+					</Link>
 					<div className="h-6 w-0 border border-lightGray" />
-					<p className="text-nowrap text-xs font-semibold text-lightGray">
+					<p className="cursor-pointer text-nowrap text-xs font-semibold text-lightGray">
 						비밀번호 찾기
 					</p>
 				</div>

@@ -1,8 +1,9 @@
 import { Context, MouseEvent } from 'react';
+
 import { IChildrenProps } from '@/common/types/children.interface';
 import { ITextInput } from './textInput.interface';
-import { TInputChangeEvent } from './handler.type';
 import { MODAL_CONSTANTS } from '@/common/constants/modal.const';
+import { TInputChangeEvent } from './handler.type';
 
 export type ModalKey = keyof typeof MODAL_CONSTANTS;
 
@@ -25,6 +26,7 @@ export interface IBaseModalProps extends IChildrenProps {
 
 export interface IKakaoAuthModalProps {
 	authenticationTime: number;
+	email?: string;
 }
 
 export interface IPointChargeModalProps {

@@ -3,8 +3,9 @@
 import { schema } from '../zod/schema';
 import { IFormData } from '../types/formValidation.interface';
 import { ZodError } from 'zod';
+import registerUser from '../services/registerUser';
 
-export const submitAction = (prevState: IFormData, formData: FormData) => {
+export const submitAction = async (prevState: IFormData, formData: FormData) => {
 	try {
 		const email = (formData.get('email') as string) || '';
 		const nickName = (formData.get('nickName') as string) || '';
@@ -19,8 +20,9 @@ export const submitAction = (prevState: IFormData, formData: FormData) => {
 		};
 
 		schema.parse(finalData);
+		const result = await registerUser(finalData);
 
-		return { ...finalData, errors: {} };
+		return { ...finalData, errors: {}, result };
 	} catch (error) {
 		if (error instanceof ZodError) {
 			const fieldErrors = error.errors.reduce(

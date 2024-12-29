@@ -1,8 +1,8 @@
 'use client';
 
-import { useSession } from 'next-auth/react';
 import BaseModal from '@/common/components/Modals/BaseModal';
 import TagSelectionButtonsWrapper from '@/common/components/Buttons/TagSelectionButtonsWrapper';
+import { useSession } from 'next-auth/react';
 import useTagSelectionButton from '@/common/hooks/useThemeSelectionButton';
 
 export default function ThemeSelectionModal() {
@@ -20,6 +20,7 @@ export default function ThemeSelectionModal() {
 				},
 				body: JSON.stringify({ tags: selectedTags }),
 			});
+			console.log(res);
 		} catch (error) {
 			alert(`태그 선택 오류 발생: ${error}`);
 		}
