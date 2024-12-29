@@ -73,7 +73,7 @@ export const MODAL_CONSTANTS = {
 	},
 	kakaoAuth: {
 		title: '인증하기',
-		description: '인증 번호를 입력해 주세요. 인증번호 6자리는 카카오톡으로 전송됩니다.',
+		description: '인증 번호를 입력해 주세요. 인증번호 6자리는 이메일로 전송됩니다.',
 		mainButtonLabel: '다음',
 		subButtonLabel: '이전',
 		inputs: [],
