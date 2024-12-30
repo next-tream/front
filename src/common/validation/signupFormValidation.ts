@@ -1,6 +1,6 @@
 'use server';
 
-import { schema } from '../zod/schema';
+import { schema } from '../zod/signupSchema';
 import { IFormData } from '../types/formValidation.interface';
 import { ZodError } from 'zod';
 import registerUser from '../services/registerUser';

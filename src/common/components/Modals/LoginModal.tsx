@@ -43,9 +43,11 @@ export default function LoginModal() {
 						</p>
 					</Link>
 					<div className="h-6 w-0 border border-lightGray" />
+					<Link href="/findPassword">
 					<p className="cursor-pointer text-nowrap text-xs font-semibold text-lightGray">
 						비밀번호 찾기
 					</p>
+					</Link>
 				</div>
 			</div>
 		</BaseModal>
