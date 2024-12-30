@@ -1,47 +1,18 @@
 import NextAuth, { AuthOptions } from 'next-auth';
 
-import CredentialsProvider from 'next-auth/providers/credentials';
 import KakaoProvider from 'next-auth/providers/kakao';
 import NaverProvider from 'next-auth/providers/naver';
-import { api } from '@/common/configs/axios.config';
 import { setCookieAction } from '@/common/actions/setCookieAction';
 
 const authOptions: AuthOptions = {
 	providers: [
-		CredentialsProvider({
-			name: 'Credentials',
-			credentials: {
-				email: { label: 'Email', type: 'text', placeholder: 'email@example.com' },
-				password: { label: 'Password', type: 'password' },
-			},
-			// eslint-disable-next-line @typescript-eslint/no-explicit-any
-			async authorize(credentials): Promise<any> {
-				if (!credentials) return null;
-
-				const { email, password } = credentials;
-
-				try {
-					// axios
-					const data = await api.post('/auth/login', { email, password });
-
-					if (data.data.accessToken) {
-						return true;
-					}
-
-					return false;
-				} catch (error) {
-					console.error('Login Error:', error);
-					return null;
-				}
-			},
-		}),
 		KakaoProvider({
-			clientId: process.env.KAKAO_CLIENT_ID!,
-			clientSecret: process.env.KAKAO_CLIENT_SECRET!,
+			clientId: process.env.KAKAO_CLIENT_ID ?? '',
+			clientSecret: process.env.KAKAO_CLIENT_SECRET ?? '',
 		}),
 		NaverProvider({
-			clientId: process.env.NAVER_CLIENT_ID!,
-			clientSecret: process.env.NAVER_CLIENT_SECRET!,
+			clientId: process.env.NAVER_CLIENT_ID ?? '',
+			clientSecret: process.env.NAVER_CLIENT_SECRET ?? '',
 		}),
 	],
 
@@ -51,27 +22,31 @@ const authOptions: AuthOptions = {
 	},
 
 	callbacks: {
+		// 로그인 할 때마다 호출됨.
 		async signIn({ account }) {
 			if (account) {
-				if (account.provider === 'credentials') {
-					return true;
-				}
 				try {
-					const response = await api.get(
-						`${process.env.NEXT_PUBLIC_BASE_URL}/auth/login?social=${account.provider}`,
+					const provider = account.provider === 'naver' ? 'naver' : 'kakao';
+					const response = await fetch(
+						`${process.env.NEXT_PUBLIC_BASE_URL}/auth/login?social=${provider}`,
 						{
 							headers: {
-								Authorization: `bearer ${account.access_token}`,
+								Authorization: `Bearer ${account.access_token}`,
+								'Content-Type': 'application/json',
 							},
+							credentials: 'include',
 						},
 					);
 
-					if (response.data.accessToken) {
-						setCookieAction(response.data.accessToken);
-						account.accessToken = response.data.accessToken;
+					const data = await response.json();
+
+					if (response.ok && data.accessToken) {
+						setCookieAction(data.accessToken);
+						account.accessToken = data.accessToken;
 						return true;
 					}
 				} catch (error) {
+					// toast
 					console.log('로그인 실패', error);
 					return false;
 				}
@@ -80,10 +55,12 @@ const authOptions: AuthOptions = {
 			return false;
 		},
 
+		// 콜백 URL로 리다이렉트될 때마다 호출됨.
 		async redirect({ baseUrl }) {
 			return baseUrl;
 		},
 
+		// jwt 토큰이 생성되거나 업데이트될 때마다 호출됨.
 		async jwt({ token, account }) {
 			if (account) {
 				token.accessToken = account.accessToken;
@@ -91,6 +68,8 @@ const authOptions: AuthOptions = {
 			return token;
 		},
 
+		// 세션이 체크될 때 마다 실행된다.
+		// 여기서는 제가 user 개인정보 넘겨줄 것들 넘겨주겠습니다.
 		async session({ session, token }) {
 			if (typeof token.accessToken === 'string') {
 				session.accessToken = token.accessToken;

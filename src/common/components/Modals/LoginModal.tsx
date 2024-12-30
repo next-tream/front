@@ -1,35 +1,17 @@
-'use client';
-
-import BaseButton from '@/common/components/Buttons/BaseButton';
 import BaseModal from '@/common/components/Modals/BaseModal';
-import KakaoLoginButton from '../Buttons/KakaoLoginButton';
-import Link from 'next/link';
-import NaverLoginButton from '../Buttons/NaverLoginButton';
+import BaseButton from '@/common/components/Buttons/BaseButton';
 import TextInputsWrapper from '@/common/components/Inputs/TextInputsWrapper';
-import { signInForCredential } from '@/common/apis/signInForCrentials';
-import { submitAction } from '@/common/validation/loginFormValidation';
-import { useFormState } from 'react-dom';
+import KakaoLoginButton from '../Buttons/KakaoLoginButton';
+import NaverLoginButton from '../Buttons/NaverLoginButton';
+import Link from 'next/link';
 
 export default function LoginModal() {
-	const [formData, setFormData] = useFormState(submitAction, {
-		password: '',
-		email: '',
-		errors: {},
-	});
-	const { email, password, errors } = formData;
-
-	if (email && password && Object.keys(errors).length === 0) {
-		signInForCredential({ email, password });
-	}
-
 	return (
 		<BaseModal type="login">
 			<div className="flexCol gap-16">
 				<div className="flexCol gap-6">
-					<form action={setFormData} className="flexCol gap-6">
-						<TextInputsWrapper type="login" errors={formData.errors} />
-						<BaseButton className="basePrimaryBtn">로그인</BaseButton>
-					</form>
+					<TextInputsWrapper type="login" />
+					<BaseButton className="basePrimaryBtn">로그인</BaseButton>
 					<div className="flex w-full items-center gap-2">
 						<div className="h-0 w-1/2 border border-lightGray" />
 						<p className="text-nowrap font-medium text-lightGray">또는</p>
