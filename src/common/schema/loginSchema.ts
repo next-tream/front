@@ -1,6 +1,6 @@
 import { z } from 'zod';
 
-export const schema = z.object({
+export const loginSchema = z.object({
 	email: z.string().email('이메일 형식이여야 합니다.'),
 	password: z
 		.string()

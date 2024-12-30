@@ -1,6 +1,6 @@
 'use server';
 
-import { schema } from '../zod/signupSchema';
+import { signupSchema } from '../schema/signupSchema';
 import { IFormData } from '../types/formValidation.interface';
 import { ZodError } from 'zod';
 import registerUser from '../services/registerUser';
@@ -19,7 +19,7 @@ export const submitAction = async (prevState: IFormData, formData: FormData) => 
 			checkPassword,
 		};
 
-		schema.parse(finalData);
+		signupSchema.parse(finalData);
 		const result = await registerUser(finalData);
 
 		return { ...finalData, errors: {}, result };
