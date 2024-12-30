@@ -33,12 +33,20 @@ export default function BaseModal({
 
 					<div className="flex gap-5">
 						{subButtonLabel && (
-							<BaseButton className="baseSubBtn" onClick={onSubButtonClick}>
+							<BaseButton
+								className="baseSubBtn"
+								onClick={onSubButtonClick}
+								type="button"
+							>
 								{subButtonLabel}
 							</BaseButton>
 						)}
 						{mainButtonLabel && (
-							<BaseButton className="basePrimaryBtn" onClick={onMainButtonClick}>
+							<BaseButton
+								className="basePrimaryBtn"
+								onClick={onMainButtonClick}
+								type="submit"
+							>
 								{mainButtonLabel}
 							</BaseButton>
 						)}
