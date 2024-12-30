@@ -53,10 +53,8 @@ const authOptions: AuthOptions = {
 					return true;
 				}
 
-				console.log('로그인 실패', data);
 				return false;
-			} catch (error) {
-				console.log('로그인 실패', error);
+			} catch {
 				return false;
 			}
 		},
