@@ -10,13 +10,13 @@ export const submitAction = async (prevState: IFormData, formData: FormData) => 
 		const email = (formData.get('email') as string) || '';
 		const nickName = (formData.get('nickName') as string) || '';
 		const password = (formData.get('password') as string) || '';
-		const tel = (formData.get('tel') as string) || '';
+		const checkPassword = (formData.get('tel') as string) || '';
 
 		const finalData = {
 			email,
 			nickName,
 			password,
-			tel,
+			checkPassword,
 		};
 
 		schema.parse(finalData);
