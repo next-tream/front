@@ -32,9 +32,6 @@ export default function LoginModal() {
 						<div className="h-0 w-1/2 border border-lightGray" />
 					</div>
 					<div className="center gap-4">
-						{new Array(1).fill('').map((_, index) => (
-							<button key={index} className="size-12 rounded-full bg-main" />
-						))}
 						<NaverLoginButton />
 						<KakaoLoginButton />
 					</div>

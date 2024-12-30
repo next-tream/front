@@ -3,6 +3,9 @@ import NextAuth, { AuthOptions } from 'next-auth';
 import KakaoProvider from 'next-auth/providers/kakao';
 import NaverProvider from 'next-auth/providers/naver';
 import { setCookieAction } from '@/common/actions/setCookieAction';
+import { jwtDecode } from 'jwt-decode';
+import validateType from '@/common/utils/validateType';
+import { JwtPayloadSchema } from '@/common/types/jwt.interface';
 
 const authOptions: AuthOptions = {
 	providers: [
@@ -24,35 +27,36 @@ const authOptions: AuthOptions = {
 	callbacks: {
 		// 로그인 할 때마다 호출됨.
 		async signIn({ account }) {
-			if (account) {
-				try {
-					const provider = account.provider === 'naver' ? 'naver' : 'kakao';
-					const response = await fetch(
-						`${process.env.NEXT_PUBLIC_BASE_URL}/auth/login?social=${provider}`,
-						{
-							headers: {
-								Authorization: `Bearer ${account.access_token}`,
-								'Content-Type': 'application/json',
-							},
-							credentials: 'include',
-						},
-					);
+			if (!account) return false;
 
-					const data = await response.json();
-
-					if (response.ok && data.accessToken) {
-						setCookieAction(data.accessToken);
-						account.accessToken = data.accessToken;
-						return true;
-					}
-				} catch (error) {
-					// toast
-					console.log('로그인 실패', error);
-					return false;
-				}
+			if (account.provider === 'credentials') {
+				return true;
 			}
 
-			return false;
+			try {
+				const response = await fetch(
+					`${process.env.NEXT_PUBLIC_BASE_URL}/auth/login?social=${account.provider}`,
+					{
+						headers: {
+							Authorization: `Bearer ${account.access_token}`,
+							'Content-Type': 'application/json',
+						},
+						credentials: 'include',
+					},
+				);
+
+				const data = await response.json();
+
+				if (response.ok && data.accessToken) {
+					setCookieAction(data.accessToken);
+					account.accessToken = data.accessToken;
+					return true;
+				}
+
+				return false;
+			} catch {
+				return false;
+			}
 		},
 
 		// 콜백 URL로 리다이렉트될 때마다 호출됨.
@@ -72,7 +76,11 @@ const authOptions: AuthOptions = {
 		// 여기서는 제가 user 개인정보 넘겨줄 것들 넘겨주겠습니다.
 		async session({ session, token }) {
 			if (typeof token.accessToken === 'string') {
+				const payload = jwtDecode(token.accessToken);
 				session.accessToken = token.accessToken;
+				if (validateType(JwtPayloadSchema, payload)) {
+					session.user = payload;
+				}
 			}
 			return session;
 		},
