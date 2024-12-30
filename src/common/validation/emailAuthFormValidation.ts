@@ -1,7 +1,7 @@
 'use server';
 
-import emailAuthentication from '../services/emailAuthentication';
 import { IEmailAuthPrevState } from '../types/formValidation.interface';
+import { emailAuthentication } from '../services/emailAuthentication';
 
 export const submitAction = async (prevState: IEmailAuthPrevState, formData: FormData) => {
 	const code = (formData.get('code') as string) || '';
