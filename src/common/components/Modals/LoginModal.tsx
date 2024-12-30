@@ -36,9 +36,6 @@ export default function LoginModal() {
 						<div className="h-0 w-1/2 border border-lightGray" />
 					</div>
 					<div className="center gap-4">
-						{new Array(1).fill('').map((_, index) => (
-							<button key={index} className="size-12 rounded-full bg-main" />
-						))}
 						<NaverLoginButton />
 						<KakaoLoginButton />
 					</div>
@@ -50,9 +47,11 @@ export default function LoginModal() {
 						</p>
 					</Link>
 					<div className="h-6 w-0 border border-lightGray" />
+					<Link href="/findPassword">
 					<p className="cursor-pointer text-nowrap text-xs font-semibold text-lightGray">
 						비밀번호 찾기
 					</p>
+					</Link>
 				</div>
 			</div>
 		</BaseModal>

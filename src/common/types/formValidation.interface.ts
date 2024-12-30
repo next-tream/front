@@ -17,6 +17,14 @@ export interface IFormData extends IPrevState {
 }
 
 export interface IEmailAuthPrevState {
-	code: string;
+	code?: string;
 	email: string;
+	isPassword: boolean;
+	errors?: { [key: string]: string };
+}
+
+export interface ILoginPrevState {
+	password: string;
+	email: string;
+	errors?: { [key: string]: string };
 }

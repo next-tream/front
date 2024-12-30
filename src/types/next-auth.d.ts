@@ -1,13 +1,10 @@
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
-import NextAuth from 'next-auth';
+
+import { TJwtPayload } from '@/common/types/jwt.interface';
 
 declare module 'next-auth' {
 	interface Session {
-		user?: {
-			name?: string | null;
-			email?: string | null;
-			image?: string | null;
-		};
+		user: TJwtPayload;
 		accessToken?: string | null;
 		expires: ISODateString;
 	}

@@ -5,6 +5,9 @@ import KakaoProvider from 'next-auth/providers/kakao';
 import NaverProvider from 'next-auth/providers/naver';
 import { api } from '@/common/configs/axios.config';
 import { setCookieAction } from '@/common/actions/setCookieAction';
+import { jwtDecode } from 'jwt-decode';
+import validateType from '@/common/utils/validateType';
+import { JwtPayloadSchema } from '@/common/types/jwt.interface';
 
 const authOptions: AuthOptions = {
 	providers: [
@@ -52,10 +55,12 @@ const authOptions: AuthOptions = {
 
 	callbacks: {
 		async signIn({ account }) {
-			if (account) {
-				if (account.provider === 'credentials') {
-					return true;
-				}
+      if (!account) return false;
+
+			if (account.provider === 'credentials') {
+				return true;
+			}
+				
 				try {
 					const response = await api.get(
 						`${process.env.NEXT_PUBLIC_BASE_URL}/auth/login?social=${account.provider}`,
@@ -63,9 +68,8 @@ const authOptions: AuthOptions = {
 							headers: {
 								Authorization: `bearer ${account.access_token}`,
 							},
-						},
-					);
-
+            })
+              
 					if (response.data.accessToken) {
 						setCookieAction(response.data.accessToken);
 						account.accessToken = response.data.accessToken;
@@ -75,9 +79,9 @@ const authOptions: AuthOptions = {
 					console.log('로그인 실패', error);
 					return false;
 				}
-			}
 
-			return false;
+				return false;
+			}
 		},
 
 		async redirect({ baseUrl }) {
@@ -93,7 +97,11 @@ const authOptions: AuthOptions = {
 
 		async session({ session, token }) {
 			if (typeof token.accessToken === 'string') {
+				const payload = jwtDecode(token.accessToken);
 				session.accessToken = token.accessToken;
+				if (validateType(JwtPayloadSchema, payload)) {
+					session.user = payload;
+				}
 			}
 			return session;
 		},
