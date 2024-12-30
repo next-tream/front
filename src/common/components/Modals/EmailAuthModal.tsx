@@ -8,9 +8,11 @@ import Timer from '@/common/components/Modals/Timer';
 import { submitAction } from '@/common/actions/emailAuthFormAction';
 import { useFormState } from 'react-dom';
 import useOtpInput from '../Inputs/hooks/useOtpInput';
+import { useRouter } from 'next/navigation';
 
 export const EmailAuthModal = ({ authenticationTime, email = '' }: IEmailAuthModalProps) => {
 	const { otpCode, onChangeOtpHandle } = useOtpInput();
+	const router = useRouter();
 
 	// eslint-disable-next-line @typescript-eslint/no-unused-vars
 	const [formData, setFormData] = useFormState(submitAction, {
@@ -20,7 +22,7 @@ export const EmailAuthModal = ({ authenticationTime, email = '' }: IEmailAuthMod
 
 	return (
 		<form action={setFormData}>
-			<BaseModal type="emailAuth">
+			<BaseModal type="emailAuth" onSubButtonClick={() => router.back()}>
 				<div className="flexColCenter gap-4">
 					<div className="flexCol items-end gap-4">
 						<div className="center relative w-full">
