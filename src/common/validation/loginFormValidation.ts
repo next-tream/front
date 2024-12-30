@@ -1,17 +1,17 @@
 'use server';
 
-import { ZodError } from 'zod';
 import { ILoginPrevState } from '../types/formValidation.interface';
+import { ZodError } from 'zod';
 import { schema } from '../zod/loginSchema';
 
 export const submitAction = async (prevState: ILoginPrevState, formData: FormData) => {
 	try {
-		const password = (formData.get('password') as string) || '';
 		const email = (formData.get('email') as string) || '';
+		const password = (formData.get('password') as string) || '';
 
 		const finalData = {
-			password,
 			email,
+			password,
 		};
 
 		schema.parse(finalData);
