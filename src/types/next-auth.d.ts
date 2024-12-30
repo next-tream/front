@@ -3,9 +3,18 @@
 import { TJwtPayload } from '@/common/types/jwt.interface';
 
 declare module 'next-auth' {
+	interface User {
+		accessToken: string;
+	}
 	interface Session {
 		user: TJwtPayload;
-		accessToken?: string | null;
+		accessToken: string;
 		expires: ISODateString;
+	}
+}
+
+export declare module '@auth/core/jwt' {
+	interface JWT {
+		accessToken: string;
 	}
 }

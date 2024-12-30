@@ -14,7 +14,7 @@ export default async function registerUser(data: IPrevState) {
 				email: data.email,
 			}),
 		});
-		console.log(response);
+
 		if (response.status === 201) {
 			return true;
 		}

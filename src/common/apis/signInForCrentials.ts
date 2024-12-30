@@ -12,5 +12,4 @@ export const signInForCredential = async ({
 		password,
 		redirect: false,
 	});
-	console.log(res);
 };

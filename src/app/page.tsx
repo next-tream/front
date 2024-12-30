@@ -1,6 +1,6 @@
+import { CarouselSpacing } from '@/common/components/Carousel/CarouselSpacing';
 import MainVideo from '@/common/components/Video/MainVideo';
 import MenuContainer from '@/common/components/MenuContainer';
-import { CarouselSpacing } from '@/common/components/Carousel/CarouselSpacing';
 import Video from '@/common/components/Video/Video';
 
 export default function Home() {

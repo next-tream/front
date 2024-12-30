@@ -1,14 +1,15 @@
 'use client';
 
-import { createContext, MouseEvent, useState } from 'react';
-import { IPointChargeModalProps } from '@/common/types/modal.interface';
-import BaseModal from './BaseModal';
-import PointSelectionContainer from '@/common/components/PointSelectionContainer';
-import Divider from '@/common/components/Divider';
+import { MouseEvent, createContext, useState } from 'react';
+
 import BaseButton from '@/common/components/Buttons/BaseButton';
+import BaseModal from './BaseModal';
 import { CurrencyDollarIcon } from '@heroicons/react/24/solid';
-import TextInput from '@/common/components/Inputs/TextInput';
+import Divider from '@/common/components/Divider';
+import { IPointChargeModalProps } from '@/common/types/modal.interface';
+import PointSelectionContainer from '@/common/components/PointSelectionContainer';
 import { TInputChangeEvent } from '@/common/types/handler.type';
+import TextInput from '@/common/components/Inputs/TextInput';
 
 export default function DonationModal({ amount }: IPointChargeModalProps) {
 	const DonationModalContext = createContext({ point: 0, amount: 0 });
@@ -16,7 +17,6 @@ export default function DonationModal({ amount }: IPointChargeModalProps) {
 
 	const onChangePointInputHandler = (event: TInputChangeEvent) => {
 		const value = event.target.value;
-		console.log(value);
 	};
 
 	const onClickPointButtonHandler = (event: MouseEvent<HTMLButtonElement>) => {
@@ -27,13 +27,13 @@ export default function DonationModal({ amount }: IPointChargeModalProps) {
 	return (
 		<DonationModalContext.Provider value={{ point, amount }}>
 			<BaseModal type="donation">
-				<div className="border-lightGray flexCol gap-3 rounded-xl border px-4 py-3">
+				<div className="flexCol gap-3 rounded-xl border border-lightGray px-4 py-3">
 					<div className="between items-center">
-						<p className="text-darkGray w-full text-lg font-bold">내 포인트</p>
+						<p className="w-full text-lg font-bold text-darkGray">내 포인트</p>
 						<div className="center gap-3">
 							<div className="center gap-1.5">
-								<CurrencyDollarIcon className="text-main size-5" />
-								<p className="text-mainBlack text-lg font-semibold">
+								<CurrencyDollarIcon className="size-5 text-main" />
+								<p className="text-lg font-semibold text-mainBlack">
 									{amount.toLocaleString()}
 								</p>
 							</div>
@@ -52,7 +52,7 @@ export default function DonationModal({ amount }: IPointChargeModalProps) {
 					<Divider color="lightGray" />
 
 					<div className="flexCol">
-						<p className="text-darkGray w-full text-lg font-bold">후원 메시지</p>
+						<p className="w-full text-lg font-bold text-darkGray">후원 메시지</p>
 						<TextInput type="text" placeholder="메시지를 입력해 주세요." />
 					</div>
 				</div>
