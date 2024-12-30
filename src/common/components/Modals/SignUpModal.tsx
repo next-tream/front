@@ -2,7 +2,7 @@
 
 import { useFormState } from 'react-dom';
 import BaseModal from '@/common/components/Modals/BaseModal';
-import { submitAction } from '@/common/validation/signupFormValidation';
+import { submitAction } from '@/common/actions/signupFormAction';
 import TextInputsWrapper from '@/common/components/Inputs/TextInputsWrapper';
 import { useRouter } from 'next/navigation';
 

@@ -5,7 +5,7 @@ import BaseModal from '@/common/components/Modals/BaseModal';
 import { IKakaoAuthModalProps } from '@/common/types/modal.interface';
 import OtpInput from '@/common/components/Inputs/OtpInput';
 import Timer from '@/common/components/Modals/Timer';
-import { submitAction } from '@/common/validation/emailAuthFormValidation';
+import { submitAction } from '@/common/actions/emailAuthFormAction';
 import { useFormState } from 'react-dom';
 import useOtpInput from '../Inputs/hooks/useOtpInput';
 

@@ -7,7 +7,7 @@ import Link from 'next/link';
 import NaverLoginButton from '../Buttons/NaverLoginButton';
 import TextInputsWrapper from '@/common/components/Inputs/TextInputsWrapper';
 import { signInForCredential } from '@/common/apis/signInForCrentials';
-import { submitAction } from '@/common/validation/loginFormValidation';
+import { submitAction } from '@/common/actions/loginFormAction';
 import { useFormState } from 'react-dom';
 
 export default function LoginModal() {
