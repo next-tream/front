@@ -1,13 +1,14 @@
 'use client';
 
-import BaseModal from '@/common/components/Modals/BaseModal';
 import BaseButton from '@/common/components/Buttons/BaseButton';
-import TextInputsWrapper from '@/common/components/Inputs/TextInputsWrapper';
+import BaseModal from '@/common/components/Modals/BaseModal';
 import KakaoLoginButton from '../Buttons/KakaoLoginButton';
-import NaverLoginButton from '../Buttons/NaverLoginButton';
 import Link from 'next/link';
-import { useFormState } from 'react-dom';
+import NaverLoginButton from '../Buttons/NaverLoginButton';
+import TextInputsWrapper from '@/common/components/Inputs/TextInputsWrapper';
+import { signInForCredential } from '@/common/apis/signInForCrentials';
 import { submitAction } from '@/common/validation/loginFormValidation';
+import { useFormState } from 'react-dom';
 
 export default function LoginModal() {
 	const [formData, setFormData] = useFormState(submitAction, {
@@ -15,8 +16,11 @@ export default function LoginModal() {
 		email: '',
 		errors: {},
 	});
+	const { email, password, errors } = formData;
 
-	console.log(formData);
+	if (email && password && Object.keys(errors).length === 0) {
+		signInForCredential({ email, password });
+	}
 
 	return (
 		<BaseModal type="login">

@@ -7,12 +7,12 @@ export const MODAL_CONSTANTS = {
 		mainButtonLabel: '',
 		subButtonLabel: '',
 		inputs: [
-			{ name: 'email', title: '', placeholder: '이메일을 입력해 주세요.', type: 'text' },
+			{ title: '', placeholder: '이메일을 입력해 주세요.', type: 'text', name: 'email' },
 			{
-				name: 'password',
 				title: '',
 				placeholder: '비밀번호를 입력해 주세요.',
 				type: 'password',
+				name: 'password',
 			},
 		],
 	},

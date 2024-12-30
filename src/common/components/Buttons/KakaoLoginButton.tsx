@@ -8,7 +8,6 @@ export default function KakaoLoginButton() {
 		try {
 			await signIn('kakao');
 			const response = await fetch(`/api/cookie`, {
-				method: 'GET',
 				credentials: 'include',
 			});
 
