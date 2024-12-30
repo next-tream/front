@@ -19,22 +19,21 @@ const authOptions: AuthOptions = {
 			},
 			// eslint-disable-next-line @typescript-eslint/no-explicit-any
 			async authorize(credentials): Promise<any> {
-				if (!credentials) return false;
+				if (!credentials) return null;
 
 				const { email, password } = credentials;
 
 				try {
-					// axios
 					const data = await api.post('/auth/login', { email, password });
 
 					if (data.data.accessToken) {
-						return true;
+						return data.data.accessToken;
 					}
 
-					return false;
+					return null;
 				} catch (error) {
 					console.error('Login Error:', error);
-					return false;
+					return null;
 				}
 			},
 		}),
@@ -60,49 +59,44 @@ const authOptions: AuthOptions = {
 			if (account.provider === 'credentials') return true;
 
 			try {
-				const response = await api.get(
-					`${process.env.NEXT_PUBLIC_BASE_URL}/auth/login?social=${account.provider}`,
-					{
-						headers: {
-							Authorization: `bearer ${account.access_token}`,
-						},
+				const response = await api.get(`/auth/login?social=${account.provider}`, {
+					headers: {
+						Authorization: `bearer ${account.access_token}`,
 					},
-				);
+				});
 
 				if (response.data.accessToken) {
 					setCookieAction(response.data.accessToken);
 					account.accessToken = response.data.accessToken;
 					return true;
 				}
+			// eslint-disable-next-line @typescript-eslint/no-unused-vars
 			} catch (error) {
-				console.log('로그인 실패', error);
 				return false;
 			}
 
 			return false;
 		},
-	},
 
-	async redirect({ baseUrl }) {
-		return baseUrl;
-	},
-
-	async jwt({ token, account }) {
-		if (account) {
-			token.accessToken = account.accessToken;
-		}
-		return token;
-	},
-
-	async session({ session, token }) {
-		if (typeof token.accessToken === 'string') {
-			const payload = jwtDecode(token.accessToken);
-			session.accessToken = token.accessToken;
-			if (validateType(JwtPayloadSchema, payload)) {
-				session.user = payload;
+		async jwt({ token, account }) {
+			console.log(token);
+			console.log(account);
+			if (account) {
+				token.accessToken = account.accessToken;
 			}
-		}
-		return session;
+			return token;
+		},
+
+		async session({ session, token }) {
+			if (typeof token.accessToken === 'string') {
+				const payload = jwtDecode(token.accessToken);
+				session.accessToken = token.accessToken;
+				if (validateType(JwtPayloadSchema, payload)) {
+					session.user = payload;
+				}
+			}
+			return session;
+		},
 	},
 };
 

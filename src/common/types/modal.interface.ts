@@ -24,7 +24,7 @@ export interface IBaseModalProps extends IChildrenProps {
 	onSubButtonClick?: () => void;
 }
 
-export interface IKakaoAuthModalProps {
+export interface IEmailAuthModalProps {
 	authenticationTime: number;
 	email?: string;
 }

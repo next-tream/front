@@ -2,7 +2,7 @@ import { IPrevState } from '../types/formValidation.interface';
 
 export default async function registerUser(data: IPrevState) {
 	try {
-		const response = await fetch(`${process.env.BASE_URL}/auth/signup`, {
+		const response = await fetch(`${process.env.NEXT_PUBLIC_BASE_URL}/auth/signup`, {
 			method: 'POST',
 			headers: {
 				'Content-Type': 'application/json',
