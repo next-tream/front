@@ -19,7 +19,7 @@ const authOptions: AuthOptions = {
 			},
 			// eslint-disable-next-line @typescript-eslint/no-explicit-any
 			async authorize(credentials): Promise<any> {
-				if (!credentials) return null;
+				if (!credentials) return false;
 
 				const { email, password } = credentials;
 
@@ -34,7 +34,7 @@ const authOptions: AuthOptions = {
 					return false;
 				} catch (error) {
 					console.error('Login Error:', error);
-					return null;
+					return false;
 				}
 			},
 		}),
