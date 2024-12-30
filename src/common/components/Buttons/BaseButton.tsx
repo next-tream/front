@@ -1,8 +1,14 @@
-import { IBaseButtonStyleProps } from '@/common/types/button.interface';
+'use client';
 
-export default function BaseButton({ className, children, ...rest }: IBaseButtonStyleProps) {
+import { IBaseButtonStyleProps } from '@/common/types/button.interface';
+import { useFormStatus } from 'react-dom';
+
+export default function BaseButton({ className, children, type, ...rest }: IBaseButtonStyleProps) {
+	const { pending } = useFormStatus();
+
 	return (
-		<button className={className} onClick={rest.onClick}>
+		<button className={className} onClick={rest.onClick} type={type} disabled={pending}>
+			{pending && 'Submitting...'}
 			{children}
 		</button>
 	);
