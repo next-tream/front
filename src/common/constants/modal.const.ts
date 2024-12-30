@@ -80,11 +80,13 @@ export const MODAL_CONSTANTS = {
 		subButtonLabel: '이전',
 		inputs: [
 			{
+				name: 'password',
 				title: '새 비밀번호',
 				placeholder: '8~16자 영문, 숫자, 특수문자 1자리를 포함해 주세요.',
 				type: 'password',
 			},
 			{
+				name: 'checkPassword',
 				title: '새 비밀번호 확인',
 				placeholder: '비밀번호를 다시 한 번 입력해 주세요.',
 				type: 'password',
@@ -99,7 +101,7 @@ export const MODAL_CONSTANTS = {
 		subButtonLabel: '이전',
 		inputs: [],
 	},
-	kakaoAuth: {
+	emailAuth: {
 		title: '인증하기',
 		description: '인증 번호를 입력해 주세요. 인증번호 6자리는 이메일로 전송됩니다.',
 		mainButtonLabel: '다음',

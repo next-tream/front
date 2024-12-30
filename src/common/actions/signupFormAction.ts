@@ -10,7 +10,7 @@ export const submitAction = async (prevState: IFormData, formData: FormData) => 
 		const email = (formData.get('email') as string) || '';
 		const nickName = (formData.get('nickName') as string) || '';
 		const password = (formData.get('password') as string) || '';
-		const checkPassword = (formData.get('tel') as string) || '';
+		const checkPassword = (formData.get('checkPassword') as string) || '';
 
 		const finalData = {
 			email,

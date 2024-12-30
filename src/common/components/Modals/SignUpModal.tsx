@@ -12,13 +12,13 @@ export default function SignUpModal() {
 		email: '',
 		nickName: '',
 		password: '',
-		tel: '',
+		checkPassword: '',
 		errors: {},
 		result: false,
 	});
 
 	if (formData.result) {
-		router.push(`/kakao/auth?email=${formData.email}`);
+		router.push(`/email/auth?email=${formData.email}`);
 	}
 
 	return (
