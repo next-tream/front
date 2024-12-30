@@ -1,13 +1,13 @@
 import NextAuth, { AuthOptions } from 'next-auth';
 
 import CredentialsProvider from 'next-auth/providers/credentials';
+import { JwtPayloadSchema } from '@/common/types/jwt.interface';
 import KakaoProvider from 'next-auth/providers/kakao';
 import NaverProvider from 'next-auth/providers/naver';
 import { api } from '@/common/configs/axios.config';
-import { setCookieAction } from '@/common/actions/setCookieAction';
 import { jwtDecode } from 'jwt-decode';
+import { setCookieAction } from '@/common/actions/setCookieAction';
 import validateType from '@/common/utils/validateType';
-import { JwtPayloadSchema } from '@/common/types/jwt.interface';
 
 const authOptions: AuthOptions = {
 	providers: [
@@ -55,56 +55,54 @@ const authOptions: AuthOptions = {
 
 	callbacks: {
 		async signIn({ account }) {
-      if (!account) return false;
+			if (!account) return false;
 
-			if (account.provider === 'credentials') {
-				return true;
-			}
-				
-				try {
-					const response = await api.get(
-						`${process.env.NEXT_PUBLIC_BASE_URL}/auth/login?social=${account.provider}`,
-						{
-							headers: {
-								Authorization: `bearer ${account.access_token}`,
-							},
-            })
-              
-					if (response.data.accessToken) {
-						setCookieAction(response.data.accessToken);
-						account.accessToken = response.data.accessToken;
-						return true;
-					}
-				} catch (error) {
-					console.log('로그인 실패', error);
-					return false;
+			if (account.provider === 'credentials') return true;
+
+			try {
+				const response = await api.get(
+					`${process.env.NEXT_PUBLIC_BASE_URL}/auth/login?social=${account.provider}`,
+					{
+						headers: {
+							Authorization: `bearer ${account.access_token}`,
+						},
+					},
+				);
+
+				if (response.data.accessToken) {
+					setCookieAction(response.data.accessToken);
+					account.accessToken = response.data.accessToken;
+					return true;
 				}
-
+			} catch (error) {
+				console.log('로그인 실패', error);
 				return false;
 			}
-		},
 
-		async redirect({ baseUrl }) {
-			return baseUrl;
+			return false;
 		},
+	},
 
-		async jwt({ token, account }) {
-			if (account) {
-				token.accessToken = account.accessToken;
+	async redirect({ baseUrl }) {
+		return baseUrl;
+	},
+
+	async jwt({ token, account }) {
+		if (account) {
+			token.accessToken = account.accessToken;
+		}
+		return token;
+	},
+
+	async session({ session, token }) {
+		if (typeof token.accessToken === 'string') {
+			const payload = jwtDecode(token.accessToken);
+			session.accessToken = token.accessToken;
+			if (validateType(JwtPayloadSchema, payload)) {
+				session.user = payload;
 			}
-			return token;
-		},
-
-		async session({ session, token }) {
-			if (typeof token.accessToken === 'string') {
-				const payload = jwtDecode(token.accessToken);
-				session.accessToken = token.accessToken;
-				if (validateType(JwtPayloadSchema, payload)) {
-					session.user = payload;
-				}
-			}
-			return session;
-		},
+		}
+		return session;
 	},
 };
 
