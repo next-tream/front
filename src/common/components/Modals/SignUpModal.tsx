@@ -18,7 +18,7 @@ export default function SignUpModal() {
 	});
 
 	if (formData.result) {
-		router.push(`/kakaoAuth?email=${formData.email}`);
+		router.push(`/kakao/auth?email=${formData.email}`);
 	}
 
 	return (
