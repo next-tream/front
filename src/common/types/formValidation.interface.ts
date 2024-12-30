@@ -6,12 +6,6 @@ export interface IPrevState {
 	result?: boolean;
 }
 
-export interface ILoginPrevState {
-	password: string;
-	email: string;
-	errors: { [key: string]: string };
-}
-
 export interface IFormData extends IPrevState {
 	errors: { [key: string]: string };
 }

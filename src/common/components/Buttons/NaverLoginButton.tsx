@@ -1,16 +1,12 @@
 'use client';
 
-import Image from 'next/image';
 import { signIn } from 'next-auth/react';
+import Image from 'next/image';
 
 export default function NaverLoginButton() {
 	const onClickNaverLoginHandler = async () => {
-		try {
-			const result = await signIn('naver');
-			console.log('client', result);
-		} catch (error) {
-			console.error(error);
-		}
+		const result = await signIn('naver');
+		console.log('NAVER 로그인 :', result);
 	};
 	return (
 		<button onClick={onClickNaverLoginHandler}>

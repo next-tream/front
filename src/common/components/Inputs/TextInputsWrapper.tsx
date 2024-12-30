@@ -1,6 +1,6 @@
 import { ITextInputsWrapperProps } from '@/common/types/textInput.interface';
-import MODAL_CONFIG from '@/common/constants/modal.const';
 import TextInput from '@/common/components/Inputs/TextInput';
+import MODAL_CONFIG from '@/common/constants/modal.const';
 
 export default function TextInputsWrapper({ type, errors }: ITextInputsWrapperProps) {
 	const { inputs } = MODAL_CONFIG[type];
