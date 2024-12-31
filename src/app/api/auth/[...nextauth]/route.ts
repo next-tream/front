@@ -9,7 +9,7 @@ import { jwtDecode } from 'jwt-decode';
 import { setCookieAction } from '@/common/actions/setCookieAction';
 import validateType from '@/common/utils/validateType';
 
-const authOptions: AuthOptions = {
+export const authOptions: AuthOptions = {
 	providers: [
 		CredentialsProvider({
 			name: 'Credentials',
@@ -61,7 +61,7 @@ const authOptions: AuthOptions = {
 			try {
 				const response = await api.get(`/auth/login?social=${account.provider}`, {
 					headers: {
-						Authorization: `bearer ${account.access_token}`,
+						Authorization: `Bearer ${account.access_token}`,
 					},
 				});
 
@@ -70,7 +70,8 @@ const authOptions: AuthOptions = {
 					account.accessToken = response.data.accessToken;
 					return true;
 				}
-			// eslint-disable-next-line @typescript-eslint/no-unused-vars
+
+				// eslint-disable-next-line @typescript-eslint/no-unused-vars
 			} catch (error) {
 				return false;
 			}
@@ -79,8 +80,6 @@ const authOptions: AuthOptions = {
 		},
 
 		async jwt({ token, account }) {
-			console.log(token);
-			console.log(account);
 			if (account) {
 				token.accessToken = account.accessToken;
 			}
