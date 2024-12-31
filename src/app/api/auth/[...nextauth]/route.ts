@@ -27,7 +27,9 @@ export const authOptions: AuthOptions = {
 					const data = await api.post('/auth/login', { email, password });
 
 					if (data.data.accessToken) {
-						return data.data.accessToken;
+						return {
+							backendAccessToken: data.data.accessToken,
+						};
 					}
 
 					return null;
@@ -56,10 +58,11 @@ export const authOptions: AuthOptions = {
 		async signIn({ account }) {
 			if (!account) return false;
 
-			if (account.provider === 'credentials') return true;
+			if (account.provider === 'credentials') {
+				return true;
+			}
 
 			try {
-				console.log(account.access_token);
 				const response = await api.get(`/auth/login?social=${account.provider}`, {
 					headers: {
 						Authorization: `Bearer ${account.access_token}`,
@@ -87,19 +90,30 @@ export const authOptions: AuthOptions = {
 			return baseUrl;
 		},
 
-		async jwt({ token, account }) {
-			if (account) {
+		async jwt({ token, account, user }) {
+			if (account?.backendAccessToken) {
 				token.accessToken = account.backendAccessToken;
+			}
+			if (user?.backendAccessToken) {
+				console.log('user', user);
+				token.accessToken = user.backendAccessToken;
+				console.log('jwt', token);
 			}
 			return token;
 		},
 
 		async session({ session, token }) {
-			if (token.accessToken) {
-				const payload = jwtDecode(token.accessToken);
-				session.accessToken = token.accessToken;
-				if (validateType(JwtPayloadSchema, payload)) {
-					session.user = payload;
+			console.log('session', token);
+			if (typeof token.accessToken === 'string') {
+				try {
+					const payload = jwtDecode(token.accessToken);
+					session.accessToken = token.accessToken;
+
+					if (validateType(JwtPayloadSchema, payload)) {
+						session.user = payload;
+					}
+				} catch (error) {
+					console.error('JWT Decode Error:', error);
 				}
 			}
 			return session;
