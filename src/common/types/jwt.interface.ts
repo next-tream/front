@@ -3,6 +3,7 @@ import { z } from 'zod';
 export const JwtPayloadSchema = z.object({
 	id: z.number(),
 	email: z.string().email(),
+	nickname: z.string(),
 	role: z.number(),
 	type: z.string(),
 	iat: z.number(),
