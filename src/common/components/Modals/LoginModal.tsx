@@ -7,7 +7,7 @@ import Link from 'next/link';
 import NaverLoginButton from '../Buttons/NaverLoginButton';
 import TextInputsWrapper from '@/common/components/Inputs/TextInputsWrapper';
 import { signInForCredential } from '@/common/apis/signInForCrentials';
-import { submitAction } from '@/common/validation/loginFormValidation';
+import { submitAction } from '@/common/actions/loginFormAction';
 import { useFormState } from 'react-dom';
 
 export default function LoginModal() {
@@ -48,7 +48,7 @@ export default function LoginModal() {
 						</p>
 					</Link>
 					<div className="h-6 w-0 border border-lightGray" />
-					<Link href="/findPassword">
+					<Link href="/find/password">
 						<p className="cursor-pointer text-nowrap text-xs font-semibold text-lightGray">
 							비밀번호 찾기
 						</p>

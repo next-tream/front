@@ -1,8 +1,8 @@
 'use server';
 
+import { loginSchema } from '../schema/loginSchema';
 import { ILoginPrevState } from '../types/formValidation.interface';
 import { ZodError } from 'zod';
-import { schema } from '../zod/loginSchema';
 
 export const submitAction = async (prevState: ILoginPrevState, formData: FormData) => {
 	try {
@@ -14,7 +14,7 @@ export const submitAction = async (prevState: ILoginPrevState, formData: FormDat
 			password,
 		};
 
-		schema.parse(finalData);
+		loginSchema.parse(finalData);
 
 		return { ...finalData, errors: {} };
 	} catch (error) {

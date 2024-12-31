@@ -2,7 +2,7 @@ export interface IPrevState {
 	email: string;
 	nickName: string;
 	password: string;
-	tel: string;
+	checkPassword: string;
 	result?: boolean;
 }
 
@@ -19,12 +19,20 @@ export interface IFormData extends IPrevState {
 export interface IEmailAuthPrevState {
 	code?: string;
 	email: string;
-	isPassword: boolean;
+	isPassword?: boolean;
 	errors?: { [key: string]: string };
+	result?: boolean;
 }
 
 export interface ILoginPrevState {
 	password: string;
 	email: string;
+	errors: { [key: string]: string };
+}
+
+export interface IPasswordChangePrevState {
+	email: string;
+	password: string;
+	checkPassword?: string;
 	errors?: { [key: string]: string };
 }
