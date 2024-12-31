@@ -19,7 +19,6 @@ export type TModal = Record<ModalKey, IModalConfig>;
 
 export interface IBaseModalProps extends IChildrenProps {
 	type: ModalKey;
-	showCloseButton?: boolean;
 	onMainButtonClick?: () => void;
 	onSubButtonClick?: () => void;
 }

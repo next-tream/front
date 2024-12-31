@@ -29,7 +29,10 @@ export const FindPasswordModal = ({ authenticationTime }: IEmailAuthModalProps) 
 
 	return (
 		<form action={setFormData}>
-			<BaseModal type={formData.isPassword ? 'inputAuthCode' : 'sendAuthCode'}>
+			<BaseModal
+				type={formData.isPassword ? 'inputAuthCode' : 'sendAuthCode'}
+				onSubButtonClick={() => router.back()}
+			>
 				<div className="flexCol gap-4">
 					<TextInputsWrapper type="sendAuthCode" errors={formData.errors} />
 					{formData.isPassword && (
