@@ -1,11 +1,12 @@
 'use client';
 
-import { createContext, MouseEvent, useState } from 'react';
-import { IPointChargeModalProps } from '@/common/types/modal.interface';
-import BaseModal from './BaseModal';
-import PointSelectionContainer from '@/common/components/PointSelectionContainer';
-import PaymentSummaryContainer from '@/common/components/PaymentSummaryContainer';
+import { MouseEvent, createContext, useState } from 'react';
+
 import AgreementSection from '@/common/components/AgreementSection';
+import BaseModal from './BaseModal';
+import { IPointChargeModalProps } from '@/common/types/modal.interface';
+import PaymentSummaryContainer from '@/common/components/PaymentSummaryContainer';
+import PointSelectionContainer from '@/common/components/PointSelectionContainer';
 import { TInputChangeEvent } from '@/common/types/handler.type';
 
 export default function PointChargeModal({ amount }: IPointChargeModalProps) {
@@ -26,7 +27,7 @@ export default function PointChargeModal({ amount }: IPointChargeModalProps) {
 		<PointChargeModalContext.Provider value={{ point, amount }}>
 			<BaseModal type="pointCharge">
 				<div className="flexCol h-full justify-between">
-					<div className="border-lightGray flexCol gap-3 rounded-xl border px-4 py-3">
+					<div className="flexCol gap-3 rounded-xl border border-lightGray px-4 py-3">
 						<PointSelectionContainer
 							title="충전할 포인트"
 							context={PointChargeModalContext}

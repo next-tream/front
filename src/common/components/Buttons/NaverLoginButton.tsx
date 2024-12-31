@@ -7,7 +7,6 @@ export default function NaverLoginButton() {
 	const onClickNaverLoginHandler = async () => {
 		try {
 			const result = await signIn('naver');
-			console.log('client', result);
 		} catch (error) {
 			console.error(error);
 		}
