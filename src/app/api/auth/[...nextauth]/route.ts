@@ -1,3 +1,5 @@
+import NextAuth, { AuthOptions } from 'next-auth';
+
 import CredentialsProvider from 'next-auth/providers/credentials';
 import { JwtPayloadSchema } from '@/common/types/jwt.interface';
 import KakaoProvider from 'next-auth/providers/kakao';
@@ -57,6 +59,7 @@ export const authOptions: AuthOptions = {
 			if (account.provider === 'credentials') return true;
 
 			try {
+				console.log(account.access_token);
 				const response = await api.get(`/auth/login?social=${account.provider}`, {
 					headers: {
 						Authorization: `Bearer ${account.access_token}`,
@@ -65,27 +68,34 @@ export const authOptions: AuthOptions = {
 
 				if (response.data.accessToken) {
 					setCookieAction(response.data.accessToken);
-					account.accessToken = response.data.accessToken;
+					account.backendAccessToken = response.data.accessToken;
 					return true;
 				}
 
+				console.log('로그인 실패 :', response);
+				return false;
+
 				// eslint-disable-next-line @typescript-eslint/no-unused-vars
 			} catch (error) {
+				console.log(error);
 				return false;
 			}
+		},
 
-			return false;
+		async redirect({ baseUrl, url }) {
+			console.log(baseUrl);
+			return baseUrl;
 		},
 
 		async jwt({ token, account }) {
 			if (account) {
-				token.accessToken = account.accessToken;
+				token.accessToken = account.backendAccessToken;
 			}
 			return token;
 		},
 
 		async session({ session, token }) {
-			if (typeof token.accessToken === 'string') {
+			if (token.accessToken) {
 				const payload = jwtDecode(token.accessToken);
 				session.accessToken = token.accessToken;
 				if (validateType(JwtPayloadSchema, payload)) {

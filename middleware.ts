@@ -1,21 +1,16 @@
-import { NextRequest, NextResponse } from 'next/server';
+import type { NextRequest } from 'next/server';
+import { NextResponse } from 'next/server';
+import { match } from 'path-to-regexp';
+// import { getSession } from '@/serverActions/auth'
 
-import { auth } from './auth';
+const matchersForAuth = ['/myaccount/:path', '/users/:path'];
+const matchersForSignIn = ['/signup/:path', '/signin/:path'];
 
-export const runtime = 'edge'; // Edge Runtime 활성화
-
-export default auth(async (req: NextRequest) => {
-	console.log('Middleware path:', req.nextUrl.pathname); // 경로 출력
-	console.log('Middleware auth:', req.auth); // 인증 정보 출력
-
-	if (!req.auth && req.nextUrl.pathname !== '/login') {
-		const loginUrl = new URL('/login', req.nextUrl.origin);
-		return NextResponse.redirect(loginUrl);
-	}
-
+export async function middleware(request: NextRequest) {
+	console.log('path', request.nextUrl.pathname);
 	return NextResponse.next();
-});
+}
 
-export const config = {
-	matcher: ['*'], // 모든 경로에서 동작하도록 테스트
-};
+function isMatch(pathname: string, urls: string[]) {
+	return urls.some((url) => !!match(url)(pathname));
+}
