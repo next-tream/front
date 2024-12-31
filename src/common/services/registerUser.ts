@@ -1,18 +1,12 @@
+import api from '../configs/axios.config';
 import { IPrevState } from '../types/formValidation.interface';
 
 export default async function registerUser(data: IPrevState) {
 	try {
-		const response = await fetch(`${process.env.NEXT_PUBLIC_BASE_URL}/auth/signup`, {
-			method: 'POST',
-			headers: {
-				'Content-Type': 'application/json',
-				accept: 'application/json',
-			},
-			body: JSON.stringify({
-				nickname: data.nickName,
-				password: data.password,
-				email: data.email,
-			}),
+		const response = await api.post(`${process.env.NEXT_PUBLIC_BASE_URL}/auth/signup`, {
+			nickname: data.nickName,
+			password: data.password,
+			email: data.email,
 		});
 
 		if (response.status === 201) {
