@@ -6,7 +6,7 @@ import Video from '@/common/components/Video/Video';
 export default function Home() {
 	return (
 		<div className="flexCol h-full w-full gap-5 p-5">
-			<div className="center h-60 w-full">
+			<div className="center w-full lg:h-60 2xl:h-[650px]">
 				<MainVideo />
 			</div>
 			<MenuContainer menu="추천">

@@ -7,7 +7,6 @@ import { splitByDotAndRenderParagraphs } from '@/common/utils/splitByDotAndRende
 export default function BaseModal({
 	children,
 	type,
-	showCloseButton = true,
 	onMainButtonClick,
 	onSubButtonClick,
 }: IBaseModalProps) {
@@ -18,7 +17,7 @@ export default function BaseModal({
 			<div className="fixed inset-0 z-40 bg-mainBlack bg-opacity-50" />
 			<div className="center fixed inset-0 z-50">
 				<div className="flexCol relative h-1/2 min-h-[544px] w-1/3 min-w-[350px] max-w-md gap-8 rounded-2xl bg-mainWhite px-6 pb-4 pt-11">
-					{showCloseButton && <CloseButton />}
+					<CloseButton />
 					<div className="flexColCenter gap-7">
 						<div className="text-4xl font-bold text-mainBlack">{title}</div>
 

@@ -23,7 +23,7 @@ export default function SignUpModal() {
 
 	return (
 		<form action={setFormData}>
-			<BaseModal type="signUp">
+			<BaseModal type="signUp" onSubButtonClick={() => router.back()}>
 				<TextInputsWrapper type="signUp" errors={formData.errors} />
 			</BaseModal>
 		</form>

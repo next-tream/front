@@ -3,6 +3,7 @@ import { InputHTMLAttributes } from 'react';
 export interface ITextInputProps extends InputHTMLAttributes<HTMLInputElement> {
 	errors?: IValidationErrors;
 	title?: string;
+	isWhiteTitle?: boolean;
 }
 
 export interface IValidationErrors {
