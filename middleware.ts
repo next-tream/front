@@ -1,9 +1,21 @@
-import NextAuth from 'next-auth';
-import { NextRequest } from 'next/server';
-import authConfig from './auth.config';
+import { NextRequest, NextResponse } from 'next/server';
 
-const { auth } = NextAuth(authConfig);
-export default auth(async function middleware(req: NextRequest) {
-	console.log('path', req.nextUrl.pathname);
-	// Your custom middleware logic goes here
+import { auth } from './auth';
+
+export const runtime = 'edge'; // Edge Runtime 활성화
+
+export default auth(async (req: NextRequest) => {
+	console.log('Middleware path:', req.nextUrl.pathname); // 경로 출력
+	console.log('Middleware auth:', req.auth); // 인증 정보 출력
+
+	if (!req.auth && req.nextUrl.pathname !== '/login') {
+		const loginUrl = new URL('/login', req.nextUrl.origin);
+		return NextResponse.redirect(loginUrl);
+	}
+
+	return NextResponse.next();
 });
+
+export const config = {
+	matcher: ['*'], // 모든 경로에서 동작하도록 테스트
+};
