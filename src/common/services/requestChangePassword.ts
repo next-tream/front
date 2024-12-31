@@ -5,7 +5,7 @@ import { IPasswordChangePrevState } from '../types/formValidation.interface';
 
 export const requestChangePassword = async ({ password, email }: IPasswordChangePrevState) => {
 	try {
-		const response = await api.post('/auth/change/password', {
+		const response = await api.put('/auth/change/password', {
 			password,
 			email,
 		});

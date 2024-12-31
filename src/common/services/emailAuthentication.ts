@@ -14,6 +14,6 @@ export const emailAuthentication = async ({ code, email, isPassword }: IEmailAut
 			return true;
 		}
 	} catch (error) {
-		alert(`이메일 인증 실패: ${error}`);
+		console.log(`이메일 인증 실패: ${error}`);
 	}
 };
