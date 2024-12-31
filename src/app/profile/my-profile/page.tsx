@@ -4,23 +4,27 @@ import TextInput from '@/common/components/Inputs/TextInput';
 import PageTitle from '@/common/components/PageTitle';
 import ProfileContainer from '@/app/profile/my-profile/_components/ProfileContainer';
 import ProfileSubMenu from '@/app/profile/my-profile/_components/ProfileSubMenu';
+import { getServerSession } from 'next-auth';
+import { authOptions } from '@/app/api/auth/[...nextauth]/route';
 
-export default function myProfilePage() {
+export default async function myProfilePage() {
+	const session = await getServerSession(authOptions);
+
 	return (
 		<div className="flexCol gap-4">
 			<PageTitle pointText="Nextream" title="프로필" />
 			<ProfileContainer
-				nickName="미즈하라치즈루"
-				introduceYourself="안녕하세요! 저는 치즈루입니다~! 모두 렌타루 카누죠 하세요~ 시간당 만엔입니다^^"
+				nickName={session?.user.nickname ?? ''}
+				introduceYourself="한 줄 소개를 작성해 보세요."
 			/>
 			<div className="flexCol gap-3">
 				<ProfileSubMenu color="subBlack">비밀번호 변경</ProfileSubMenu>
 				<ProfileSubMenu color="mainBlack">강예슬 천재</ProfileSubMenu>
 			</div>
 			<Divider color="lightGray" />
-			<div>
-				<TextInput title="새 비밀번호" />
-				<TextInput title="새 비밀번호 확인" />
+			<div className="flexCol gap-4">
+				<TextInput title="새 비밀번호" isWhiteTitle={true} />
+				<TextInput title="새 비밀번호 확인" isWhiteTitle={true} />
 			</div>
 			<div className="flex w-full justify-end">
 				<div className="w-40">
