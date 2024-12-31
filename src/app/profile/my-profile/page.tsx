@@ -1,11 +1,11 @@
 import BaseButton from '@/common/components/Buttons/BaseButton';
 import Divider from '@/common/components/Divider';
-import TextInput from '@/common/components/Inputs/TextInput';
 import PageTitle from '@/common/components/PageTitle';
 import ProfileContainer from '@/app/profile/my-profile/_components/ProfileContainer';
 import ProfileSubMenu from '@/app/profile/my-profile/_components/ProfileSubMenu';
-import { getServerSession } from 'next-auth';
+import TextInput from '@/common/components/Inputs/TextInput';
 import { authOptions } from '@/app/api/auth/[...nextauth]/route';
+import { getServerSession } from 'next-auth';
 
 export default async function myProfilePage() {
 	const session = await getServerSession(authOptions);
