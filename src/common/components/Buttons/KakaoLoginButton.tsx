@@ -7,11 +7,6 @@ export default function KakaoLoginButton() {
 	const onClickKakaoLoginHandler = async () => {
 		try {
 			await signIn('kakao');
-			const response = await fetch(`/api/cookie`, {
-				credentials: 'include',
-			});
-
-			if (!response.ok) new Error('카카오 로그인 후 쿠키 요청 실패!');
 		} catch (error) {
 			alert(`카카오 로그인 오류 발생: ${error}`);
 		}
