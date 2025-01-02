@@ -1,13 +1,13 @@
 import NextAuth, { AuthOptions } from 'next-auth';
 
 import CredentialsProvider from 'next-auth/providers/credentials';
-import { JwtPayloadSchema } from '@/common/types/jwt.interface';
+import { TJwtPayload } from '@/common/types/jwt.interface';
 import KakaoProvider from 'next-auth/providers/kakao';
 import NaverProvider from 'next-auth/providers/naver';
 import { api } from '@/common/configs/axios.config';
 import { jwtDecode } from 'jwt-decode';
 import { setCookieAction } from '@/common/actions/setCookieAction';
-import validateType from '@/common/utils/validateType';
+import { parseCookie } from '@/common/utils/parseCookie';
 
 export const authOptions: AuthOptions = {
 	providers: [
@@ -48,7 +48,7 @@ export const authOptions: AuthOptions = {
 			clientSecret: process.env.NAVER_CLIENT_SECRET!,
 		}),
 	],
-
+	secret: process.env.AUTH_SECRET,
 	session: {
 		strategy: 'jwt',
 		maxAge: 60 * 60 * 24 * 7,
@@ -70,9 +70,17 @@ export const authOptions: AuthOptions = {
 				});
 
 				if (response.data.accessToken) {
-					setCookieAction(response.data.accessToken);
-					account.backendAccessToken = response.data.accessToken;
-					return true;
+					const backendAccessToken = response.data.accessToken;
+					account.backendAccessToken = backendAccessToken;
+
+					if (response.headers['set-cookie']) {
+						const sessionId = parseCookie(response.headers['set-cookie'][0]).sessionId;
+						setCookieAction(backendAccessToken, sessionId);
+						account.sessionId = sessionId;
+						return true;
+					}
+
+					return false;
 				}
 
 				console.log('로그인 실패 :', response);
@@ -93,6 +101,7 @@ export const authOptions: AuthOptions = {
 		async jwt({ token, account, user }) {
 			if (account?.backendAccessToken) {
 				token.accessToken = account.backendAccessToken;
+				token.sessionId = account.sessionId;
 			}
 			if (user?.backendAccessToken) {
 				console.log('user', user);
@@ -104,14 +113,12 @@ export const authOptions: AuthOptions = {
 
 		async session({ session, token }) {
 			console.log('session', token);
-			if (typeof token.accessToken === 'string') {
+			if (token.accessToken) {
 				try {
-					const payload = jwtDecode(token.accessToken);
+					const payload = jwtDecode<TJwtPayload>(token.accessToken);
 					session.accessToken = token.accessToken;
-
-					if (validateType(JwtPayloadSchema, payload)) {
-						session.user = payload;
-					}
+					session.sessionId = token.sessionId;
+					session.user = payload;
 				} catch (error) {
 					console.error('JWT Decode Error:', error);
 				}
