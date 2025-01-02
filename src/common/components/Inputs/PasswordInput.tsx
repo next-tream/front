@@ -1,4 +1,6 @@
-import React, { MouseEvent } from 'react';
+'use client';
+
+import { MouseEvent } from 'react';
 import TextInput from './TextInput';
 import { ITextInputProps } from '@/common/types/input.interface';
 import { EyeIcon, EyeSlashIcon } from '@heroicons/react/24/outline';
@@ -32,6 +34,7 @@ export default function PasswordInput({
 			placeholder={rest.placeholder}
 			trailingIcon={icon}
 			onClickTrailingIconHandler={onClickTrailingIconHandler}
+			isWhiteTitle={isWhiteTitle}
 		/>
 	);
 }
