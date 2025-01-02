@@ -1,13 +1,12 @@
 import NextAuth, { AuthOptions } from 'next-auth';
 
 import CredentialsProvider from 'next-auth/providers/credentials';
-import { JwtPayloadSchema } from '@/common/types/jwt.interface';
+import { TJwtPayload } from '@/common/types/jwt.interface';
 import KakaoProvider from 'next-auth/providers/kakao';
 import NaverProvider from 'next-auth/providers/naver';
 import { api } from '@/common/configs/axios.config';
 import { jwtDecode } from 'jwt-decode';
 import { setCookieAction } from '@/common/actions/setCookieAction';
-import validateType from '@/common/utils/validateType';
 
 export const authOptions: AuthOptions = {
 	providers: [
@@ -104,14 +103,11 @@ export const authOptions: AuthOptions = {
 
 		async session({ session, token }) {
 			console.log('session', token);
-			if (typeof token.accessToken === 'string') {
+			if (token.accessToken) {
 				try {
-					const payload = jwtDecode(token.accessToken);
+					const payload = jwtDecode<TJwtPayload>(token.accessToken);
 					session.accessToken = token.accessToken;
-
-					if (validateType(JwtPayloadSchema, payload)) {
-						session.user = payload;
-					}
+					session.user = payload;
 				} catch (error) {
 					console.error('JWT Decode Error:', error);
 				}
