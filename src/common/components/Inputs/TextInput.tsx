@@ -1,6 +1,13 @@
 import { ITextInputProps } from '@/common/types/input.interface';
 
-export default function TextInput({ errors = {}, title, isWhiteTitle, ...rest }: ITextInputProps) {
+export default function TextInput({
+	errors = {},
+	title,
+	isWhiteTitle,
+	trailingIcon,
+	onClickTrailingIconHandler,
+	...rest
+}: ITextInputProps) {
 	return (
 		<div className="flexCol gap-1">
 			<div className="flex items-center gap-1">
@@ -13,12 +20,18 @@ export default function TextInput({ errors = {}, title, isWhiteTitle, ...rest }:
 					{errors[rest.name as keyof typeof errors]}
 				</p>
 			</div>
-			<input
-				name={rest.name}
-				type={rest.type}
-				placeholder={rest.placeholder}
-				className={`h-12 w-full rounded-lg border border-lightGray bg-[transparent] px-5 text-sm font-medium outline-none focus:border-main ${isWhiteTitle ? 'text-mainWhite' : 'text-mainBlack'}`}
-			/>
+
+			<div className="relative w-full">
+				<input
+					name={rest.name}
+					type={rest.type}
+					placeholder={rest.placeholder}
+					className={`h-12 w-full rounded-lg border border-lightGray bg-[transparent] px-5 text-sm font-medium outline-none focus:border-main ${isWhiteTitle ? 'text-mainWhite' : 'text-mainBlack'}`}
+				/>
+				<div className="cursor-pointer" onClick={onClickTrailingIconHandler}>
+					{trailingIcon}
+				</div>
+			</div>
 		</div>
 	);
 }
