@@ -1,9 +1,11 @@
-import { InputHTMLAttributes } from 'react';
+import { InputHTMLAttributes, MouseEvent } from 'react';
 
 export interface ITextInputProps extends InputHTMLAttributes<HTMLInputElement> {
 	errors?: IValidationErrors;
 	title?: string;
 	isWhiteTitle?: boolean;
+	trailingIcon?: React.ReactNode;
+	onClickTrailingIconHandler?: (event: MouseEvent<HTMLDivElement>) => void;
 }
 
 export interface IValidationErrors {
