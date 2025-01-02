@@ -27,9 +27,15 @@ export const authOptions: AuthOptions = {
 					const data = await api.post('/auth/login', { email, password });
 
 					if (data.data.accessToken) {
-						return {
-							backendAccessToken: data.data.accessToken,
-						};
+						if (data.headers['set-cookie']) {
+							const sessionId = parseCookie(data.headers['set-cookie'][0]).sessionId;
+							setCookieAction(data.data.accessToken, sessionId);
+
+							return {
+								backendAccessToken: data.data.accessToken,
+								sessionId: sessionId,
+							};
+						}
 					}
 
 					return null;

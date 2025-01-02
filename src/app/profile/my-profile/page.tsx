@@ -3,9 +3,9 @@ import Divider from '@/common/components/Divider';
 import PageTitle from '@/common/components/PageTitle';
 import ProfileContainer from '@/app/profile/my-profile/_components/ProfileContainer';
 import ProfileSubMenu from '@/app/profile/my-profile/_components/ProfileSubMenu';
-import TextInput from '@/common/components/Inputs/TextInput';
 import { authOptions } from '@/app/api/auth/[...nextauth]/route';
 import { getServerSession } from 'next-auth';
+import PasswordInput from '@/common/components/Inputs/PasswordInput';
 
 export default async function myProfilePage() {
 	const session = await getServerSession(authOptions);
@@ -23,8 +23,8 @@ export default async function myProfilePage() {
 			</div>
 			<Divider color="lightGray" />
 			<div className="flexCol gap-4">
-				<TextInput title="새 비밀번호" isWhiteTitle={true} />
-				<TextInput title="새 비밀번호 확인" isWhiteTitle={true} />
+				<PasswordInput title="새 비밀번호" isWhiteTitle={true} />
+				<PasswordInput title="새 비밀번호 확인" isWhiteTitle={true} />
 			</div>
 			<div className="flex w-full justify-end">
 				<div className="w-40">
