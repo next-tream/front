@@ -28,13 +28,12 @@ export default function PasswordInput({
 
 	return (
 		<TextInput
-			name={rest.name}
 			type={type}
 			title={title}
-			placeholder={rest.placeholder}
 			trailingIcon={icon}
 			onClickTrailingIconHandler={onClickTrailingIconHandler}
 			isWhiteTitle={isWhiteTitle}
+			{...rest}
 		/>
 	);
 }

@@ -9,7 +9,7 @@ export default function TextInput({
 	...rest
 }: ITextInputProps) {
 	return (
-		<div className="flexCol gap-1">
+		<div className="flexCol w-full gap-1">
 			<div className="flex items-center gap-1">
 				<p
 					className={`text-sm font-semibold ${isWhiteTitle ? `text-mainWhite` : `text-mainBlack`}`}
@@ -23,10 +23,8 @@ export default function TextInput({
 
 			<div className="relative w-full">
 				<input
-					name={rest.name}
-					type={rest.type}
-					placeholder={rest.placeholder}
 					className={`h-12 w-full rounded-lg border border-lightGray bg-[transparent] px-5 text-sm font-medium outline-none focus:border-main ${isWhiteTitle ? 'text-mainWhite' : 'text-mainBlack'}`}
+					{...rest}
 				/>
 				<div className="cursor-pointer" onClick={onClickTrailingIconHandler}>
 					{trailingIcon}

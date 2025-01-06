@@ -22,10 +22,10 @@ export default function Chat({ isToggle, onClickToggle }: IChatProps) {
 						<Divider color="lightGray" />
 						<div className="flexCol gap-1 px-3 pt-3">
 							{Array.from({ length: 17 }).map((_, index) => (
-								<p key={index} className="flex gap-2">
+								<div key={index} className="flex gap-2">
 									<p className="text-main">예슬콩</p>안녕하세요. 채팅을
 									시작합니다~~~
-								</p>
+								</div>
 							))}
 						</div>
 					</div>
