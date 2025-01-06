@@ -39,7 +39,7 @@ export const streamerMenuItems: IMenuItem[] = [
 		icon: <PlayIcon className="size-4" />,
 		path: 'profile/recent-videos',
 	},
-	{ name: '설정', icon: <Cog6ToothIcon className="size-4" /> },
+	{ name: '설정', icon: <Cog6ToothIcon className="size-4" />, path: 'profile/settings' },
 	{
 		name: '로그아웃',
 		icon: <ArrowRightStartOnRectangleIcon className="size-4" />,
