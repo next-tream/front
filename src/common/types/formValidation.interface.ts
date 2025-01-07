@@ -24,12 +24,6 @@ export interface IEmailAuthPrevState {
 	result?: boolean;
 }
 
-export interface ILoginPrevState {
-	password: string;
-	email: string;
-	errors: { [key: string]: string };
-}
-
 export interface IPasswordChangePrevState {
 	email: string;
 	password: string;
