@@ -3,11 +3,9 @@ import AsideRecommendChannel from '@/common/components/Layouts/AsideRecommendCha
 
 export default function Aside() {
 	return (
-		<div className="border-darkGray flexCol relative min-h-[90dvh] w-1/6 border-r border-solid py-5 pl-2 pr-3">
-			<div className="flexCol fixed w-[15%] gap-4">
-				<AsideMenu />
-				<AsideRecommendChannel />
-			</div>
+		<div className="flexCol fixed top-24 min-h-[90dvh] w-1/6 gap-4 border-solid border-darkGray py-5 pl-2 pr-3">
+			<AsideMenu />
+			<AsideRecommendChannel />
 		</div>
 	);
 }
