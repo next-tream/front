@@ -8,12 +8,11 @@ export interface IMenuItem {
 
 // 컴포넌트
 export interface IMenuItemProps {
-	anchor?: string;
 	children: React.ReactNode;
 	name: string;
 	isAside: boolean;
-	isSelected?: boolean;
 	path?: string;
+	onClick?: () => void;
 }
 
 export interface IMenuItemWrapper {
