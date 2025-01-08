@@ -16,10 +16,22 @@ import {
 import { IMenuItem } from '../types/menuItem.interface';
 
 export const mainMenuItems: IMenuItem[] = [
-	{ anchor: 'recommendation', name: '추천', icon: <HandThumbUpIcon className="size-7" /> },
-	{ anchor: 'category', name: '카테고리', icon: <Squares2X2Icon className="size-7" /> },
-	{ anchor: 'following', name: '팔로잉', icon: <HeartIcon className="size-7" /> },
-	{ anchor: 'live', name: '라이브', icon: <PlayIcon className="size-7" /> },
+	{
+		path: '#recommendation',
+		name: '추천',
+		icon: <HandThumbUpIcon className="size-7" />,
+	},
+	{
+		path: '#category',
+		name: '카테고리',
+		icon: <Squares2X2Icon className="size-7" />,
+	},
+	{
+		path: '#following',
+		name: '팔로잉',
+		icon: <HeartIcon className="size-7" />,
+	},
+	{ path: '#live', name: '라이브', icon: <PlayIcon className="size-7" /> },
 ];
 
 export const streamerMenuItems: IMenuItem[] = [

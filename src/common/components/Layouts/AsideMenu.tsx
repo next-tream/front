@@ -7,6 +7,7 @@ import { ASIDE_LAYOUT_PATHS } from '@/common/constants/layout.const';
 
 export default function AsideMenu() {
 	const path = usePathname();
+
 	return (
 		<div>
 			{ASIDE_LAYOUT_PATHS.includes(path) && (

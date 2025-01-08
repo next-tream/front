@@ -15,7 +15,3 @@ export interface IStreamerInfoContainerProps {
 export interface ILiveStatusContainerProps {
 	watchingCount: number;
 }
-
-export interface IMenuContainerProps extends IChildrenProps {
-	menu?: string;
-}
