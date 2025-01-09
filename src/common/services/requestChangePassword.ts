@@ -11,9 +11,9 @@ export const requestChangePassword = async ({ password, email }: IPasswordChange
 		});
 
 		if (response.status === 200) {
-			console.log('비밀번호 변경 완료');
+			return true;
 		}
 	} catch (error) {
-		alert(`비밀번호 변경 실패: ${error}`);
+		return false;
 	}
 };

@@ -10,9 +10,9 @@ export const submitAction = async (prevState: IPasswordChangePrevState, formData
 		const email = prevState.email;
 
 		changePasswordSchema.parse({ password, checkPassword });
-		requestChangePassword({ password, email });
+		const result = await requestChangePassword({ password, email });
 
-		return { password, checkPassword, email, errors: {} };
+		return { password, checkPassword, email, errors: {}, result };
 	} catch (error) {
 		if (error instanceof ZodError) {
 			const fieldErrors = error.errors.reduce(
