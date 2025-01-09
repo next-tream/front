@@ -29,11 +29,15 @@ export const authOptions: AuthOptions = {
 					if (data.data.accessToken) {
 						if (data.headers['set-cookie']) {
 							const sessionId = parseCookie(data.headers['set-cookie'][0]).sessionId;
-							setCookieAction(data.data.accessToken, sessionId);
+							const connectSid = parseCookie(data.headers['set-cookie'][1])[
+								'connect.sid'
+							];
+
+							setCookieAction(data.data.accessToken, sessionId, connectSid);
 
 							return {
 								backendAccessToken: data.data.accessToken,
-								sessionId: sessionId,
+								isTag: data.data.isTag,
 							};
 						}
 					}
@@ -57,16 +61,13 @@ export const authOptions: AuthOptions = {
 	secret: process.env.AUTH_SECRET,
 	session: {
 		strategy: 'jwt',
-		maxAge: 60 * 60 * 24 * 7,
 	},
 
 	callbacks: {
 		async signIn({ account }) {
 			if (!account) return false;
 
-			if (account.provider === 'credentials') {
-				return true;
-			}
+			if (account.provider === 'credentials') return true;
 
 			try {
 				const response = await api.get(`/auth/login?social=${account.provider}`, {
@@ -78,11 +79,15 @@ export const authOptions: AuthOptions = {
 				if (response.data.accessToken) {
 					const backendAccessToken = response.data.accessToken;
 					account.backendAccessToken = backendAccessToken;
+					account.isTag = response.data.isTag;
 
 					if (response.headers['set-cookie']) {
 						const sessionId = parseCookie(response.headers['set-cookie'][0]).sessionId;
-						setCookieAction(backendAccessToken, sessionId);
-						account.sessionId = sessionId;
+						const connectSid = parseCookie(response.headers['set-cookie'][1])[
+							'connect.sid'
+						];
+
+						setCookieAction(backendAccessToken, sessionId, connectSid);
 						return true;
 					}
 
@@ -104,14 +109,17 @@ export const authOptions: AuthOptions = {
 			return baseUrl;
 		},
 
-		async jwt({ token, account, user }) {
+		async jwt({ token, account, user, trigger, session }) {
+			if (trigger === 'update') token.isTag = session.isTag;
+
 			if (account?.backendAccessToken) {
 				token.accessToken = account.backendAccessToken;
-				token.sessionId = account.sessionId;
+				token.isTag = account.isTag;
 			}
 			if (user?.backendAccessToken) {
 				console.log('user', user);
 				token.accessToken = user.backendAccessToken;
+				token.isTag = user.isTag;
 				console.log('jwt', token);
 			}
 			return token;
@@ -123,7 +131,7 @@ export const authOptions: AuthOptions = {
 				try {
 					const payload = jwtDecode<TJwtPayload>(token.accessToken);
 					session.accessToken = token.accessToken;
-					session.sessionId = token.sessionId;
+					session.isTag = token.isTag;
 					session.user = payload;
 				} catch (error) {
 					console.error('JWT Decode Error:', error);
