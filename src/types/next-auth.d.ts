@@ -10,6 +10,7 @@ declare module 'next-auth' {
 		user: TJwtPayload;
 		accessToken?: string;
 		expires: ISODateString;
+		isTag: boolean;
 	}
 }
 
@@ -17,6 +18,7 @@ declare module 'next-auth/jwt' {
 	interface JWT extends DefaultJWT {
 		sessionId: string;
 		accessToken?: string;
+		isTag: boolean;
 	}
 }
 
@@ -24,11 +26,13 @@ declare module 'next-auth' {
 	interface Account extends NextAuthAccount {
 		backendAccessToken?: string;
 		sessionId: string;
+		isTag: boolean;
 	}
 }
 
 declare module 'next-auth' {
 	interface User extends DefaultUser {
 		backendAccessToken?: string;
+		isTag: boolean;
 	}
 }
