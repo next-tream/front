@@ -24,11 +24,9 @@ export default function PasswordInput({
 		<EyeSlashIcon className="absolute right-3 top-3 size-6 text-lightGray" />
 	);
 
-	const type = isToggle ? 'password' : 'text';
-
 	return (
 		<TextInput
-			type={type}
+			type={isToggle ? 'password' : 'text'}
 			title={title}
 			trailingIcon={icon}
 			onClickTrailingIconHandler={onClickTrailingIconHandler}
