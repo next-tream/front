@@ -9,16 +9,27 @@ import { submitAction } from '@/common/actions/emailAuthFormAction';
 import { useFormState } from 'react-dom';
 import useOtpInput from '../Inputs/hooks/useOtpInput';
 import { useRouter } from 'next/navigation';
+import { useToast } from '@/hooks/use-toast';
+import { useEffect } from 'react';
 
 export const EmailAuthModal = ({ authenticationTime, email = '' }: IEmailAuthModalProps) => {
 	const { otpCode, onChangeOtpHandle } = useOtpInput();
 	const router = useRouter();
+	const { toast } = useToast();
 
 	// eslint-disable-next-line @typescript-eslint/no-unused-vars
 	const [formData, setFormData] = useFormState(submitAction, {
 		code: otpCode,
 		email,
+		result: false,
 	});
+
+	useEffect(() => {
+		if (formData.result) {
+			toast({ title: '🥳 회원가입을 축하드립니다!! 🎉' });
+			router.push('/');
+		}
+	}, [formData.result]);
 
 	return (
 		<form action={setFormData}>

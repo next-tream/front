@@ -8,6 +8,6 @@ export const submitAction = async (prevState: IEmailAuthPrevState, formData: For
 	const email = prevState.email;
 	const isPassword = false;
 
-	emailAuthentication({ code, email, isPassword });
-	return { code, email };
+	const result = await emailAuthentication({ code, email, isPassword });
+	return { code, email, result };
 };

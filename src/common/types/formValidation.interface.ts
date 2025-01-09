@@ -35,4 +35,5 @@ export interface IPasswordChangePrevState {
 	password: string;
 	checkPassword?: string;
 	errors?: { [key: string]: string };
+	result?: boolean;
 }
