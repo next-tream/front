@@ -34,6 +34,7 @@ export default function PasswordInput({
 			onClickTrailingIconHandler={onClickTrailingIconHandler}
 			isWhiteTitle={isWhiteTitle}
 			{...rest}
+			errors={errors}
 		/>
 	);
 }
