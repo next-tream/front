@@ -11,8 +11,6 @@ export const POST = async () => {
 		.map(({ name, value }) => `${name}=${value}`)
 		.join('; ');
 
-	console.log(cookieHeader);
-
 	const response = await fetch(`${process.env.NEXT_PUBLIC_BASE_URL}/auth/reissue`, {
 		method: 'POST',
 		headers: {
