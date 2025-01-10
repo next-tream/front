@@ -29,6 +29,7 @@ export const EmailAuthModal = ({ authenticationTime, email = '' }: IEmailAuthMod
 			toast({ title: '🥳 회원가입을 축하드립니다!! 🎉' });
 			router.push('/');
 		}
+		// eslint-disable-next-line react-hooks/exhaustive-deps
 	}, [formData.result]);
 
 	return (
