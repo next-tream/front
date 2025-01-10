@@ -10,6 +10,7 @@ export const useToggle = (boolean: boolean) => {
 
 	return {
 		isToggle,
+		setIsToggle,
 		onClickToggle,
 	};
 };
