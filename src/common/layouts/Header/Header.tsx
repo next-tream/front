@@ -18,7 +18,7 @@ export default async function Header() {
 			<SearchWrapper />
 			<div className="w-24">
 				{!session && (
-					<Link href="/login" className="basePrimaryBtn">
+					<Link href="/?modal=login" className="basePrimaryBtn">
 						로그인
 					</Link>
 				)}

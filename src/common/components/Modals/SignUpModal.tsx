@@ -18,7 +18,7 @@ export default function SignUpModal() {
 	});
 
 	if (formData.result) {
-		router.push(`/email/auth?email=${formData.email}`);
+		router.push(`/?modal=emailAuth&email=${formData.email}`);
 	}
 
 	return (

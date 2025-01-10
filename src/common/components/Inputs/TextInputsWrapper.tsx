@@ -13,7 +13,6 @@ export default function TextInputsWrapper({ type, errors }: ITextInputsWrapperPr
 					<PasswordInput
 						name={element.name}
 						key={index}
-						type={element.type}
 						title={element.title}
 						placeholder={element.placeholder}
 						errors={errors}

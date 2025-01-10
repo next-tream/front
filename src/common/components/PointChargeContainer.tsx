@@ -1,5 +1,6 @@
 import BaseButton from '@/common/components/Buttons/BaseButton';
 import { CurrencyDollarIcon } from '@heroicons/react/24/outline';
+import Link from 'next/link';
 
 export default function PointChargeContainer() {
 	return (
@@ -12,9 +13,11 @@ export default function PointChargeContainer() {
 
 				<p className="text-2xl font-medium text-main">1000 P</p>
 			</div>
-			<BaseButton className="basePrimaryBtn px-4 py-2 text-xl font-medium">
-				충전하기
-			</BaseButton>
+			<Link href="/profile/point/charge">
+				<BaseButton className="basePrimaryBtn px-4 py-2 text-xl font-medium">
+					충전하기
+				</BaseButton>
+			</Link>
 		</div>
 	);
 }
