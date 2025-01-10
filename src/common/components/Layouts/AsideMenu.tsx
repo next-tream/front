@@ -7,7 +7,6 @@ import {
 	streamerMenuItems,
 	userMenuItems,
 } from '@/common/constants/menuItems.const';
-import { ASIDE_LAYOUT_PATHS } from '@/common/constants/layout.const';
 import { useSession } from 'next-auth/react';
 
 export default function AsideMenu() {
@@ -17,7 +16,7 @@ export default function AsideMenu() {
 
 	return (
 		<div>
-			{ASIDE_LAYOUT_PATHS.includes(path) ? (
+			{path === '/' ? (
 				<MenuItemWrapper items={mainMenuItems} isAside={true} />
 			) : role ? (
 				<MenuItemWrapper items={streamerMenuItems} isAside={true} />

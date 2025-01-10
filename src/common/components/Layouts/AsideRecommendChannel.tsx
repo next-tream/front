@@ -5,7 +5,6 @@ import { useToggle } from '@/common/hooks/useToggle';
 import { ChevronDownIcon, ChevronUpIcon } from '@heroicons/react/24/outline';
 import Divider from '@/common/components/Divider';
 import StreamerInfoContainerWrapper from '@/common/components/StreamerInfoContainers/StreamerInfoContainerWrapper';
-import { ASIDE_LAYOUT_PATHS } from '@/common/constants/layout.const';
 
 export default function AsideRecommendChannel() {
 	const { isToggle, onClickToggle } = useToggle(true);
@@ -19,7 +18,7 @@ export default function AsideRecommendChannel() {
 	};
 
 	return (
-		ASIDE_LAYOUT_PATHS.includes(path) && (
+		path === '/' && (
 			<div className="w-ful flexCol gap-4">
 				<Divider color="lightGray" />
 				<div>
