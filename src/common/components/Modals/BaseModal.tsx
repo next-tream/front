@@ -21,7 +21,7 @@ export default function BaseModal({
 
 	const onClickCloseHandler = () => {
 		onClickToggle();
-		if (type === 'logout') router.back();
+		if (type === 'logout' || type === 'pointCharge') router.back();
 		else router.push('/');
 	};
 
