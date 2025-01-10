@@ -19,10 +19,13 @@ export default function PasswordChangeModal({ email = '' }: { email?: string }) 
 	});
 
 	useEffect(() => {
-		toast({
-			title: formData.result ? '비밀번호 변경 완료!! ✅' : '비밀번호 변경 실패!! ❌',
-		});
-		router.push('/');
+		if (formData.result) {
+			toast({
+				title: '비밀번호 변경 완료!! ✅',
+			});
+			router.push('/');
+		}
+		// eslint-disable-next-line react-hooks/exhaustive-deps
 	}, [formData.result]);
 
 	return (
