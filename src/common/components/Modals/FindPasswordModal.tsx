@@ -24,7 +24,7 @@ export const FindPasswordModal = ({ authenticationTime }: IEmailAuthModalProps) 
 	});
 
 	if (formData.result) {
-		router.push(`/password/change?email=${formData.email}`);
+		router.push(`/?modal=passwordChange&email=${formData.email}`);
 	}
 
 	return (

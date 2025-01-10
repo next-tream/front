@@ -42,13 +42,13 @@ export default function LoginModal() {
 					</div>
 				</div>
 				<div className="center gap-3">
-					<Link href="/signup">
+					<Link href="/?modal=signup">
 						<p className="cursor-pointer text-nowrap text-xs font-semibold text-lightGray">
 							가입하기
 						</p>
 					</Link>
 					<div className="h-6 w-0 border border-lightGray" />
-					<Link href="/find/password">
+					<Link href="/?modal=findPassword">
 						<p className="cursor-pointer text-nowrap text-xs font-semibold text-lightGray">
 							비밀번호 찾기
 						</p>
