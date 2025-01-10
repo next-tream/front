@@ -55,7 +55,7 @@ export const streamerMenuItems: IMenuItem[] = [
 	{
 		name: '로그아웃',
 		icon: <ArrowRightStartOnRectangleIcon className="size-4" />,
-		path: 'logout',
+		path: '?modal=logout',
 	},
 	{
 		name: '고객센터',
@@ -70,7 +70,7 @@ export const userMenuItems: IMenuItem[] = [
 		icon: <CreditCardIcon className="size-4" />,
 		path: 'profile/point',
 	},
-	{ name: '내 구독', icon: <StarIcon className="size-4" /> },
+	{ name: '내 구독', icon: <StarIcon className="size-4" />, path: 'profile/following' },
 	{ name: '최근 시청 영상', icon: <ClockIcon className="size-4" /> },
 	{ name: '설정', icon: <Cog6ToothIcon className="size-4" /> },
 	{
