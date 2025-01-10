@@ -1,7 +1,5 @@
 'use client';
 
-import HistoryColumnItemsWrapper from '@/app/profile/nextream-point/_components/HistoryColumnItemsWrapper';
-import HistoryRowItemsWrapper from '@/app/profile/nextream-point/_components/HistoryRowItemsWrapper';
 import {
 	POINT_USAGE_HISTORY_COLUMNS,
 	POINT_USAGE_HISTORY_SAMPLE,
@@ -12,6 +10,8 @@ import { ChevronDown } from 'lucide-react';
 import PointChargeContainer from '@/common/components/PointChargeContainer';
 import NavigationContainer from './NavigationContainer';
 import { useToggle } from '@/common/hooks/useToggle';
+import HistoryColumnItemsWrapper from './HistoryColumnItemsWrapper';
+import HistoryRowItemsWrapper from './HistoryRowItemsWrapper';
 
 export default function HistoryContentsContainer() {
 	const { isToggle: isUsageView, onClickToggle } = useToggle(true);

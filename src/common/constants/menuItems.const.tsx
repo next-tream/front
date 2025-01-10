@@ -68,7 +68,7 @@ export const userMenuItems: IMenuItem[] = [
 	{
 		name: '넥스트림 포인트',
 		icon: <CreditCardIcon className="size-4" />,
-		path: 'profile/nextream-point',
+		path: 'profile/point',
 	},
 	{ name: '내 구독', icon: <StarIcon className="size-4" /> },
 	{ name: '최근 시청 영상', icon: <ClockIcon className="size-4" /> },
