@@ -1,24 +1,21 @@
 import { PaperAirplaneIcon } from '@heroicons/react/24/outline';
+import { ISubInputProps } from '../type';
 
-export default function SubInput({
-	placeholder,
-	onClick,
-}: {
-	placeholder: string;
-	onClick?: () => void;
-}) {
+export default function SubInput({ onClickSubmit, ...rest }: ISubInputProps) {
 	return (
 		<div className="between relative w-full">
-			<input
-				type="text"
-				placeholder={placeholder}
-				className="h-12 w-full rounded-lg border border-darkGray bg-darkGray px-5 text-sm font-medium text-mainWhite outline-none placeholder:text-mainWhite focus:border-main"
-			/>
-			{placeholder.includes('채팅') && (
-				<button onClick={onClick}>
-					<PaperAirplaneIcon className="absolute right-2 top-[13px] size-5 cursor-pointer" />
-				</button>
-			)}
+			<form onSubmit={onClickSubmit}>
+				<input
+					{...rest}
+					type="text"
+					className="h-12 w-full rounded-lg border border-darkGray bg-darkGray px-5 text-sm font-medium text-mainWhite outline-none placeholder:text-mainWhite focus:border-main"
+				/>
+				{rest.placeholder && rest.placeholder.includes('채팅') && (
+					<button type="submit">
+						<PaperAirplaneIcon className="absolute right-2 top-[13px] size-5 cursor-pointer" />
+					</button>
+				)}
+			</form>
 		</div>
 	);
 }
