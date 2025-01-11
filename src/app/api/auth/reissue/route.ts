@@ -33,5 +33,8 @@ export const POST = async () => {
 		maxAge: 60 * 60 * 1,
 	});
 
-	return NextResponse.json({ message: '토큰이 재발급 되었습니다.' });
+	return NextResponse.json({
+		accessToken: data.accessToken,
+		message: '토큰이 재발급 되었습니다.',
+	});
 };

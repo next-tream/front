@@ -7,5 +7,6 @@ export interface IRankingProps {
 
 export interface IChatProps {
 	isToggle: boolean;
+	roomId: string;
 	onClickToggle: () => void;
 }

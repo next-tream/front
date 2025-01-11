@@ -1,15 +1,23 @@
 import { PaperAirplaneIcon } from '@heroicons/react/24/outline';
 
-export default function SubInput({ placeholder }: { placeholder: string }) {
+export default function SubInput({
+	placeholder,
+	onClick,
+}: {
+	placeholder: string;
+	onClick?: () => void;
+}) {
 	return (
 		<div className="between relative w-full">
 			<input
 				type="text"
 				placeholder={placeholder}
-				className="border-darkGray text-mainWhite focus:border-main bg-darkGray placeholder:text-mainWhite h-12 w-full rounded-lg border px-5 text-sm font-medium outline-none"
+				className="h-12 w-full rounded-lg border border-darkGray bg-darkGray px-5 text-sm font-medium text-mainWhite outline-none placeholder:text-mainWhite focus:border-main"
 			/>
 			{placeholder.includes('채팅') && (
-				<PaperAirplaneIcon className="absolute right-2 top-[13px] size-5 cursor-pointer" />
+				<button onClick={onClick}>
+					<PaperAirplaneIcon className="absolute right-2 top-[13px] size-5 cursor-pointer" />
+				</button>
 			)}
 		</div>
 	);

@@ -1,11 +1,13 @@
 'use client';
+import { useEffect, useRef, useState } from 'react';
 
 import Hls from 'hls.js';
-import { useEffect, useRef } from 'react';
+import Screen from '@/app/profile/start-streaming/_components/Screen';
 
 export default function LivePlayer() {
-	const source = 'http://43.203.221.60/hls/test.m3u8';
+	const source = process.env.NEXT_PUBLIC_HLS_URL!;
 	const videoRef = useRef<HTMLVideoElement>(null);
+	const [isOffline, setIsOffline] = useState(false);
 
 	useEffect(() => {
 		if (!videoRef.current) return;
@@ -14,6 +16,10 @@ export default function LivePlayer() {
 		hls.loadSource(source);
 		hls.attachMedia(videoRef.current);
 
+		hls.on(Hls.Events.ERROR, (_, data) => {
+			if (data.fatal) setIsOffline(true);
+		});
+
 		hls.on(Hls.Events.MANIFEST_PARSED, () => {
 			videoRef.current?.play().catch((err) => {
 				console.warn('라이브 플레이어 자동 실행 실패:', err);
@@ -21,7 +27,15 @@ export default function LivePlayer() {
 		});
 
 		console.log('라이브 플레이어 실행됨!');
+		setIsOffline(false);
+
+		return () => {
+			hls.destroy();
+		};
 	}, []);
+
+	if (isOffline) return <Screen isLive={false} />;
+
 	return (
 		<video
 			controls
