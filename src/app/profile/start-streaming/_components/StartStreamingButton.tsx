@@ -1,6 +1,9 @@
-export default function StartStreamingButton() {
+export default function StartStreamingButton({ onClick }: { onClick: () => void }) {
 	return (
-		<button className="text-mainBlack bg-lightGray h-12 w-full rounded-lg border px-5 text-base font-semibold">
+		<button
+			className="h-12 w-full rounded-lg border bg-lightGray px-5 text-base font-semibold text-mainBlack"
+			onClick={onClick}
+		>
 			스트리밍 시작
 		</button>
 	);
