@@ -1,7 +1,7 @@
 'use client';
 
 import { io, Socket } from 'socket.io-client';
-import { useEffect, useState } from 'react';
+import { ChangeEvent, FormEvent, useEffect, useState } from 'react';
 import { useSession } from 'next-auth/react';
 
 import { ChevronLeftIcon, ChevronRightIcon, EllipsisVerticalIcon } from 'lucide-react';
@@ -10,30 +10,33 @@ import SubInput from './SubInput';
 import Divider from '@/common/components/Divider';
 import SponsorshipRanking from './SponsorshipRanking';
 
-import { IChatProps } from '../type';
+import { IChatProps, IMessage } from '../type';
 
 export default function Chat({ isToggle, roomId, onClickToggle }: IChatProps) {
 	const { data: session } = useSession();
-	const [isConnect, setIsConnect] = useState(false);
+	const [message, setMessage] = useState('');
+	const [messageList, setMessageList] = useState<IMessage[]>([]);
 	const [socket, setSocket] = useState<Socket | null>(null);
 
 	const connectToChat = () => {
-		const _socket = io('http://api-nextream.store', {
+		const _socket = io('wss://api-nextream.store', {
 			reconnection: true,
 			reconnectionAttempts: 5,
 			reconnectionDelay: 1000,
-			autoConnect: false,
-			extraHeaders: {
-				Authorization: `Bearer ${session?.accessToken ?? ''}`,
+			auth: {
+				token: session?.accessToken,
 			},
+			query: {
+				roomId,
+			},
+			withCredentials: true,
 		});
-		_socket.connect();
 		setSocket(_socket);
 	};
 
 	const joinToChat = () => {
 		console.log('채팅방에 입장했습니다.', roomId);
-		socket?.emit('join', { roomId: '6780fbe7365fe9a9022bb78c' });
+		socket?.emit('join', { roomId });
 	};
 
 	const disconnectToChat = () => {
@@ -41,44 +44,51 @@ export default function Chat({ isToggle, roomId, onClickToggle }: IChatProps) {
 		socket?.disconnect();
 	};
 
-	// const socket = io('ws://api-nextream.store', {
-	// 	extraHeaders: {
-	// 		Authorization: `Bearer ${session?.accessToken ?? ''}`,
-	// 	},
-	// });
-
-	const sendMessage = () => {
-		console.log('메세지 보내요!');
-		socket?.emit('chat', { roomId, message: '방가방가방가' });
+	const onChangeChatMessageHandler = (event: ChangeEvent<HTMLInputElement>) => {
+		const value = event.target.value;
+		setMessage(value);
 	};
 
+	const sendMessage = (event: FormEvent) => {
+		event.preventDefault();
+		socket?.emit('chat', { roomId, message });
+	};
+
+	socket?.on('connect', () => {
+		console.log('채팅 서버와 연결되었습니다.');
+		joinToChat();
+	});
+
+	socket?.on('chat', ({ createdAt, message, color, nickname }) => {
+		console.log('socket.io - chat:', message, color, nickname);
+		setMessageList((prev) => [
+			...prev,
+			{
+				createdAt,
+				nickname,
+				message,
+				color,
+			},
+		]);
+	});
+
+	socket?.on('error', (error) => {
+		console.log('채팅 서버 오류가 발생했습니다.', error);
+	});
+
+	socket?.on('connect_error', (error) => {
+		console.log('채팅 서버 접속 오류가 발생했습니다.', error);
+	});
+
+	socket?.on('disconnect', disconnectToChat);
+
 	useEffect(() => {
-		if (!socket) {
+		if (!socket && session) {
 			connectToChat();
 		}
 
-		console.log('socket 존재하니?', socket);
-
-		socket?.emit('join', { roomId: '6780fbe7365fe9a9022bb78c' });
-
-		socket?.on('connect', () => {
-			console.log('채팅 서버와 연결되었습니다.');
-			joinToChat();
-		});
-
-		socket?.on('chat', ({ message, payload, userCount }) => {
-			console.log('socket.io - chat:', message, payload, userCount);
-		});
-
-		socket?.on('disconnect', () => {
-			disconnectToChat();
-		});
-
-		return () => {
-			console.log('Chat - Clean Up Function Called!');
-			disconnectToChat();
-		};
-	}, [socket]);
+		return () => {};
+	}, [session]);
 
 	return (
 		<>
@@ -95,16 +105,20 @@ export default function Chat({ isToggle, roomId, onClickToggle }: IChatProps) {
 							<SponsorshipRanking />
 						</div>
 						<Divider color="lightGray" />
-						<div className="flexCol gap-1 px-3 pt-3">
-							{Array.from({ length: 17 }).map((_, index) => (
+						<div className="flexCol gap-4 px-3 pt-3">
+							{messageList.map((element, index) => (
 								<div key={index} className="flex gap-2">
-									<p className="text-main">예슬콩</p>안녕하세요. 채팅을
-									시작합니다~~~
+									<p style={{ color: `${element.color}` }}>{element.nickname}</p>
+									<p className="text-mainWhite">{element.message}</p>
 								</div>
 							))}
 						</div>
 					</div>
-					<SubInput onClick={sendMessage} placeholder="채팅을 입력해주세요." />
+					<SubInput
+						onChange={onChangeChatMessageHandler}
+						onClickSubmit={sendMessage}
+						placeholder="채팅을 입력해주세요."
+					/>
 				</div>
 			) : (
 				<div className="flexCol w-[4%] items-center">
