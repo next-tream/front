@@ -110,7 +110,10 @@ export const authOptions: AuthOptions = {
 		},
 
 		async jwt({ token, account, user, trigger, session }) {
-			if (trigger === 'update') token.isTag = session.isTag;
+			if (trigger === 'update') {
+				token.isTag = session.isTag;
+				token.accessToken = session.accessToken;
+			}
 
 			if (account?.backendAccessToken) {
 				token.accessToken = account.backendAccessToken;
