@@ -1,3 +1,5 @@
+import { FormEvent, InputHTMLAttributes } from 'react';
+
 export interface IMessage {
 	createdAt?: Date;
 	nickname?: string;
@@ -16,4 +18,8 @@ export interface IChatProps {
 	isToggle: boolean;
 	roomId: string;
 	onClickToggle: () => void;
+}
+
+export interface ISubInputProps extends InputHTMLAttributes<HTMLInputElement> {
+	onClickSubmit?: (event: FormEvent) => void;
 }
