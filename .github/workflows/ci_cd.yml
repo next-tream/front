@@ -3,7 +3,7 @@ name: CI/CD to AWS EC2
 on:
   push:
     branches:
-      - main  # main에 병합된 후 실행
+      - dev
 
 jobs:
   deploy:
