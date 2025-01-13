@@ -1,14 +1,13 @@
 'use client';
 
-import { useSession } from 'next-auth/react';
-import { useEffect } from 'react';
-import { useRouter } from 'next/navigation';
-
 import { CarouselSpacing } from '@/common/components/Carousel/CarouselSpacing';
 import MainVideo from '@/common/components/Video/MainVideo';
 import MenuContainer from '@/common/components/MenuContainer';
-import Video from '@/common/components/Video/Video';
 import PageTitle from '@/common/components/PageTitle';
+import Video from '@/common/components/Video/Video';
+import { useEffect } from 'react';
+import { useRouter } from 'next/navigation';
+import { useSession } from 'next-auth/react';
 
 export default function Home() {
 	const { data: session } = useSession();
