@@ -47,7 +47,7 @@ jobs:
           set -e  # 에러 발생 시 즉시 종료
           cd /home/ec2-user/nextream-front
           echo "✅ Installing dependencies..."
-          yarn install --production
+          yarn install --production=false
           echo "✅ Rebuilding project..."
           yarn build
           echo "✅ Deleting old PM2 process..."
