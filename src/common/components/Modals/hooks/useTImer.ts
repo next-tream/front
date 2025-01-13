@@ -1,9 +1,9 @@
+import { formatSecondsToMinutes } from '@/common/utils/formatSecondsToMinutes';
 import { useEffect, useState } from 'react';
 
 const useTimer = (time: number) => {
 	const [count, setCount] = useState<number>(time);
-	const minutes = String(Math.floor((count % 3600) / 60)).padStart(2, '0');
-	const seconds = String(Math.floor(count % 60)).padStart(2, '0');
+	const { minutes, seconds } = formatSecondsToMinutes(count);
 
 	useEffect(() => {
 		const timer = setInterval(() => {

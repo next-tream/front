@@ -1,8 +1,6 @@
-export const formatSecondsToMinutes = (seconds: number): [string, string] => {
-	const minutes = Math.floor(seconds / 60);
-	const remainingSeconds = seconds % 60;
+export const formatSecondsToMinutes = (count: number) => {
+	const minutes = String(Math.floor((count % 3600) / 60)).padStart(2, '0');
+	const seconds = String(Math.floor(count % 60)).padStart(2, '0');
 
-	const formattedSeconds = remainingSeconds.toString().padStart(2, '0');
-
-	return [String(minutes), formattedSeconds];
+	return { minutes, seconds };
 };
