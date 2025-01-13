@@ -1,4 +1,4 @@
-import { ButtonHTMLAttributes } from 'react';
+import { ButtonHTMLAttributes, ReactNode } from 'react';
 import { ITag } from './tag.interface';
 
 export interface IBaseButtonStyleProps extends ButtonHTMLAttributes<HTMLButtonElement> {
@@ -6,7 +6,7 @@ export interface IBaseButtonStyleProps extends ButtonHTMLAttributes<HTMLButtonEl
 }
 
 export interface IIconLeadingButtonProps extends IBaseButtonStyleProps {
-	icon: string;
+	icon: ReactNode;
 }
 
 export interface ITagSelectionButtonProps {
