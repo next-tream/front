@@ -13,7 +13,7 @@ export default function Home() {
 	const { data: session } = useSession();
 	const router = useRouter();
 
-	console.log(session);
+	// console.log(session);
 	useEffect(() => {
 		if (session && !session.isTag) router.push('/theme-select');
 	}, [session]);
