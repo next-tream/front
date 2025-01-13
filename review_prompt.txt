@@ -14,7 +14,7 @@
    - Components: PascalCase (예: UserProfile, LoginForm)  
    - Custom Hooks: use + PascalCase (예: useFetchData, useUserAuthentication)  
 
-2. **가독성**  
+2. *가독성*
    - 코드가 명확하고 직관적으로 작성되었는지 확인하세요.  
    - 불필요한 코드, 중복 로직 또는 복잡한 표현은 없는지 검토하세요.  
    - 함수와 컴포넌트는 한 가지 역할만 수행하게 작성하세요.  
