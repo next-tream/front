@@ -1,6 +1,6 @@
 export interface IPrevState {
 	email: string;
-	nickName: string;
+	nickname: string;
 	password: string;
 	checkPassword: string;
 	result?: boolean;
