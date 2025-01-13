@@ -36,14 +36,14 @@ jobs:
       # 5. AWS EC2에 배포 (src 포함)
       - name: Deploy to AWS EC2
         run: |
-          rsync -avz -e "ssh -o StrictHostKeyChecking=no -i aws_key.pem" \
+          rsync -avz -e "ssh -o StrictHostKeyChecking=no -o ServerAliveInterval=60 -i aws_key.pem" \
           .next public src package.json yarn.lock \
           ec2-user@${{ secrets.AWS_HOST }}:/home/ec2-user/nextream-front/
 
       # 6. 애플리케이션 재시작 및 상태 확인
       - name: Restart Application on EC2
         run: |
-          ssh -o StrictHostKeyChecking=no -i aws_key.pem ec2-user@${{ secrets.AWS_HOST }} << 'EOF'
+          ssh -o StrictHostKeyChecking=no -o ServerAliveInterval=60 -i aws_key.pem ec2-user@${{ secrets.AWS_HOST }} << 'EOF'
           set -e  # 에러 발생 시 즉시 종료
           cd /home/ec2-user/nextream-front
           echo "✅ Installing dependencies..."
