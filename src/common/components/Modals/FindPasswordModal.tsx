@@ -10,10 +10,15 @@ import useOtpInput from '../Inputs/hooks/useOtpInput';
 import TextInputsWrapper from '../Inputs/TextInputsWrapper';
 import { submitAction } from '@/common/actions/findPasswordFormAction';
 import { useRouter } from 'next/navigation';
+import requestAuthCode from '@/common/services/requestAuthCode';
+import { useState } from 'react';
+import { useToast } from '@/hooks/use-toast';
 
 export const FindPasswordModal = ({ authenticationTime }: IEmailAuthModalProps) => {
 	const router = useRouter();
 	const { otpCode, onChangeOtpHandle } = useOtpInput();
+	const { toast } = useToast();
+	const [timerKey, setTimerKey] = useState(0);
 
 	const [formData, setFormData] = useFormState(submitAction, {
 		code: otpCode,
@@ -27,6 +32,16 @@ export const FindPasswordModal = ({ authenticationTime }: IEmailAuthModalProps) 
 		router.push(`/?modal=passwordChange&email=${formData.email}`);
 	}
 
+	let email = formData.email;
+
+	const reRequestAuthCode = async () => {
+		setTimerKey((prev) => prev + 1);
+		const result = await requestAuthCode({ isPassword: true, email });
+		if (!result) {
+			toast({ title: '이메일 인증코드 재발급 완료!! 🙌🏻' });
+		}
+	};
+
 	return (
 		<form action={setFormData}>
 			<BaseModal
@@ -39,8 +54,11 @@ export const FindPasswordModal = ({ authenticationTime }: IEmailAuthModalProps) 
 						<div className="flexColCenter gap-4">
 							<div className="flexCol items-end gap-4">
 								<div className="center relative w-full">
-									<Timer time={authenticationTime} />
-									<ArrowPathIcon className="absolute right-2 top-0 size-4 text-mainBlack" />
+									<Timer key={timerKey} time={authenticationTime} />
+									<ArrowPathIcon
+										onClick={reRequestAuthCode}
+										className="absolute right-2 top-0 size-4 text-mainBlack"
+									/>
 								</div>
 								<OtpInput
 									onChangeOtpHandle={onChangeOtpHandle}

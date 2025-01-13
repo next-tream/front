@@ -15,6 +15,10 @@ const useTimer = (time: number) => {
 		return () => clearInterval(timer);
 	}, [count]);
 
+	useEffect(() => {
+		setCount(time);
+	}, [time]);
+
 	return { minutes, seconds };
 };
 
