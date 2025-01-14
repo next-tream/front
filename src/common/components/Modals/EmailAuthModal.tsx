@@ -26,7 +26,7 @@ export const EmailAuthModal = ({ authenticationTime, email = '' }: IEmailAuthMod
 
 	useEffect(() => {
 		if (formData.result) {
-			toast({ title: '🥳 회원가입을 축하드립니다!! 🎉' });
+			toast({ title: '🥳 회원가입을 축하드립니다!! 🎉', duration: 1000 });
 			router.push('/');
 		}
 		// eslint-disable-next-line react-hooks/exhaustive-deps
