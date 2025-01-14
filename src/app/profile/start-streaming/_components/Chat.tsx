@@ -53,6 +53,7 @@ export default function Chat({ isToggle, roomId, onClickToggle }: IChatProps) {
 	const sendMessage = (event: FormEvent) => {
 		event.preventDefault();
 		socket?.emit('chat', { roomId, message });
+		setMessage('');
 	};
 
 	const receiveMessage = ({ createdAt, nickname, message, color }: IMessage) => {
@@ -106,6 +107,7 @@ export default function Chat({ isToggle, roomId, onClickToggle }: IChatProps) {
 				socket.off('connect');
 				socket.off('join');
 				socket.off('chat', receiveMessage);
+				socket.off('error');
 				socket.off('disconnect', disconnectToChat);
 				socket.disconnect();
 			}
@@ -141,6 +143,7 @@ export default function Chat({ isToggle, roomId, onClickToggle }: IChatProps) {
 							onChange={onChangeChatMessageHandler}
 							onClickSubmit={sendMessage}
 							placeholder="채팅을 입력해주세요."
+							value={message}
 						/>
 					</div>
 				</div>
