@@ -33,7 +33,6 @@ export default function Chat({ isToggle, roomId, onClickToggle }: IChatProps) {
 			withCredentials: true,
 		});
 		setSocket(_socket);
-		joinToChat();
 	};
 
 	const joinToChat = () => {
