@@ -15,7 +15,7 @@ export default function SearchWrapper() {
 				onClickReset={onClickReset}
 				onClickSearch={onClickSearch}
 			/>
-			{inputText && <SearchHistoryList />}
+			<SearchHistoryList isVisible={!!inputText} />
 		</div>
 	);
 }
