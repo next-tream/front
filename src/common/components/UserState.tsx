@@ -9,6 +9,7 @@ import { usePathname } from 'next/navigation';
 
 export interface IUserStateProps {
 	userInfo: TJwtPayload;
+	isVisible?: boolean;
 }
 
 export default function UserState({ userInfo }: IUserStateProps) {
@@ -32,7 +33,7 @@ export default function UserState({ userInfo }: IUserStateProps) {
 					)}
 				</div>
 			</button>
-			{isToggle && <ProfileToggleContainer userInfo={userInfo} />}
+			<ProfileToggleContainer userInfo={userInfo} isVisible={isToggle} />
 		</div>
 	);
 }

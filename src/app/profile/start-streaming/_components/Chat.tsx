@@ -118,7 +118,7 @@ export default function Chat({ isToggle, roomId, onClickToggle }: IChatProps) {
 			{isToggle ? (
 				<div className="flexCol relative h-[85vh] w-1/3 justify-between gap-3 overflow-hidden rounded-md bg-subBlack px-3 pb-5 pt-3">
 					<div className="h-full w-full">
-						<div className="flex justify-between">
+						<div className="flex justify-between pb-3">
 							<ChevronRightIcon className="size-6" onClick={onClickToggle} />
 							<p>채팅</p>
 							<EllipsisVerticalIcon className="size-6" />

@@ -32,7 +32,7 @@ export default function AsideRecommendChannel() {
 							)}
 						</button>
 					</div>
-					{isToggle && <StreamerInfoContainerWrapper />}
+					<StreamerInfoContainerWrapper isVisible={isToggle} />
 				</div>
 			</div>
 		)
