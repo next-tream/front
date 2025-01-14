@@ -33,7 +33,6 @@ export default function Chat({ isToggle, roomId, onClickToggle }: IChatProps) {
 			withCredentials: true,
 		});
 		setSocket(_socket);
-		joinToChat();
 	};
 
 	const joinToChat = () => {
@@ -116,8 +115,8 @@ export default function Chat({ isToggle, roomId, onClickToggle }: IChatProps) {
 	return (
 		<>
 			{isToggle ? (
-				<div className="flexCol relative h-[85vh] w-1/3 justify-between gap-3 overflow-hidden rounded-md bg-subBlack px-3 pb-5 pt-3">
-					<div className="h-full w-full">
+				<div className="flexCol relative h-[85vh] w-1/3 justify-between gap-3 overflow-hidden rounded-md bg-subBlack px-3 pb-36 pt-3">
+					<div className="mb-14 h-full w-full">
 						<div className="flex justify-between pb-3">
 							<ChevronRightIcon className="size-6" onClick={onClickToggle} />
 							<p>채팅</p>
@@ -128,7 +127,7 @@ export default function Chat({ isToggle, roomId, onClickToggle }: IChatProps) {
 							<SponsorshipRanking />
 						</div>
 						<Divider color="lightGray" />
-						<div className="flexCol h-full flex-col-reverse gap-4 overflow-y-auto px-3 pb-32 pt-3">
+						<div className="flexCol h-full flex-col-reverse gap-4 overflow-y-auto px-3 pt-3">
 							{[...messageList].reverse().map((element, index) => (
 								<div key={index} className="flex gap-2">
 									<p style={{ color: `${element.color}` }}>{element.nickname}</p>
@@ -137,7 +136,7 @@ export default function Chat({ isToggle, roomId, onClickToggle }: IChatProps) {
 							))}
 						</div>
 					</div>
-					<div className="">
+					<div className="absolute bottom-3 left-4 w-11/12">
 						<SubInput
 							onChange={onChangeChatMessageHandler}
 							onClickSubmit={sendMessage}
