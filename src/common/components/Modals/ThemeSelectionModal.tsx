@@ -6,6 +6,7 @@ import { useRouter } from 'next/navigation';
 import BaseModal from '@/common/components/Modals/BaseModal';
 import TagSelectionButtonsWrapper from '@/common/components/Buttons/TagSelectionButtonsWrapper';
 import useTagSelectionButton from '@/common/hooks/useThemeSelectionButton';
+import { toast } from '@/hooks/use-toast';
 
 export default function ThemeSelectionModal() {
 	const router = useRouter();
@@ -27,6 +28,10 @@ export default function ThemeSelectionModal() {
 
 			if (response.ok && session) {
 				await update({ ...session, isTag: true });
+				toast({
+					title: '태그 선택 완료 🤡',
+					description: '태그 선택을 완료했습니다.',
+				});
 				router.push('/');
 			}
 
@@ -46,6 +51,10 @@ export default function ThemeSelectionModal() {
 
 				if (response.ok && session) {
 					await update({ ...session, isTag: true });
+					toast({
+						title: '태그 선택 완료 🤡',
+						description: '태그 선택을 완료했습니다.',
+					});
 					router.push('/');
 				}
 			}
