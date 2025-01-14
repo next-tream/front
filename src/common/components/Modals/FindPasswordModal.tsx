@@ -32,7 +32,7 @@ export const FindPasswordModal = ({ authenticationTime }: IEmailAuthModalProps) 
 		router.push(`/?modal=passwordChange&email=${formData.email}`);
 	}
 
-	let email = formData.email;
+	const email = formData.email;
 
 	const reRequestAuthCode = async () => {
 		setTimerKey((prev) => prev + 1);
