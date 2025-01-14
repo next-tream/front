@@ -1,13 +1,12 @@
 import { AuthOptions } from 'next-auth';
-
 import CredentialsProvider from 'next-auth/providers/credentials';
-import { TJwtPayload } from '@/common/types/jwt.interface';
 import KakaoProvider from 'next-auth/providers/kakao';
 import NaverProvider from 'next-auth/providers/naver';
+import { TJwtPayload } from '@/common/types/jwt.interface';
 import { api } from '@/common/configs/axios.config';
 import { jwtDecode } from 'jwt-decode';
-import { setCookieAction } from '@/common/actions/setCookieAction';
 import { parseCookie } from '@/common/utils/parseCookie';
+import { setCookieAction } from '@/common/actions/setCookieAction';
 
 export const authOptions: AuthOptions = {
 	providers: [
@@ -65,9 +64,12 @@ export const authOptions: AuthOptions = {
 
 	callbacks: {
 		async signIn({ account }) {
+			console.log(account);
 			if (!account) return false;
 
 			if (account.provider === 'credentials') return true;
+
+			console.log(account.access_token);
 
 			try {
 				const response = await api.get(`/auth/login?social=${account.provider}`, {
@@ -129,7 +131,7 @@ export const authOptions: AuthOptions = {
 		},
 
 		async session({ session, token }) {
-			console.log('session', token);
+			// console.log('session', token);
 			if (token.accessToken) {
 				try {
 					const payload = jwtDecode<TJwtPayload>(token.accessToken);

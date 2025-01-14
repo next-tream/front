@@ -25,8 +25,8 @@ export default function LoginModal() {
 
 	return (
 		<BaseModal type="login">
-			<div className="flexCol gap-16">
-				<div className="flexCol gap-6">
+			<div className="flexCol h-full gap-9">
+				<div className="flexCol h-4/5 gap-6">
 					<form action={setFormData} className="flexCol gap-6">
 						<TextInputsWrapper type="login" errors={formData.errors} />
 						<BaseButton className="basePrimaryBtn">로그인</BaseButton>
@@ -41,7 +41,7 @@ export default function LoginModal() {
 						<KakaoLoginButton />
 					</div>
 				</div>
-				<div className="center gap-3">
+				<div className="center h-1/5 gap-3">
 					<Link href="/?modal=signup">
 						<p className="cursor-pointer text-nowrap text-xs font-semibold text-lightGray">
 							가입하기
