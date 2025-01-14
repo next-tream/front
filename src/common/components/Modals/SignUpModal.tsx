@@ -5,9 +5,12 @@ import TextInputsWrapper from '@/common/components/Inputs/TextInputsWrapper';
 import { submitAction } from '@/common/actions/signupFormAction';
 import { useFormState } from 'react-dom';
 import { useRouter } from 'next/navigation';
+import { useToast } from '@/hooks/use-toast';
+import { useEffect } from 'react';
 
 export default function SignUpModal() {
 	const router = useRouter();
+	const { toast } = useToast();
 	const [formData, setFormData] = useFormState(submitAction, {
 		email: '',
 		nickname: '',
@@ -17,9 +20,13 @@ export default function SignUpModal() {
 		result: false,
 	});
 
-	if (formData.result) {
-		router.push(`/?modal=emailAuth&email=${formData.email}`);
-	}
+	useEffect(() => {
+		if (formData.result.statusCode === 409) {
+			toast({ title: `${formData.result.message} 👯`, duration: 2000 });
+		} else if (formData.result) {
+			router.push(`/?modal=emailAuth&email=${formData.email}`);
+		}
+	}, [formData.result]);
 
 	return (
 		<form action={setFormData}>
