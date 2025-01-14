@@ -4,7 +4,7 @@ import { ISubInputProps } from '../type';
 export default function SubInput({ onClickSubmit, ...rest }: ISubInputProps) {
 	return (
 		<div className="between relative w-full">
-			<form onSubmit={onClickSubmit}>
+			<form onSubmit={onClickSubmit} className="w-full">
 				<input
 					{...rest}
 					type="text"
