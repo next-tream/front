@@ -1,12 +1,14 @@
-import api from '../configs/axios.config';
-import { IPrevState } from '../types/formValidation.interface';
+'use server';
 
-export default async function registerUser(data: IPrevState) {
+import { IPrevState } from '../types/formValidation.interface';
+import api from '../configs/axios.config';
+
+export default async function registerUser({ nickname, password, email }: IPrevState) {
 	try {
-		const response = await api.post(`${process.env.NEXT_PUBLIC_BASE_URL}/auth/signup`, {
-			nickname: data.nickName,
-			password: data.password,
-			email: data.email,
+		const response = await api.post(`/auth/signup`, {
+			nickname,
+			password,
+			email,
 		});
 
 		if (response.status === 201) {

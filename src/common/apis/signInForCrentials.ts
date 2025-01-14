@@ -10,6 +10,5 @@ export const signInForCredential = async ({
 	const res = await signIn('credentials', {
 		email,
 		password,
-		redirectTo: '/',
 	});
 };

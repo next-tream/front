@@ -1,20 +1,20 @@
 'use server';
 
-import { signupSchema } from '../schema/signupSchema';
 import { IFormData } from '../types/formValidation.interface';
 import { ZodError } from 'zod';
 import registerUser from '../services/registerUser';
+import { signupSchema } from '../schema/signupSchema';
 
 export const submitAction = async (prevState: IFormData, formData: FormData) => {
 	try {
 		const email = (formData.get('email') as string) || '';
-		const nickName = (formData.get('nickName') as string) || '';
+		const nickname = (formData.get('nickName') as string) || '';
 		const password = (formData.get('password') as string) || '';
 		const checkPassword = (formData.get('checkPassword') as string) || '';
 
 		const finalData = {
 			email,
-			nickName,
+			nickname,
 			password,
 			checkPassword,
 		};
