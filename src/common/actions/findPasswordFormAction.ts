@@ -18,6 +18,7 @@ export const submitAction = async (prevState: IEmailAuthPrevState, formData: For
 			return { code, email, isPassword: true, errors: {}, result };
 		} else {
 			const result = await emailAuthentication({ code, email, isPassword: true });
+			if (result === undefined) return { code: 'error' };
 			return { code, email, isPassword: true, errors: {}, result };
 		}
 	} catch (error) {
