@@ -39,9 +39,10 @@ export default function LivePlayer() {
 	return (
 		<video
 			controls
+			autoPlay
 			src={source}
 			ref={videoRef}
-			className="center aspect-video bg-subBlack lg:text-xl 2xl:text-3xl"
+			className="center aspect-video w-full bg-subBlack lg:text-xl 2xl:text-3xl"
 		></video>
 	);
 }

@@ -1,8 +1,12 @@
 'use client';
+
+import LivePlayer from '@/common/components/LivePlayer';
+import StreamerCard from './_components/StreamerCard';
+import Divider from '@/common/components/Divider';
+import Chat from '@/app/profile/start-streaming/_components/Chat';
+
 import { useParams } from 'next/navigation';
 import { useToggle } from '@/common/hooks/useToggle';
-import Chat from '@/app/profile/start-streaming/_components/Chat';
-import LivePlayer from '@/common/components/LivePlayer';
 
 export default function StreamingPage() {
 	const { isToggle, onClickToggle } = useToggle(true);
@@ -11,7 +15,13 @@ export default function StreamingPage() {
 	return (
 		<div className="w-min-[40rem] h-min-[40rem]">
 			<div className="flex h-full w-full gap-2">
-				<LivePlayer />
+				<div className="flexCol w-full gap-4">
+					<LivePlayer />
+
+					<StreamerCard />
+					<Divider color="mainWhite" />
+				</div>
+
 				<Chat
 					roomId={roomId.toString()}
 					isToggle={isToggle}
