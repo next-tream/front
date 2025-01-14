@@ -1,8 +1,16 @@
+import { useEffect, useState } from 'react';
 import SearchHistoryFooterButton from './SearchHistoryFooterButton';
 import SearchHistoryItem from './SearchHistoryItem';
 
 export default function SearchHistoryList({ isVisible }: { isVisible: boolean }) {
-	const searchHistoryList: string[] = JSON.parse(localStorage.getItem('search') || '[]');
+	const [searchHistoryList, setSearchHistoryList] = useState<string[]>([]);
+
+	useEffect(() => {
+		const savedSearchHistory = localStorage.getItem('search');
+		if (savedSearchHistory) {
+			setSearchHistoryList(JSON.parse(savedSearchHistory));
+		}
+	}, []);
 
 	return (
 		<div
