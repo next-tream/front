@@ -1,3 +1,5 @@
+'use server';
+
 import api from '../configs/axios.config';
 import { IEmailAuthPrevState } from '../types/formValidation.interface';
 
@@ -8,7 +10,6 @@ export default async function requestAuthCode(data: IEmailAuthPrevState) {
 			{ email: data.email },
 		);
 		if (response.status === 200) {
-			console.log('인증 번호 요청 완료');
 			return false;
 		}
 	} catch (error) {

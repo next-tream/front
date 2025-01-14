@@ -1,14 +1,8 @@
 import { ITimerProps } from '@/common/types/modal.interface';
-import { formatSecondsToMinutes } from '@/common/utils/formatSecondsToMinutes';
+import useTimer from './hooks/useTImer';
 
 export default function Timer({ time }: ITimerProps) {
-	const formattedTime = formatSecondsToMinutes(time);
-	const minutes = formattedTime[0];
-	const seconds = formattedTime[1];
+	const { minutes, seconds } = useTimer(time);
 
-	return (
-		<p className="text-sm font-semibold text-mainRed">
-			{minutes}:{seconds}
-		</p>
-	);
+	return <p className="text-sm font-semibold text-mainRed">{`${minutes}:${seconds}`}</p>;
 }
