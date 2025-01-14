@@ -115,7 +115,7 @@ export default function Chat({ isToggle, roomId, onClickToggle }: IChatProps) {
 	return (
 		<>
 			{isToggle ? (
-				<div className="flexCol relative h-[85vh] w-1/3 justify-between gap-3 overflow-hidden rounded-md bg-subBlack px-3 pb-36 pt-3">
+				<div className="flexCol relative h-[85vh] w-1/3 min-w-[353px] justify-between gap-3 overflow-hidden rounded-md bg-subBlack px-3 pb-36 pt-3">
 					<div className="mb-14 h-full w-full">
 						<div className="flex justify-between pb-3">
 							<ChevronRightIcon className="size-6" onClick={onClickToggle} />
