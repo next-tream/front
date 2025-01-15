@@ -77,26 +77,28 @@ const useStartStreaming = () => {
 
 	const onClickStopStreamingButtonHandler = async () => {
 		try {
-			const response = await fetch(`${process.env.NEXT_PUBLIC_BASE_URL}/room`, {
-				method: 'DELETE',
+			const response = await fetch(`${process.env.NEXT_PUBLIC_BASE_URL}/room/${roomId}`, {
+				method: 'PATCH',
 				headers: {
 					Authorization: `Bearer ${session?.accessToken ?? ''}`,
 					'Content-Type': 'application/json',
 				},
 				credentials: 'include',
-				body: JSON.stringify({
-					roomId,
-				}),
 			});
 
-			if (response.status === 204) {
+			if (response.status === 200) {
 				setIsSteaming(false);
 				toast({
 					title: '스트리밍 종료 알림',
 					description: `스트리밍을 종료합니다. ${roomId}`,
-					duration: 1000,
 				});
+				return;
 			}
+
+			toast({
+				title: '스트리밍 종료 오류',
+				description: `스트리밍이 정상적으로 종료되지 않았습니다. 다시 시도해 주세요.`,
+			});
 		} catch (error) {
 			console.log(error);
 		}
