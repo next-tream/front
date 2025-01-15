@@ -42,6 +42,7 @@ export const authOptions: AuthOptions = {
 					}
 
 					return null;
+					// eslint-disable-next-line @typescript-eslint/no-explicit-any
 				} catch (error: any) {
 					console.error('Login Error:', error);
 					throw new Error(error.response.data.message);
