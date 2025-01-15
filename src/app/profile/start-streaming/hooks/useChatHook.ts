@@ -5,8 +5,8 @@ import { io, Socket } from 'socket.io-client';
 
 const useChat = ({ roomId }: { roomId?: string }) => {
 	const { data: session } = useSession();
-	const [message, setMessage] = useState('');
-	const [messageList, setMessageList] = useState<IMessage[]>([]);
+	const [chatMessage, setChatMessage] = useState('');
+	const [chatMessageList, setChatMessageList] = useState<IMessage[]>([]);
 	const maxMessages = 50;
 	const [socket, setSocket] = useState<Socket | null>(null);
 
@@ -38,17 +38,17 @@ const useChat = ({ roomId }: { roomId?: string }) => {
 
 	const onChangeChatMessageHandler = (event: ChangeEvent<HTMLInputElement>) => {
 		const value = event.target.value;
-		setMessage(value);
+		setChatMessage(value);
 	};
 
 	const sendMessage = (event: FormEvent) => {
 		event.preventDefault();
-		socket?.emit('chat', { roomId, message });
-		setMessage('');
+		socket?.emit('chat', { roomId, chatMessage });
+		setChatMessage('');
 	};
 
 	const receiveMessage = ({ createdAt, nickname, message, color }: IMessage) => {
-		setMessageList((prev) => {
+		setChatMessageList((prev) => {
 			const updatedMessages = [
 				...prev,
 				{
@@ -73,8 +73,8 @@ const useChat = ({ roomId }: { roomId?: string }) => {
 	return {
 		session,
 		socket,
-		messageList,
-		message,
+		chatMessageList,
+		chatMessage,
 		connectToChat,
 		joinToChat,
 		sendMessage,
