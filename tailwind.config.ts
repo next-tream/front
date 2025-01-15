@@ -1,5 +1,6 @@
 import type { Config } from 'tailwindcss';
 import plugin from 'tailwindcss/plugin';
+import scrollbarHide from 'tailwind-scrollbar';
 
 const config: Config = {
 	content: [
@@ -54,6 +55,7 @@ const config: Config = {
 				'.profileEditSubBtn': { '@apply profileEditBtn text-main bg-mainWhite': {} },
 			});
 		}),
+		scrollbarHide,
 	],
 };
 export default config;
