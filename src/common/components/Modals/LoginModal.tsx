@@ -36,7 +36,11 @@ export default function LoginModal() {
 			if (result?.error) {
 				toast({ title: `${result?.error}... 😱`, duration: 2000 });
 			} else {
-				toast({ title: '로그인 성공!! 🎊', duration: 2000 });
+				toast({ title: '로그인 성공!! 🎊', duration: 1000 });
+
+				setTimeout(() => {
+					window.location.replace('/');
+				}, 1000);
 			}
 		}
 		if (email && password && Object.keys(errors).length === 0) {
