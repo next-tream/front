@@ -55,7 +55,10 @@ export default function Chat({ isToggle, roomId, onClickToggle }: IChatProps) {
 				console.log('오류 코드 1번이라서 채팅방에 다시 연결할거야.');
 				await refreshToken();
 				socket?.connect();
-				router.refresh();
+				toast({
+					title: '채팅 재접속 요청 😭',
+					description: `페이지 새로 고침 부탁 드립니다. (F5 키를 눌러주세요.) 😵‍💫😵‍💫😵‍💫`,
+				});
 				return;
 			}
 
