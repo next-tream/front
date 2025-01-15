@@ -13,8 +13,13 @@ import { useStreamingStateStore } from './_store/useStreamingStateStore';
 export default function StartStreamingPage() {
 	const { isToggle, onClickToggle } = useToggle(true);
 	const { isStreaming } = useStreamingStateStore();
-	const { roomId, onClickStartStreamingButtonHandler, onClickStopStreamingButtonHandler } =
-		useStartStreaming();
+	const {
+		roomId,
+		onChangeNameHandler,
+		onChangeContentHandler,
+		onClickStartStreamingButtonHandler,
+		onClickStopStreamingButtonHandler,
+	} = useStartStreaming();
 
 	const onClickButtonHandler = isStreaming
 		? onClickStopStreamingButtonHandler
@@ -25,10 +30,9 @@ export default function StartStreamingPage() {
 			<div className={`${isToggle ? 'w-2/3' : 'w-[96%]'} flex flex-col gap-2`}>
 				<PageTitle title="LIVE STREAM" />
 				<LivePlayer />
-				<SubInput placeholder="스트리밍 제목" />
+				<SubInput placeholder="스트리밍 제목" onChange={onChangeNameHandler} />
 				<div>방송 주제 태그 선택</div>
-				{/* <TagSelectionButtonsWrapper isTag={true} /> */}
-				<SubInput placeholder="스트리밍 설명" />
+				<SubInput placeholder="스트리밍 설명" onChange={onChangeContentHandler} />
 				<StartStreamingButton
 					title={`스트리밍 ${isStreaming ? '종료' : '시작'}`}
 					onClick={onClickButtonHandler}
