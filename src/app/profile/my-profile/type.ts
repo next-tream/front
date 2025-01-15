@@ -5,6 +5,6 @@ export interface IProfileSubMenuProps extends IChildrenProps {
 }
 
 export interface IProfileContainerProps {
-	nickName: string;
+	nickname: string;
 	introduceYourself: string;
 }

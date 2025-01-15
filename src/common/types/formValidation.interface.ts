@@ -18,7 +18,7 @@ export interface IFormData extends IPrevState {
 
 export interface IEmailAuthPrevState {
 	code?: string;
-	email: string;
+	email?: string;
 	isPassword?: boolean;
 	errors?: { [key: string]: string };
 	result?: boolean;

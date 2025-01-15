@@ -15,7 +15,7 @@ export default async function myProfilePage() {
 		<div className="flexCol gap-4">
 			<PageTitle pointText="Nextream" title="프로필" />
 			<ProfileContainer
-				nickName={session?.user.nickname ?? ''}
+				nickname={session?.user.nickname ?? ''}
 				introduceYourself="한 줄 소개를 작성해 보세요."
 			/>
 			<div className="flexCol gap-3">

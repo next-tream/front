@@ -1,5 +1,3 @@
-'use server';
-
 import { IPrevState } from '../types/formValidation.interface';
 import api from '../configs/axios.config';
 
@@ -14,7 +12,7 @@ export default async function registerUser({ nickname, password, email }: IPrevS
 		if (response.status === 201) {
 			return true;
 		}
-	} catch (error) {
-		alert(`회원가입 실패: ${error}`);
+	} catch (error: any) {
+		return error.response.data;
 	}
 }

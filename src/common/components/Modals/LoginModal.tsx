@@ -6,11 +6,17 @@ import KakaoLoginButton from '../Buttons/KakaoLoginButton';
 import Link from 'next/link';
 import NaverLoginButton from '../Buttons/NaverLoginButton';
 import TextInputsWrapper from '@/common/components/Inputs/TextInputsWrapper';
-import { signInForCredential } from '@/common/apis/signInForCrentials';
 import { submitAction } from '@/common/actions/loginFormAction';
 import { useFormState } from 'react-dom';
+import { useToast } from '@/hooks/use-toast';
+import { useEffect } from 'react';
+import { signIn, useSession } from 'next-auth/react';
+import { useRouter } from 'next/navigation';
 
 export default function LoginModal() {
+	const { toast } = useToast();
+	const router = useRouter();
+	const { data: session } = useSession();
 	const [formData, setFormData] = useFormState(submitAction, {
 		password: '',
 		email: '',
@@ -19,9 +25,28 @@ export default function LoginModal() {
 
 	const { email, password, errors } = formData;
 
-	if (email && password && Object.keys(errors).length === 0) {
-		signInForCredential({ email, password });
-	}
+	useEffect(() => {
+		async function signinFuc() {
+			const result = await signIn('credentials', {
+				redirect: false,
+				email,
+				password,
+			});
+
+			if (result?.error) {
+				toast({ title: `${result?.error}... 😱`, duration: 2000 });
+			} else {
+				toast({ title: '로그인 성공!! 🎊', duration: 2000 });
+			}
+		}
+		if (email && password && Object.keys(errors).length === 0) {
+			signinFuc();
+		}
+	}, [formData]);
+
+	useEffect(() => {
+		if (session && !session.isTag) router.push('/theme-select');
+	}, [session]);
 
 	return (
 		<BaseModal type="login">

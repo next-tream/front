@@ -3,7 +3,7 @@ import { z } from 'zod';
 export const signupSchema = z
 	.object({
 		email: z.string().email('이메일 형식이여야 합니다.'),
-		nickName: z.string().min(1, { message: '닉네임을 입력해 주세요.' }),
+		nickname: z.string().min(1, { message: '닉네임을 입력해 주세요.' }),
 		password: z
 			.string()
 			.regex(

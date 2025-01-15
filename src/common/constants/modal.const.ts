@@ -36,7 +36,7 @@ export const MODAL_CONSTANTS = {
 				type: 'text',
 			},
 			{
-				name: 'nickName',
+				name: 'nickname',
 				title: '닉네임',
 				placeholder: '2~8자를 입력해 주세요. ',
 				type: 'text',

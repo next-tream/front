@@ -11,7 +11,7 @@ import TextInputsWrapper from '../Inputs/TextInputsWrapper';
 import { submitAction } from '@/common/actions/findPasswordFormAction';
 import { useRouter } from 'next/navigation';
 import requestAuthCode from '@/common/services/requestAuthCode';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { useToast } from '@/hooks/use-toast';
 
 export const FindPasswordModal = ({ authenticationTime }: IEmailAuthModalProps) => {
@@ -38,9 +38,15 @@ export const FindPasswordModal = ({ authenticationTime }: IEmailAuthModalProps) 
 		setTimerKey((prev) => prev + 1);
 		const result = await requestAuthCode({ isPassword: true, email });
 		if (!result) {
-			toast({ title: '이메일 인증코드 재발급 완료!! 🙌🏻' });
+			toast({ title: '이메일 인증코드 재발급 완료!! 🙌🏻', duration: 1000 });
 		}
 	};
+
+	useEffect(() => {
+		if (formData.code === 'error') {
+			toast({ title: '이메일 인증 코드 불일치!! 😥', duration: 1000 });
+		}
+	}, [formData.code]);
 
 	return (
 		<form action={setFormData}>
