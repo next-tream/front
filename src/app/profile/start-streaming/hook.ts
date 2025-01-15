@@ -1,11 +1,14 @@
 import { useToast } from '@/hooks/use-toast';
 import { useSession } from 'next-auth/react';
-import { useState } from 'react';
+import { ChangeEvent, useState } from 'react';
 import { useStreamingStateStore } from './_store/useStreamingStateStore';
 
 const useStartStreaming = () => {
 	const [roomId, setRoomId] = useState('');
+	const [name, setName] = useState('');
+	const [content, setContents] = useState('');
 	const { data: session, update } = useSession();
+
 	const { toast } = useToast();
 	const { setIsSteaming } = useStreamingStateStore();
 
@@ -20,16 +23,33 @@ const useStartStreaming = () => {
 				credentials: 'include',
 				body: JSON.stringify({
 					tags: [1, 3],
-					name: '방 만들기 테스트!',
+					name,
+					content,
 				}),
 			});
+
+			if (response.status === 200) {
+				const data = await response.json();
+				setRoomId(data.roomId);
+				setIsSteaming(true);
+				toast({
+					title: '스트리밍 시작 알림',
+					description: `스트리밍을 시작합니다. ${roomId}`,
+					duration: 3000,
+				});
+				return;
+			}
+
+			if (response.status === 400) {
+				throw new Error('방 생성을 실패 했습니다. (400)');
+			}
 
 			if (response.status === 401) {
 				if (!session?.accessToken) {
 					toast({
 						title: '스트리밍 시작 실패',
 						description: '로그인 후 다시 시도해 주세요.',
-						duration: 1000,
+						duration: 3000,
 					});
 					return;
 				}
@@ -47,31 +67,25 @@ const useStartStreaming = () => {
 					credentials: 'include',
 					body: JSON.stringify({
 						tags: [1, 3],
-						name: '방 만들기 테스트!',
+						name,
+						content,
 					}),
 				});
 
-				const data = await response.json();
-				setRoomId(data.roomId);
-				setIsSteaming(true);
-				toast({
-					title: '스트리밍 시작 알림',
-					description: `스트리밍을 시작합니다. ${roomId}`,
-					duration: 1000,
-				});
-				return;
+				if (response.status === 200) {
+					const data = await response.json();
+					setRoomId(data.roomId);
+					setIsSteaming(true);
+					toast({
+						title: '스트리밍 시작 알림',
+						description: `스트리밍을 시작합니다. ${roomId}`,
+						duration: 3000,
+					});
+					return;
+				}
 			}
-
-			const data = await response.json();
-			setRoomId(data.roomId);
-			setIsSteaming(true);
-			toast({
-				title: '스트리밍 시작 알림',
-				description: `스트리밍을 시작합니다. ${roomId}`,
-				duration: 1000,
-			});
 		} catch (error) {
-			toast({ title: '스트리밍 시작 오류', description: `${error}`, duration: 1000 });
+			toast({ title: '스트리밍 시작 오류', description: `${error}`, duration: 3000 });
 		}
 	};
 
@@ -104,8 +118,20 @@ const useStartStreaming = () => {
 		}
 	};
 
+	const onChangeNameHandler = (event: ChangeEvent<HTMLInputElement>) => {
+		const value = event.target.value;
+		setName(value);
+	};
+
+	const onChangeContentHandler = (event: ChangeEvent<HTMLInputElement>) => {
+		const value = event.target.value;
+		setContents(value);
+	};
+
 	return {
 		roomId,
+		onChangeNameHandler,
+		onChangeContentHandler,
 		onClickStartStreamingButtonHandler,
 		onClickStopStreamingButtonHandler,
 	};
