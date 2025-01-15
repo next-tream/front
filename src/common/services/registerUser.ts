@@ -12,6 +12,7 @@ export default async function registerUser({ nickname, password, email }: IPrevS
 		if (response.status === 201) {
 			return true;
 		}
+		// eslint-disable-next-line @typescript-eslint/no-explicit-any
 	} catch (error: any) {
 		return error.response.data;
 	}
