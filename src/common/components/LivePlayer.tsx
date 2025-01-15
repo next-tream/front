@@ -12,7 +12,9 @@ export default function LivePlayer() {
 	useEffect(() => {
 		if (!videoRef.current) return;
 
-		const hls = new Hls();
+		const hls = new Hls({
+			liveSyncDurationCount: 1,
+		});
 		hls.loadSource(source);
 		hls.attachMedia(videoRef.current);
 
@@ -32,7 +34,7 @@ export default function LivePlayer() {
 		return () => {
 			hls.destroy();
 		};
-	}, []);
+	}, [isOffline]);
 
 	if (isOffline) return <Screen isLive={false} />;
 
@@ -40,6 +42,7 @@ export default function LivePlayer() {
 		<video
 			controls
 			autoPlay
+			muted
 			src={source}
 			ref={videoRef}
 			className="center aspect-video w-full bg-subBlack lg:text-xl 2xl:text-3xl"
