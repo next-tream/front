@@ -42,9 +42,9 @@ export const authOptions: AuthOptions = {
 					}
 
 					return null;
-				} catch (error) {
+				} catch (error: any) {
 					console.error('Login Error:', error);
-					return null;
+					throw new Error(error.response.data.message);
 				}
 			},
 		}),
