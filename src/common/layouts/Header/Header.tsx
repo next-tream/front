@@ -1,7 +1,6 @@
 import Link from 'next/link';
 import { getServerSession } from 'next-auth';
 import { authOptions } from '@/common/configs/nextAuth.config';
-
 import { Bars3Icon } from '@heroicons/react/24/solid';
 import SearchWrapper from '@/common/components/Search/SearchWrapper';
 import UserState from '@/common/components/UserState';
