@@ -1,23 +1,10 @@
-'use client';
-
 import { CarouselSpacing } from '@/common/components/Carousel/CarouselSpacing';
 import MainVideo from '@/common/components/Video/MainVideo';
 import MenuContainer from '@/common/components/MenuContainer';
 import PageTitle from '@/common/components/PageTitle';
 import Video from '@/common/components/Video/Video';
-import { useEffect } from 'react';
-import { useRouter } from 'next/navigation';
-import { useSession } from 'next-auth/react';
 
 export default function Home() {
-	const { data: session } = useSession();
-	const router = useRouter();
-
-	// console.log(session);
-	useEffect(() => {
-		if (session && !session.isTag) router.push('/theme-select');
-	}, [session]);
-
 	return (
 		<div className="flexCol h-full w-full gap-5 p-5">
 			<div className="center w-full lg:h-60 2xl:h-[650px]">

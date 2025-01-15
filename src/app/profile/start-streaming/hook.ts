@@ -29,6 +29,7 @@ const useStartStreaming = () => {
 					toast({
 						title: '스트리밍 시작 실패',
 						description: '로그인 후 다시 시도해 주세요.',
+						duration: 1000,
 					});
 					return;
 				}
@@ -56,6 +57,7 @@ const useStartStreaming = () => {
 				toast({
 					title: '스트리밍 시작 알림',
 					description: `스트리밍을 시작합니다. ${roomId}`,
+					duration: 1000,
 				});
 				return;
 			}
@@ -63,9 +65,13 @@ const useStartStreaming = () => {
 			const data = await response.json();
 			setRoomId(data.roomId);
 			setIsSteaming(true);
-			toast({ title: '스트리밍 시작 알림', description: `스트리밍을 시작합니다. ${roomId}` });
+			toast({
+				title: '스트리밍 시작 알림',
+				description: `스트리밍을 시작합니다. ${roomId}`,
+				duration: 1000,
+			});
 		} catch (error) {
-			toast({ title: '스트리밍 시작 오류', description: `${error}` });
+			toast({ title: '스트리밍 시작 오류', description: `${error}`, duration: 1000 });
 		}
 	};
 
@@ -84,7 +90,7 @@ const useStartStreaming = () => {
 				setIsSteaming(false);
 				toast({
 					title: '스트리밍 종료 알림',
-					description: `스트리밍을 종료합니다.`,
+					description: `스트리밍을 종료합니다. ${roomId}`,
 				});
 				return;
 			}

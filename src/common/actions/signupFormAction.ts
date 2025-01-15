@@ -8,7 +8,7 @@ import { signupSchema } from '../schema/signupSchema';
 export const submitAction = async (prevState: IFormData, formData: FormData) => {
 	try {
 		const email = (formData.get('email') as string) || '';
-		const nickname = (formData.get('nickName') as string) || '';
+		const nickname = (formData.get('nickname') as string) || '';
 		const password = (formData.get('password') as string) || '';
 		const checkPassword = (formData.get('checkPassword') as string) || '';
 

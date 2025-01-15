@@ -10,7 +10,7 @@ export interface ITextInputProps extends InputHTMLAttributes<HTMLInputElement> {
 
 export interface IValidationErrors {
 	email?: string;
-	nickName?: string;
+	nickname?: string;
 	password?: string;
 	tel?: string;
 }
