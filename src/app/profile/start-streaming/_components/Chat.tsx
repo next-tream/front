@@ -13,13 +13,14 @@ import useChat from '../hooks/useChatHook';
 import { toast } from '@/hooks/use-toast';
 import useRefreshToken from '@/common/utils/refreshToken';
 import { useRouter } from 'next/navigation';
+import ChatMessageList from './ChatMessageList';
 
 export default function Chat({ isToggle, roomId, onClickToggle }: IChatProps) {
 	const {
 		session,
 		socket,
-		messageList,
-		message,
+		chatMessageList,
+		chatMessage,
 		connectToChat,
 		joinToChat,
 		sendMessage,
@@ -36,7 +37,7 @@ export default function Chat({ isToggle, roomId, onClickToggle }: IChatProps) {
 		if (scrollRef.current) {
 			scrollRef.current.scrollTop = scrollRef.current.scrollHeight;
 		}
-	}, [messageList]);
+	}, [chatMessageList]);
 
 	useEffect(() => {
 		if (!roomId) return;
@@ -114,7 +115,7 @@ export default function Chat({ isToggle, roomId, onClickToggle }: IChatProps) {
 		<>
 			{isToggle ? (
 				<div className="flexCol relative h-[calc(100vh-140px)] bg-subBlack pt-0">
-					<div className="flexCol w-1/3 min-w-[353px] flex-1 justify-between gap-3 overflow-hidden rounded-md bg-subBlack px-3 pt-10">
+					<div className="flexCol w-1/3 min-w-[353px] flex-1 justify-between gap-3 overflow-hidden rounded-md bg-subBlack px-3 pt-3">
 						<div className="flex justify-between pb-3">
 							<ChevronRightIcon className="size-6" onClick={onClickToggle} />
 							<p>채팅</p>
@@ -125,23 +126,15 @@ export default function Chat({ isToggle, roomId, onClickToggle }: IChatProps) {
 							<SponsorshipRanking />
 						</div>
 						<Divider color="lightGray" />
-						<div className="scrollbar-none flexCol h-full max-h-[80%] flex-1 flex-col-reverse gap-4 overflow-y-auto p-3">
-							{[...messageList].reverse().map((element, index) => (
-								<p key={index} className="w-full whitespace-pre-wrap break-words">
-									<b className="mr-2" style={{ color: `${element.color}` }}>
-										{element.nickname}
-									</b>
-									{element.message}
-								</p>
-							))}
-						</div>
+						<ChatMessageList chatMessageList={chatMessageList} />
+
 						<div className="h-12 w-full bg-subBlack" />
 						<div className="absolute bottom-3 left-4 w-11/12">
 							<SubInput
 								onChange={onChangeChatMessageHandler}
 								onClickSubmit={sendMessage}
 								placeholder="채팅을 입력해주세요."
-								value={message}
+								value={chatMessage}
 							/>
 						</div>
 					</div>
