@@ -14,6 +14,14 @@ const nextConfig = {
 		NEXT_PUBLIC_HLS_URL: process.env.NEXT_PUBLIC_HLS_URL,
 		NEXT_PUBLIC_SOCKET_URL: process.env.NEXT_PUBLIC_SOCKET_URL,
 	},
+	images: {
+		remotePatterns: [
+			{
+				protocol: 'https',
+				hostname: 'nextream-thumnail.s3.ap-northeast-2.amazonaws.com',
+			},
+		],
+	},
 };
 
 export default nextConfig;
