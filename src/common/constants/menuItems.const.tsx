@@ -71,7 +71,11 @@ export const userMenuItems: IMenuItem[] = [
 		path: 'profile/point',
 	},
 	{ name: '내 구독', icon: <StarIcon className="size-4" />, path: 'profile/following' },
-	{ name: '최근 시청 영상', icon: <ClockIcon className="size-4" /> },
+	{
+		name: '최근 시청 영상',
+		icon: <ClockIcon className="size-4" />,
+		path: 'profile/recent-videos',
+	},
 	{ name: '설정', icon: <Cog6ToothIcon className="size-4" /> },
 	{
 		name: '로그아웃',
