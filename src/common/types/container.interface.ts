@@ -10,7 +10,7 @@ export interface IStreamerInfoContainerProps {
 	title?: string;
 	image?: string;
 	name?: string;
-	category?: string;
+	category?: number[];
 	isLive?: boolean;
 }
 
