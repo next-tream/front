@@ -7,7 +7,11 @@ export const submitAction = async (prevState: IEmailAuthPrevState, formData: For
 	const code = (formData.get('code') as string) || '';
 	const email = prevState.email;
 	const isPassword = false;
-
-	const result = await emailAuthentication({ code, email, isPassword });
-	return { code, email, result };
+	try {
+		const result = await emailAuthentication({ code, email, isPassword });
+		return { code, email, result };
+		// eslint-disable-next-line @typescript-eslint/no-explicit-any
+	} catch (result: any) {
+		return { code, email, result };
+	}
 };

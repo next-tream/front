@@ -6,11 +6,11 @@ import { IEmailAuthModalProps } from '@/common/types/modal.interface';
 import OtpInput from '@/common/components/Inputs/OtpInput';
 import Timer from '@/common/components/Modals/Timer';
 import { submitAction } from '@/common/actions/emailAuthFormAction';
+import { useEffect } from 'react';
 import { useFormState } from 'react-dom';
 import useOtpInput from '../Inputs/hooks/useOtpInput';
 import { useRouter } from 'next/navigation';
 import { useToast } from '@/hooks/use-toast';
-import { useEffect } from 'react';
 
 export const EmailAuthModal = ({ authenticationTime, email = '' }: IEmailAuthModalProps) => {
 	const { otpCode, onChangeOtpHandle } = useOtpInput();
@@ -26,6 +26,7 @@ export const EmailAuthModal = ({ authenticationTime, email = '' }: IEmailAuthMod
 
 	useEffect(() => {
 		if (formData.result) {
+			console.log(formData.result);
 			toast({ title: '🥳 회원가입을 축하드립니다!! 🎉', duration: 1000 });
 			router.push('/');
 		}
@@ -34,7 +35,11 @@ export const EmailAuthModal = ({ authenticationTime, email = '' }: IEmailAuthMod
 
 	return (
 		<form action={setFormData}>
-			<BaseModal type="emailAuth" onSubButtonClick={() => router.back()}>
+			<BaseModal
+				type="emailAuth"
+				onSubButtonClick={() => router.back()}
+				isCloseButton={false}
+			>
 				<div className="flexColCenter gap-4">
 					<div className="flexCol items-end gap-4">
 						<div className="center relative w-full">
