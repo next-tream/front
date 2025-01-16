@@ -12,10 +12,16 @@ import { IBroadcastingProps } from './_types/broadcasting.interface';
 import PageTitle from '@/common/components/PageTitle';
 import MenuContainer from '@/common/components/MenuContainer';
 import Video from '@/common/components/Video/Video';
+import { useSession } from 'next-auth/react';
+import { useRouter } from 'next/navigation';
+import { toast } from '@/hooks/use-toast';
 
 export default function StreamingPage() {
-	const { isToggle, onClickToggle } = useToggle(true);
+	const router = useRouter();
+	const { data: session } = useSession();
 	const { roomId } = useParams();
+	const { isToggle, onClickToggle } = useToggle(true);
+
 	const [result, setResult] = useState<IBroadcastingProps>();
 
 	useEffect(() => {
@@ -24,11 +30,20 @@ export default function StreamingPage() {
 			setResult(result);
 		}
 		result();
+
+		if (!session) {
+			toast({
+				title: '방송 접속 오류 ❌ ',
+				description: '로그인 후 다시 접속해 주세요. 😲 ',
+			});
+			router.push('/?modal=login');
+			return;
+		}
 	}, []);
 
 	return (
 		<div className="flex h-full w-full gap-2">
-			<div className="scrollbar-none flexCol max-h-[calc(100vh-140px)] w-full gap-4 overflow-scroll">
+			<div className="flexCol max-h-[calc(100vh-140px)] w-full gap-4 overflow-scroll scrollbar-none">
 				<LivePlayer />
 
 				{result && <StreamerCard broadcasting={result} />}
