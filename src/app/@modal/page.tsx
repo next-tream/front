@@ -1,7 +1,6 @@
 import { EmailAuthModal } from '@/common/components/Modals/EmailAuthModal';
 import { FindPasswordModal } from '@/common/components/Modals/FindPasswordModal';
 import LoginModal from '@/common/components/Modals/LoginModal';
-import LogoutModal from '@/common/components/Modals/LogoutModal';
 import PasswordChangeModal from '@/common/components/Modals/PasswordChangeModal';
 import SignUpModal from '@/common/components/Modals/SignUpModal';
 import React from 'react';
@@ -19,8 +18,6 @@ export default function ModalPage({
 			return <LoginModal />;
 		case 'signup':
 			return <SignUpModal />;
-		case 'logout':
-			return <LogoutModal />;
 		case 'passwordChange':
 			return <PasswordChangeModal email={email} />;
 		case 'findPassword':
