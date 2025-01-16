@@ -1,4 +1,4 @@
-import { IVideo } from '../types/data.interface';
+import { ICategory, IFollowerCard, IVideo } from '../types/data.interface';
 
 export const recommendVideo: IVideo[] = [
 	{
@@ -171,7 +171,7 @@ export const liveVideo: IVideo[] = [
 	},
 ];
 
-export const category = [
+export const category: ICategory[] = [
 	{
 		title: '스나',
 		image: '/images/data/category1.png',
@@ -231,5 +231,32 @@ export const category = [
 		title: '월드오브크래프트',
 		image: '/images/data/category12.png',
 		watchingCount: 90476,
+	},
+];
+
+export const followerCard: IFollowerCard[] = [
+	{
+		name: '우주최강냥이',
+		description: '고양이가 세상을 지배한다냥~!',
+		tags: [1, 4, 7],
+		src: '/images/data/followerCard1.png',
+	},
+	{
+		name: '대상혁',
+		description: '젠장 또 대상혁이야!',
+		tags: [8, 10],
+		src: '/images/data/followerCard2.png',
+	},
+	{
+		name: '밥주세요히밥',
+		description: '있었는데? 없었습니다',
+		tags: [4, 12],
+		src: '/images/data/followerCard3.png',
+	},
+	{
+		name: '빠니보틀',
+		description: '리얼 트립의 모든것',
+		tags: [2, 9],
+		src: '/images/data/followerCard4.png',
 	},
 ];
