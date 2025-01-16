@@ -64,7 +64,11 @@ export default function ThemeSelectionModal() {
 	};
 
 	return (
-		<BaseModal type="tagSelection" onMainButtonClick={onClickMainButtonHandler}>
+		<BaseModal
+			type="tagSelection"
+			isCloseButton={false}
+			onMainButtonClick={onClickMainButtonHandler}
+		>
 			<TagSelectionButtonsWrapper
 				selectedTags={selectedTags}
 				onChangeTagHandler={onChangeTagHandler}
