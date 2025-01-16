@@ -1,11 +1,14 @@
-import { IChildrenProps } from '../types/children.interface';
+import { IVideo } from '../types/data.interface';
+import Video from './Video/Video';
 
-export default function MenuContainer({ children }: IChildrenProps) {
+export default function MenuContainer({ data }: { data: IVideo[] }) {
 	return (
 		<div className="flexCol aspect-video gap-3 text-3xl font-semibold">
-			<div className="grid h-full w-full grid-cols-3 gap-3">
-				{new Array(6).fill(0).map((_, index) => (
-					<div key={index}>{children}</div>
+			<div className="grid h-full w-full grid-cols-3 gap-4">
+				{data.map((el, index) => (
+					<div key={index}>
+						<Video data={el} />
+					</div>
 				))}
 			</div>
 		</div>
