@@ -32,7 +32,7 @@ export default function ThemeSelectionModal() {
 					title: '태그 선택 완료 🤡',
 					description: '태그 선택을 완료했습니다.',
 				});
-				router.push('/');
+				window.location.replace('/');
 			}
 
 			if (response.status === 401) {

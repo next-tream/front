@@ -37,19 +37,24 @@ export default function LoginModal() {
 				toast({ title: `${result?.error}... 😱`, duration: 2000 });
 			} else {
 				toast({ title: '로그인 성공!! 🎊', duration: 1000 });
-
-				setTimeout(() => {
-					window.location.replace('/');
-				}, 1000);
 			}
 		}
+
 		if (email && password && Object.keys(errors).length === 0) {
 			signinFuc();
 		}
 	}, [formData]);
 
 	useEffect(() => {
-		if (session && !session.isTag) router.push('/theme-select');
+		if (session && !session.isTag) {
+			router.push('/theme-select');
+			return;
+		}
+
+		if (session && session.isTag) {
+			window.location.replace('/');
+			return;
+		}
 	}, [session]);
 
 	return (
