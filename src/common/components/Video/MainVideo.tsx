@@ -1,26 +1,16 @@
 'use client';
 
-<<<<<<< HEAD
-=======
-import Image from 'next/image';
-import LiveStatusContainer from '@/common/components/LiveStatusContainer';
-import { requestBroadcastingRoomInformation } from '@/common/services/requestBroadcastingRoomInformation';
->>>>>>> a7d92ae54a56cb6d3708afbb0dceabed74c3a9d8
 import { useEffect, useState } from 'react';
 
 import { IBroadcastingProps } from '@/app/streaming/[roomId]/_types/broadcasting.interface';
 import Image from 'next/image';
-import Link from 'next/link';
-import LiveStatusContainer from '@/common/components/LiveStatusContainer';
+import LiveStatusContainer from '../LiveStatusContainer';
 import StreamerInfoContainer from '../StreamerInfoContainers/StreamerInfoContainer';
 import { formatRoomTags } from '@/common/utils/formatRoomTags';
-<<<<<<< HEAD
 import { requestBroadcastingRoomInformation } from '@/common/services/requestBroadcastingRoomInformation';
-=======
+import { toast } from '@/hooks/use-toast';
 import { useRouter } from 'next/navigation';
 import { useSession } from 'next-auth/react';
-import { toast } from '@/hooks/use-toast';
->>>>>>> a7d92ae54a56cb6d3708afbb0dceabed74c3a9d8
 
 export default function MainVideo() {
 	const router = useRouter();
