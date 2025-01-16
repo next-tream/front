@@ -53,6 +53,16 @@ const config: Config = {
 				'.profileEditBtn': { '@apply center roundBtn border border-solid border-main': {} },
 				'.profileEditPrimaryBtn': { '@apply profileEditBtn text-mainWhite bg-main': {} },
 				'.profileEditSubBtn': { '@apply profileEditBtn text-main bg-mainWhite': {} },
+				'.viewCountHover': {
+					'@apply transition-transform duration-500 group-hover:scale-110': {},
+				},
+				'.videoHover': {
+					'@apply group-hover:border-main w-full cursor-pointer object-cover transition-transform duration-500 group-hover:scale-105 group-hover:border-2':
+						{},
+				},
+				'.durationInOut': { '@apply duration-300 ease-in-out origin-top': {} },
+				'.scaleOpacityFull': { '@apply scale-y-100 opacity-100': {} },
+				'.scaleOpacityNone': { '@apply scale-y-0 opacity-0': {} },
 			});
 		}),
 		scrollbarHide,

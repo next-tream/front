@@ -1,16 +1,17 @@
 import { CarouselItem } from '@/components/ui/carousel';
 import CategoryContainer from '@/common/components/CategoryContainer';
+import { ICategory } from '@/common/types/data.interface';
 
-export default function CarouselItemWrapper() {
+export default function CarouselItemWrapper({ data }: { data: ICategory[] }) {
 	return (
 		<>
-			{Array.from({ length: 12 }).map((_, index) => (
+			{data.map((el, index) => (
 				<CarouselItem key={index} className="pl-1 md:basis-1/6 lg:basis-1/6">
 					<div className="p-3">
 						<CategoryContainer
-							title="바람의나라"
-							image="/images/sample.jpg"
-							watchingCount={125679}
+							title={el.title}
+							image={el.image}
+							watchingCount={el.watchingCount}
 						/>
 					</div>
 				</CarouselItem>

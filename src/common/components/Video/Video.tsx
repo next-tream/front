@@ -1,25 +1,24 @@
 import Image from 'next/image';
 import LiveStatusContainer from '@/common/components/LiveStatusContainer';
 import StreamerInfoContainer from '@/common/components/StreamerInfoContainers/StreamerInfoContainer';
+import { IVideo } from '@/common/types/data.interface';
 
-interface IVideoProps {
-	showLiveStatus?: boolean;
-}
-
-export default function Video({ showLiveStatus = false }: IVideoProps) {
+export default function Video({ data }: { data: IVideo }) {
 	return (
 		<div className="flexCol h-full w-full gap-3">
-			<div className="relative h-full w-full">
+			<div className="relative h-full w-full group">
 				<div className="h-full w-full">
-					<Image src="/images/main.png" alt="recommend" fill />
+					<Image src={data.src} alt="recommend" fill className='rounded-md videoHover' />
 				</div>
-				{showLiveStatus && <LiveStatusContainer watchingCount={986} />}
+				{data.isLive && <LiveStatusContainer watchingCount={data.watchingCount} />}
 			</div>
 			<div>
 				<StreamerInfoContainer
-					title="여러분 안녕하세요!!"
-					name="뷰티풀윤정"
-					category="뷰티/패션"
+					title={data.title}
+					name={data.name}
+					category={data.category}
+					image={data.streamerImg}
+					isLive={data.isLive}
 				/>
 			</div>
 		</div>

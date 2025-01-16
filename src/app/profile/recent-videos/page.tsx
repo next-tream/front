@@ -2,7 +2,7 @@
 
 import MenuContainer from '@/common/components/MenuContainer';
 import PageTitle from '@/common/components/PageTitle';
-import Video from '@/common/components/Video/Video';
+import { followingVideo, liveVideo, recommendVideo } from '@/common/constants/data';
 import { useSession } from 'next-auth/react';
 
 export default function RecentVideos() {
@@ -12,9 +12,9 @@ export default function RecentVideos() {
 	return (
 		<div className="flexCol gap-7">
 			<PageTitle pointText={useName} title="님의 최근 시청 영상" />
-			<MenuContainer>
-				<Video />
-			</MenuContainer>
+			<MenuContainer data={recommendVideo} />
+			<MenuContainer data={followingVideo} />
+			<MenuContainer data={liveVideo} />
 		</div>
 	);
 }
