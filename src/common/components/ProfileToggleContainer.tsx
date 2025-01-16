@@ -11,9 +11,9 @@ export default function ProfileToggleContainer({ userInfo, isVisible }: IUserSta
 	const session = useSession();
 	return (
 		<div
-			className={`absolute right-px mt-4 w-48 transform overflow-hidden rounded-2xl border border-main bg-subBlack px-5 py-3.5 transition-all duration-300 ease-in-out ${isVisible ? 'scale-y-100 opacity-100' : 'scale-y-0 opacity-0'} origin-top`}
+			className={`durationInOut absolute right-px mt-4 w-48 transform overflow-hidden rounded-2xl border border-main bg-subBlack px-5 py-3.5 transition-all ${isVisible ? 'scaleOpacityFull' : 'scaleOpacityNone'}`}
 		>
-			<StreamerInfoContainer name={userInfo.nickname} category="Lv.99" />
+			<StreamerInfoContainer name={userInfo.nickname} />
 			<MenuItemWrapper
 				items={session && session.data?.user.role === 0 ? userMenuItems : streamerMenuItems}
 				isAside={false}
