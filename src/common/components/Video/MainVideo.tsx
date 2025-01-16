@@ -6,7 +6,6 @@ import { IBroadcastingProps } from '@/app/streaming/[roomId]/_types/broadcasting
 import Image from 'next/image';
 import LiveStatusContainer from '../LiveStatusContainer';
 import StreamerInfoContainer from '../StreamerInfoContainers/StreamerInfoContainer';
-import { formatRoomTags } from '@/common/utils/formatRoomTags';
 import { requestBroadcastingRoomInformation } from '@/common/services/requestBroadcastingRoomInformation';
 import { toast } from '@/hooks/use-toast';
 import { useRouter } from 'next/navigation';
@@ -16,8 +15,6 @@ export default function MainVideo() {
 	const router = useRouter();
 	const { data: session } = useSession();
 	const [result, setResult] = useState<IBroadcastingProps>();
-	console.log(result);
-	const roomTags = formatRoomTags(result?.roomTags);
 
 	const onClickMoveRoomHandler = () => {
 		if (!session) {
@@ -42,8 +39,18 @@ export default function MainVideo() {
 
 	return (
 		<div className="flexCol h-full w-1/2 gap-3">
-			<button className="relative h-full w-full rounded-2xl" onClick={onClickMoveRoomHandler}>
-				{result?.roomImage && <Image src={result?.roomImage} alt="main" fill />}
+			<button
+				className="group relative h-full w-full rounded-2xl"
+				onClick={onClickMoveRoomHandler}
+			>
+				{result?.roomImage && (
+					<Image
+						src={result?.roomImage}
+						alt="main"
+						fill
+						className="videoHover rounded-lg"
+					/>
+				)}
 				<div className="absolute left-3 top-3 flex">
 					<LiveStatusContainer watchingCount={result?.participantsLength} />
 				</div>
@@ -53,7 +60,7 @@ export default function MainVideo() {
 					title={result?.roomName}
 					name={result?.nickname}
 					image={result?.streamerImage}
-					category={roomTags}
+					category={result?.roomTags}
 					isLive={result?.isLive}
 				/>
 			</div>
