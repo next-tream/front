@@ -8,10 +8,11 @@ export interface ICategoryContainerProps {
 
 export interface IStreamerInfoContainerProps {
 	title?: string;
-	name: string;
-	category: string;
+	name?: string;
+	category?: string;
+	isLive?: boolean;
 }
 
 export interface ILiveStatusContainerProps {
-	watchingCount: number;
+	watchingCount: number | undefined;
 }
