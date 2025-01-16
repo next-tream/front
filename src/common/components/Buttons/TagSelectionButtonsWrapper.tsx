@@ -1,13 +1,6 @@
-'use client';
-
 import { tags } from '@/common/constants/themeSelectionButton.const';
 import TagSelectionButton from '@/common/components/Buttons/TagSelectionButton';
-
-interface ITagSelectionButtonsWrapperProps {
-	isTag?: boolean;
-	selectedTags: number[];
-	onChangeTagHandler: (id: number, checked: boolean) => void;
-}
+import { ITagSelectionButtonsWrapperProps } from '@/common/types/button.interface';
 
 export default function TagSelectionButtonsWrapper({
 	isTag = false,
