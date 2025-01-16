@@ -43,7 +43,7 @@ const useChat = ({ roomId }: { roomId?: string }) => {
 
 	const sendMessage = (event: FormEvent) => {
 		event.preventDefault();
-		socket?.emit('chat', { roomId, chatMessage });
+		socket?.emit('chat', { roomId, message: chatMessage });
 		setChatMessage('');
 	};
 
