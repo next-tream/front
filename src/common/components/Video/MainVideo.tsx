@@ -1,20 +1,24 @@
 'use client';
 
-import Image from 'next/image';
-import LiveStatusContainer from '@/common/components/LiveStatusContainer';
-import { requestBroadcastingRoomInformation } from '@/common/services/requestBroadcastingRoomInformation';
 import { useEffect, useState } from 'react';
+
 import { IBroadcastingProps } from '@/app/streaming/[roomId]/_types/broadcasting.interface';
+import Image from 'next/image';
+import Link from 'next/link';
+import LiveStatusContainer from '@/common/components/LiveStatusContainer';
 import StreamerInfoContainer from '../StreamerInfoContainers/StreamerInfoContainer';
 import { formatRoomTags } from '@/common/utils/formatRoomTags';
+
 import { useRouter } from 'next/navigation';
 import { useSession } from 'next-auth/react';
 import { toast } from '@/hooks/use-toast';
+
 
 export default function MainVideo() {
 	const router = useRouter();
 	const { data: session } = useSession();
 	const [result, setResult] = useState<IBroadcastingProps>();
+	console.log(result);
 	const roomTags = formatRoomTags(result?.roomTags);
 
 	const onClickMoveRoomHandler = () => {
@@ -50,6 +54,7 @@ export default function MainVideo() {
 				<StreamerInfoContainer
 					title={result?.roomName}
 					name={result?.nickname}
+					image={result?.streamerImage}
 					category={roomTags}
 					isLive={result?.isLive}
 				/>
