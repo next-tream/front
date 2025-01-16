@@ -12,13 +12,8 @@ import { IBroadcastingProps } from './_types/broadcasting.interface';
 import PageTitle from '@/common/components/PageTitle';
 import MenuContainer from '@/common/components/MenuContainer';
 import Video from '@/common/components/Video/Video';
-import { useSession } from 'next-auth/react';
-import { useRouter } from 'next/navigation';
-import { toast } from '@/hooks/use-toast';
 
 export default function StreamingPage() {
-	const router = useRouter();
-	const { data: session } = useSession();
 	const { roomId } = useParams();
 	const { isToggle, onClickToggle } = useToggle(true);
 
@@ -30,15 +25,6 @@ export default function StreamingPage() {
 			setResult(result);
 		}
 		result();
-
-		if (!session) {
-			toast({
-				title: '방송 접속 오류 ❌ ',
-				description: '로그인 후 다시 접속해 주세요. 😲 ',
-			});
-			router.push('/?modal=login');
-			return;
-		}
 	}, []);
 
 	return (
