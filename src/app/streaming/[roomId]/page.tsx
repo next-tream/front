@@ -14,8 +14,9 @@ import MenuContainer from '@/common/components/MenuContainer';
 import Video from '@/common/components/Video/Video';
 
 export default function StreamingPage() {
-	const { isToggle, onClickToggle } = useToggle(true);
 	const { roomId } = useParams();
+	const { isToggle, onClickToggle } = useToggle(true);
+
 	const [result, setResult] = useState<IBroadcastingProps>();
 
 	useEffect(() => {
@@ -28,7 +29,7 @@ export default function StreamingPage() {
 
 	return (
 		<div className="flex h-full w-full gap-2">
-			<div className="scrollbar-none flexCol max-h-[calc(100vh-140px)] w-full gap-4 overflow-scroll">
+			<div className="flexCol max-h-[calc(100vh-140px)] w-full gap-4 overflow-scroll scrollbar-none">
 				<LivePlayer />
 
 				{result && <StreamerCard broadcasting={result} />}
