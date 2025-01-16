@@ -7,9 +7,10 @@ import { IStreamerCardProps } from '../_types/broadcasting.interface';
 import StreamingTime from './StreamingTime';
 import NumberOfViewers from './NumberOfViewers';
 import { tags } from '@/common/constants/themeSelectionButton.const';
+import { formatRoomTags } from '@/common/utils/formatRoomTags';
 
 export default function StreamerCard({ broadcasting }: IStreamerCardProps) {
-	const roomTags = broadcasting.roomTags.map((el) => tags[el - 1].name);
+	const roomTags = formatRoomTags(broadcasting.roomTags);
 
 	return (
 		<div className="flexCol gap-5">
@@ -25,7 +26,7 @@ export default function StreamerCard({ broadcasting }: IStreamerCardProps) {
 					<div className="flexCol justify-center gap-1">
 						<p className="text-2xl font-extrabold">{broadcasting.nickname}</p>
 						<p className="flex text-base font-semibold">
-							<p className="pr-2 text-main">{roomTags.join('/')}</p>:
+							<p className="pr-2 text-main">{roomTags}</p>:
 							<p className="pl-2 text-mainWhite">{broadcasting.roomContent}</p>
 						</p>
 						<div className="flex gap-3 text-xs font-semibold">
