@@ -1,7 +1,8 @@
-import { useToast } from '@/hooks/use-toast';
-import { useSession } from 'next-auth/react';
 import { ChangeEvent, useState } from 'react';
+import { useSession } from 'next-auth/react';
+import { useToast } from '@/hooks/use-toast';
 import { useStreamingStateStore } from './_store/useStreamingStateStore';
+import useTagSelectionButton from '@/common/hooks/useThemeSelectionButton';
 
 const useStartStreaming = () => {
 	const [roomId, setRoomId] = useState('');
@@ -11,6 +12,7 @@ const useStartStreaming = () => {
 
 	const { toast } = useToast();
 	const { setIsSteaming } = useStreamingStateStore();
+	const { selectedTags, onChangeTagHandler } = useTagSelectionButton();
 
 	const onClickStartStreamingButtonHandler = async () => {
 		try {
@@ -22,13 +24,13 @@ const useStartStreaming = () => {
 				},
 				credentials: 'include',
 				body: JSON.stringify({
-					tags: [1, 3],
+					tags: selectedTags,
 					name,
 					content,
 				}),
 			});
 
-			if (response.status === 200) {
+			if (response.status === 200 || response.status === 201) {
 				const data = await response.json();
 				setRoomId(data.roomId);
 				setIsSteaming(true);
@@ -66,13 +68,13 @@ const useStartStreaming = () => {
 					},
 					credentials: 'include',
 					body: JSON.stringify({
-						tags: [1, 3],
+						tags: selectedTags,
 						name,
 						content,
 					}),
 				});
 
-				if (response.status === 200) {
+				if (response.status === 200 || response.status === 201) {
 					const data = await response.json();
 					setRoomId(data.roomId);
 					setIsSteaming(true);
@@ -104,7 +106,7 @@ const useStartStreaming = () => {
 				setIsSteaming(false);
 				toast({
 					title: '스트리밍 종료 알림',
-					description: `스트리밍을 종료합니다. ${roomId}`,
+					description: `스트리밍을 종료합니다.`,
 				});
 				return;
 			}
@@ -130,10 +132,12 @@ const useStartStreaming = () => {
 
 	return {
 		roomId,
+		selectedTags,
 		onChangeNameHandler,
 		onChangeContentHandler,
 		onClickStartStreamingButtonHandler,
 		onClickStopStreamingButtonHandler,
+		onChangeTagHandler,
 	};
 };
 

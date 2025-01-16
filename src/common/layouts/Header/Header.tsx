@@ -9,11 +9,15 @@ export default async function Header() {
 	const session = await getServerSession(authOptions);
 
 	return (
-		<div className="betweenCenter fixed left-0 top-0 z-30 h-24 w-full flex-row border-b border-solid border-darkGray bg-mainBlack py-5 pr-3.5">
-			<Link href="/" className="between ml-4">
-				<Image src={"/images/nextream.png"} alt='header' width={200} height={100}  />
+		<div className="fixed left-0 top-0 z-30 flex h-24 w-full items-center border-b border-solid border-darkGray bg-mainBlack py-5 pr-3.5">
+			<Link href="/" className="ml-4 flex-shrink-0">
+				<Image src={'/images/nextream.png'} alt="header" width={200} height={100} />
 			</Link>
-			<SearchWrapper />
+
+			<div className="center mx-auto h-full w-full">
+				<SearchWrapper />
+			</div>
+
 			<div className="w-24">
 				{!session && (
 					<Link href="/?modal=login" className="basePrimaryBtn">

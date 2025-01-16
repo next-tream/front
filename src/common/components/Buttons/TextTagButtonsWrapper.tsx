@@ -1,24 +1,24 @@
-import { tags } from '@/common/constants/themeSelectionButton.const';
-import TagSelectionButton from '@/common/components/Buttons/TagSelectionButton';
 import { ITagSelectionButtonsWrapperProps } from '@/common/types/button.interface';
+import TextTagButton from './TextTagButton';
+import { tags } from '@/common/constants/themeSelectionButton.const';
 
-export default function TagSelectionButtonsWrapper({
+export default function TextTagButtonsWrapper({
 	isTag = false,
 	selectedTags,
 	onChangeTagHandler,
 }: ITagSelectionButtonsWrapperProps) {
 	return (
-		<div className={`${isTag ? 'flex gap-2' : 'grid w-96 grid-cols-3 gap-x-4 gap-y-3'}`}>
+		<div className="flex gap-2">
 			{tags.map((tag) => {
 				const isSelected = selectedTags.includes(tag.id);
 				return (
-					<TagSelectionButton
+					<TextTagButton
 						tag={tag}
 						key={tag.id}
 						isSelected={isSelected}
-						onChangeTagHandler={onChangeTagHandler}
 						isTag={isTag}
-					/>
+						onChangeTagHandler={onChangeTagHandler}
+					></TextTagButton>
 				);
 			})}
 		</div>

@@ -15,3 +15,9 @@ export interface ITagSelectionButtonProps {
 	onChangeTagHandler: (id: number, checked: boolean) => void;
 	isTag?: boolean;
 }
+
+export interface ITagSelectionButtonsWrapperProps {
+	isTag?: boolean;
+	selectedTags: number[];
+	onChangeTagHandler: (id: number, checked: boolean) => void;
+}
