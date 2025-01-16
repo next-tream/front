@@ -55,7 +55,7 @@ export const streamerMenuItems: IMenuItem[] = [
 	{
 		name: '로그아웃',
 		icon: <ArrowRightStartOnRectangleIcon className="size-4" />,
-		path: '?modal=logout',
+		path: 'logout',
 	},
 	{
 		name: '고객센터',
@@ -80,7 +80,7 @@ export const userMenuItems: IMenuItem[] = [
 	{
 		name: '로그아웃',
 		icon: <ArrowRightStartOnRectangleIcon className="size-4" />,
-		path: '?modal=logout',
+		path: 'logout',
 	},
 	{
 		name: '고객센터',
