@@ -6,7 +6,6 @@ import PageTitle from '@/common/components/PageTitle';
 import { IStreamerCardProps } from '../_types/broadcasting.interface';
 import StreamingTime from './StreamingTime';
 import NumberOfViewers from './NumberOfViewers';
-import { tags } from '@/common/constants/themeSelectionButton.const';
 import { formatRoomTags } from '@/common/utils/formatRoomTags';
 
 export default function StreamerCard({ broadcasting }: IStreamerCardProps) {
@@ -25,10 +24,10 @@ export default function StreamerCard({ broadcasting }: IStreamerCardProps) {
 					</div>
 					<div className="flexCol justify-center gap-1">
 						<p className="text-2xl font-extrabold">{broadcasting.nickname}</p>
-						<p className="flex text-base font-semibold">
+						<div className="flex text-base font-semibold">
 							<p className="pr-2 text-main">{roomTags}</p>:
 							<p className="pl-2 text-mainWhite">{broadcasting.roomContent}</p>
-						</p>
+						</div>
 						<div className="flex gap-3 text-xs font-semibold">
 							<NumberOfViewers participantsLength={broadcasting.participantsLength} />
 							<StreamingTime createdAt={broadcasting.createdAt} />
