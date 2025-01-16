@@ -9,6 +9,9 @@ import StreamerInfoContainerWrapper from '@/common/components/StreamerInfoContai
 export default function AsideRecommendChannel() {
 	const { isToggle, onClickToggle } = useToggle(true);
 	const path = usePathname();
+	console.log(path);
+
+	const PATH_LIST = ['/', '/streaming/67875d27db452996f1683f84/'];
 
 	const onClickTest = async () => {
 		const response = await fetch(`${process.env.NEXT_PUBLIC_BASE_URL}/api/user/tag`, {
@@ -18,7 +21,7 @@ export default function AsideRecommendChannel() {
 	};
 
 	return (
-		path === '/' && (
+		PATH_LIST.includes(path) && (
 			<div className="w-ful flexCol gap-4">
 				<Divider color="lightGray" />
 				<div>

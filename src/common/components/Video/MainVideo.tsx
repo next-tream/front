@@ -1,5 +1,11 @@
 'use client';
 
+<<<<<<< HEAD
+=======
+import Image from 'next/image';
+import LiveStatusContainer from '@/common/components/LiveStatusContainer';
+import { requestBroadcastingRoomInformation } from '@/common/services/requestBroadcastingRoomInformation';
+>>>>>>> a7d92ae54a56cb6d3708afbb0dceabed74c3a9d8
 import { useEffect, useState } from 'react';
 
 import { IBroadcastingProps } from '@/app/streaming/[roomId]/_types/broadcasting.interface';
@@ -8,12 +14,33 @@ import Link from 'next/link';
 import LiveStatusContainer from '@/common/components/LiveStatusContainer';
 import StreamerInfoContainer from '../StreamerInfoContainers/StreamerInfoContainer';
 import { formatRoomTags } from '@/common/utils/formatRoomTags';
+<<<<<<< HEAD
 import { requestBroadcastingRoomInformation } from '@/common/services/requestBroadcastingRoomInformation';
+=======
+import { useRouter } from 'next/navigation';
+import { useSession } from 'next-auth/react';
+import { toast } from '@/hooks/use-toast';
+>>>>>>> a7d92ae54a56cb6d3708afbb0dceabed74c3a9d8
 
 export default function MainVideo() {
+	const router = useRouter();
+	const { data: session } = useSession();
 	const [result, setResult] = useState<IBroadcastingProps>();
 	console.log(result);
 	const roomTags = formatRoomTags(result?.roomTags);
+
+	const onClickMoveRoomHandler = () => {
+		if (!session) {
+			toast({
+				title: '방송 접속 실패 ❌ ',
+				description: '로그인 후 다시 접속해 주세요. 😲 ',
+			});
+			router.push('/?modal=login');
+			return;
+		} else {
+			router.push('/streaming/67875d27db452996f1683f84/');
+		}
+	};
 
 	useEffect(() => {
 		async function result() {
@@ -25,15 +52,12 @@ export default function MainVideo() {
 
 	return (
 		<div className="flexCol h-full w-1/2 gap-3">
-			<Link
-				href="/streaming/67875d27db452996f1683f84/"
-				className="relative h-full w-full rounded-2xl"
-			>
+			<button className="relative h-full w-full rounded-2xl" onClick={onClickMoveRoomHandler}>
 				{result?.roomImage && <Image src={result?.roomImage} alt="main" fill />}
 				<div className="absolute left-3 top-3 flex">
 					<LiveStatusContainer watchingCount={result?.participantsLength} />
 				</div>
-			</Link>
+			</button>
 			<div>
 				<StreamerInfoContainer
 					title={result?.roomName}
