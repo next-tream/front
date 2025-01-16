@@ -3,23 +3,34 @@ import FollowingButton from './FollowingButton';
 import LikeButton from './LikeButton';
 import OtherMenuButton from './OtherMenuButton';
 import PageTitle from '@/common/components/PageTitle';
+import { IStreamerCardProps } from '../_types/broadcasting.interface';
+import StreamingTime from './StreamingTime';
+import NumberOfViewers from './NumberOfViewers';
+import { tags } from '@/common/constants/themeSelectionButton.const';
 
-export default function StreamerCard() {
+export default function StreamerCard({ broadcasting }: IStreamerCardProps) {
+	const roomTags = broadcasting.roomTags.map((el) => tags[el - 1].name);
+
 	return (
 		<div className="flexCol gap-5">
-			<PageTitle title="제목입니다." />
-
+			<PageTitle title={broadcasting.roomName} />
 			<div className="flex justify-between">
 				<div className="flex gap-4">
 					<div className="size-28">
-						<CircleImage src="/images/sample.jpg" isStreaming={true} />
+						<CircleImage
+							src={broadcasting.streamerImage}
+							isStreaming={broadcasting.isLive}
+						/>
 					</div>
 					<div className="flexCol justify-center gap-1">
-						<p className="text-2xl font-extrabold">스트리머 이름</p>
-						<p className="text-base font-semibold text-main">컨텐츠 내용</p>
+						<p className="text-2xl font-extrabold">{broadcasting.nickname}</p>
+						<p className="flex text-base font-semibold">
+							<p className="pr-2 text-main">{roomTags.join('/')}</p>:
+							<p className="pl-2 text-mainWhite">{broadcasting.roomContent}</p>
+						</p>
 						<div className="flex gap-3 text-xs font-semibold">
-							<p>9,621명 시청중</p>
-							<p>13:39:22 스트리밍 중</p>
+							<NumberOfViewers participantsLength={broadcasting.participantsLength} />
+							<StreamingTime createdAt={broadcasting.createdAt} />
 						</div>
 					</div>
 				</div>
