@@ -44,7 +44,7 @@ export const FindPasswordModal = ({ authenticationTime }: IEmailAuthModalProps) 
 
 	useEffect(() => {
 		if (formData.code === 'error') {
-			toast({ title: '이메일 인증 코드 불일치!! 😥', duration: 1000 });
+			toast({ title: '인증 코드가 일치하지 않아요!! 😥', duration: 1000 });
 		}
 	}, [formData.code]);
 
