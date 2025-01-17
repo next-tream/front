@@ -78,19 +78,21 @@ export default function Chat({ isToggle, roomId, onClickToggle }: IChatProps) {
 
 			socket.on('chat', receiveMessage);
 
-			socket.on('error', (errorCode) => {
-				const errorMessage = getErrorMessage(errorCode);
-				console.log('채팅 서버 오류가 발생했습니다.', errorCode, errorMessage);
+			socket.on('error', (errorCode, sessionId) => {
+				if (sessionId === session?.user.id) {
+					const errorMessage = getErrorMessage(errorCode);
+					console.log('채팅 서버 오류가 발생했습니다.', errorCode, errorMessage);
 
-				if (errorCode === '5') {
-					console.log('응, 메인 페이지로 돌아가!');
-					router.push('/');
+					if (errorCode === '5') {
+						console.log('응, 메인 페이지로 돌아가!');
+						router.push('/');
 
-					toast({
-						title: '채팅 접속 오류 😭',
-						description: `${errorMessage} 😵‍💫😵‍💫😵‍💫`,
-					});
-					return;
+						toast({
+							title: '채팅 접속 오류 😭',
+							description: `${errorMessage} 😵‍💫😵‍💫😵‍💫`,
+						});
+						return;
+					}
 				}
 			});
 
