@@ -8,8 +8,7 @@ export default function BaseButton({ className, children, type, ...rest }: IBase
 
 	return (
 		<button className={className} onClick={rest.onClick} type={type} disabled={pending}>
-			{pending && 'Submitting...'}
-			{children}
+			{pending ? '요청 중...' : children}
 		</button>
 	);
 }
