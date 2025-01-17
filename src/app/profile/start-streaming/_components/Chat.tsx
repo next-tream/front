@@ -109,6 +109,8 @@ export default function Chat({ isToggle, roomId, onClickToggle }: IChatProps) {
 				socket.off('error');
 				socket.off('connect_error', handleConnectError);
 				socket.off('disconnect', disconnectToChat);
+
+				socket.disconnect();
 			}
 		};
 	}, [socket, session, roomId]);
