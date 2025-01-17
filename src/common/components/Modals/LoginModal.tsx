@@ -1,5 +1,7 @@
 'use client';
 
+import { signIn, useSession } from 'next-auth/react';
+
 import BaseButton from '@/common/components/Buttons/BaseButton';
 import BaseModal from '@/common/components/Modals/BaseModal';
 import KakaoLoginButton from '../Buttons/KakaoLoginButton';
@@ -7,11 +9,10 @@ import Link from 'next/link';
 import NaverLoginButton from '../Buttons/NaverLoginButton';
 import TextInputsWrapper from '@/common/components/Inputs/TextInputsWrapper';
 import { submitAction } from '@/common/actions/loginFormAction';
-import { useFormState } from 'react-dom';
-import { useToast } from '@/hooks/use-toast';
 import { useEffect } from 'react';
-import { signIn, useSession } from 'next-auth/react';
+import { useFormState } from 'react-dom';
 import { useRouter } from 'next/navigation';
+import { useToast } from '@/hooks/use-toast';
 
 export default function LoginModal() {
 	const { toast } = useToast();
@@ -34,6 +35,9 @@ export default function LoginModal() {
 			});
 
 			if (result?.error) {
+				if (result.error == '이메일 인증 되지 않음') {
+					router.push(`/?modal=emailAuth&email=${email}`);
+				}
 				toast({ title: `${result?.error}... 😱`, duration: 2000 });
 			} else {
 				toast({ title: '로그인 성공!! 🎊', duration: 1000 });

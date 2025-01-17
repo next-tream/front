@@ -1,12 +1,25 @@
 import StreamerInfoContainer from '@/common/components/StreamerInfoContainers/StreamerInfoContainer';
+import { IVideo } from '@/common/types/data.interface';
 
-export default function StreamerInfoContainerWrapper({ isVisible }: { isVisible: boolean }) {
+export default function StreamerInfoContainerWrapper({
+	isVisible,
+	data,
+}: {
+	isVisible: boolean;
+	data: IVideo[];
+}) {
 	return (
 		<div
-			className={`flexCol gap-3 py-3 transition-all duration-300 ease-in-out ${isVisible ? 'scale-y-100 opacity-100' : 'scale-y-0 opacity-0'} origin-top`}
+			className={`durationInOut flexCol gap-3 py-3 transition-all ${isVisible ? 'scaleOpacityFull' : 'scaleOpacityNone'}`}
 		>
-			{new Array(5).fill(0).map((_, index) => (
-				<StreamerInfoContainer key={index} name="뷰티풀윤정" category="뷰티/패션" />
+			{data.map((el, index) => (
+				<StreamerInfoContainer
+					key={index}
+					name={el.name}
+					category={el.category}
+					image={el.streamerImg}
+					isLive={el.isLive}
+				/>
 			))}
 		</div>
 	);

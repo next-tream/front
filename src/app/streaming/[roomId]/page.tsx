@@ -11,7 +11,7 @@ import { useEffect, useState } from 'react';
 import { IBroadcastingProps } from './_types/broadcasting.interface';
 import PageTitle from '@/common/components/PageTitle';
 import MenuContainer from '@/common/components/MenuContainer';
-import Video from '@/common/components/Video/Video';
+import { recommendVideo } from '@/common/constants/data';
 
 export default function StreamingPage() {
 	const { roomId } = useParams();
@@ -29,15 +29,13 @@ export default function StreamingPage() {
 
 	return (
 		<div className="flex h-full w-full gap-2">
-			<div className="flexCol max-h-[calc(100vh-140px)] w-full gap-4 overflow-scroll scrollbar-none">
+			<div className="scrollbar-none flexCol max-h-[calc(100vh-140px)] w-full gap-4 overflow-scroll">
 				<LivePlayer />
 
 				{result && <StreamerCard broadcasting={result} />}
 				<Divider color="mainWhite" />
 				<PageTitle id="recommendation" title="추천 스트리밍" index={0} />
-				<MenuContainer>
-					<Video showLiveStatus={true} />
-				</MenuContainer>
+				<MenuContainer data={recommendVideo} />
 			</div>
 
 			<Chat roomId={roomId.toString()} isToggle={isToggle} onClickToggle={onClickToggle} />

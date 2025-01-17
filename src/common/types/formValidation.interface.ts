@@ -21,7 +21,7 @@ export interface IEmailAuthPrevState {
 	email?: string;
 	isPassword?: boolean;
 	errors?: { [key: string]: string };
-	result?: boolean;
+	result?: boolean | string;
 }
 
 export interface IPasswordChangePrevState {

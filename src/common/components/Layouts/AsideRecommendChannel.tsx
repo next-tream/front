@@ -5,11 +5,11 @@ import { useToggle } from '@/common/hooks/useToggle';
 import { ChevronDownIcon, ChevronUpIcon } from '@heroicons/react/24/outline';
 import Divider from '@/common/components/Divider';
 import StreamerInfoContainerWrapper from '@/common/components/StreamerInfoContainers/StreamerInfoContainerWrapper';
+import { recommendVideo } from '@/common/constants/data';
 
 export default function AsideRecommendChannel() {
 	const { isToggle, onClickToggle } = useToggle(true);
 	const path = usePathname();
-	console.log(path);
 
 	const PATH_LIST = ['/', '/streaming/67875d27db452996f1683f84/'];
 
@@ -35,7 +35,7 @@ export default function AsideRecommendChannel() {
 							)}
 						</button>
 					</div>
-					<StreamerInfoContainerWrapper isVisible={isToggle} />
+					<StreamerInfoContainerWrapper data={recommendVideo} isVisible={isToggle} />
 				</div>
 			</div>
 		)

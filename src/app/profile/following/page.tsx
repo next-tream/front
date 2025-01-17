@@ -1,7 +1,8 @@
 'use client';
 
-import FollowerCardContainer from '@/app/profile/following/_components/FollowerCardContainer';
 import { useSession } from 'next-auth/react';
+import FollowerCardContainerWrapper from './_components/FollowerCardContainerWrapper';
+import { followerCard } from '@/common/constants/data';
 
 export default function FollowingPage() {
 	const user = useSession();
@@ -12,24 +13,7 @@ export default function FollowingPage() {
 			<h3 className="font-base flex text-2xl text-mainWhite">
 				<p className="font-semibold text-main">{useName}</p>님의 팔로잉
 			</h3>
-
-			<div className="flexCol gap-5">
-				<FollowerCardContainer
-					name="샘플"
-					description="나는 샘플입니다옹"
-					tags={['일상', '코딩', '아자아자']}
-				/>
-				<FollowerCardContainer
-					name="샘플"
-					description="나는 샘플입니다옹"
-					tags={['일상', '코딩', '아자아자']}
-				/>
-				<FollowerCardContainer
-					name="샘플"
-					description="나는 샘플입니다옹"
-					tags={['일상', '코딩', '아자아자']}
-				/>
-			</div>
+			<FollowerCardContainerWrapper data={followerCard} />
 		</div>
 	);
 }

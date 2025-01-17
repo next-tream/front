@@ -11,7 +11,7 @@ export interface IModalConfig {
 	readonly title: string;
 	readonly description: string;
 	readonly mainButtonLabel: string;
-	readonly subButtonLabel: string;
+	readonly subButtonLabel?: string;
 	readonly inputs: readonly ITextInput[];
 }
 

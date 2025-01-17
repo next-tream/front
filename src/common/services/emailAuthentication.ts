@@ -13,7 +13,9 @@ export const emailAuthentication = async ({ code, email, isPassword }: IEmailAut
 		if (response.status === 200) {
 			return true;
 		}
-	} catch (error) {
+		// eslint-disable-next-line @typescript-eslint/no-explicit-any
+	} catch (error: any) {
 		console.log(`이메일 인증 실패: ${error}`);
+		throw new Error(error.response.data.message);
 	}
 };
