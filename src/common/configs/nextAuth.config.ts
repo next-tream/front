@@ -65,13 +65,9 @@ export const authOptions: AuthOptions = {
 
 	callbacks: {
 		async signIn({ account }) {
-			console.log(account);
 			if (!account) return false;
 
 			if (account.provider === 'credentials') return true;
-
-			console.log(account.access_token);
-
 			try {
 				const response = await api.get(`/auth/login?social=${account.provider}`, {
 					headers: {
@@ -108,7 +104,6 @@ export const authOptions: AuthOptions = {
 		},
 
 		async redirect({ baseUrl, url }) {
-			console.log(baseUrl);
 			return baseUrl;
 		},
 
@@ -123,16 +118,13 @@ export const authOptions: AuthOptions = {
 				token.isTag = account.isTag;
 			}
 			if (user?.backendAccessToken) {
-				console.log('user', user);
 				token.accessToken = user.backendAccessToken;
 				token.isTag = user.isTag;
-				console.log('jwt', token);
 			}
 			return token;
 		},
 
 		async session({ session, token }) {
-			// console.log('session', token);
 			if (token.accessToken) {
 				try {
 					const payload = jwtDecode<TJwtPayload>(token.accessToken);
