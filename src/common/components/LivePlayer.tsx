@@ -40,7 +40,7 @@ export default function LivePlayer() {
 
 	return (
 		<video
-			controls
+			// controls
 			autoPlay
 			muted
 			src={source}
