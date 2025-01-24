@@ -11,7 +11,3 @@ export interface IStreamerInfoContainerProps {
 	category?: number[];
 	isLive?: boolean;
 }
-
-export interface ILiveStatusContainerProps {
-	watchingCount: number | undefined;
-}

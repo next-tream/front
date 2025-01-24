@@ -1,9 +1,9 @@
 import { IVideo } from '@/common/types/data.interface';
 import Image from 'next/image';
-import LiveStatusContainer from '@/common/components/LiveStatusContainer';
+import LiveStatusContainer from '@/app/_components/MainLiveStatusContainer';
 import StreamerInfoContainer from '@/common/components/StreamerInfos/StreamerInfoContainer';
 
-export default function Video({ data }: { data: IVideo }) {
+export default function MenuVideo({ data }: { data: IVideo }) {
 	return (
 		<div className="flexCol h-full w-full gap-3">
 			<div className="group relative h-full w-full">

@@ -1,8 +1,8 @@
-import { CarouselItem } from '../ui/carousel';
+import { CarouselItem } from '../../common/components/ui/carousel';
 import CategoryContainer from '@/common/components/CategoryContainer';
 import { ICategory } from '@/common/types/data.interface';
 
-export default function CarouselItemWrapper({ data }: { data: ICategory[] }) {
+export default function MainCarouselItemWrapper({ data }: { data: ICategory[] }) {
 	return (
 		<>
 			{data.map((el, index) => (

@@ -1,11 +1,11 @@
 import CircleImage from '@/common/components/CircleImage';
 import FollowingButton from './FollowingButton';
+import { IStreamerCardProps } from '../_types/broadcasting.interface';
 import LikeButton from './LikeButton';
+import NumberOfViewers from './NumberOfViewers';
 import OtherMenuButton from './OtherMenuButton';
 import PageTitle from '@/common/components/PageTitle';
-import { IStreamerCardProps } from '../_types/broadcasting.interface';
 import StreamingTime from './StreamingTime';
-import NumberOfViewers from './NumberOfViewers';
 import { formatRoomTags } from '@/common/utils/formatRoomTags';
 
 export default function StreamerCard({ broadcasting }: IStreamerCardProps) {
