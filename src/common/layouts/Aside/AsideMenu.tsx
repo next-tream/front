@@ -1,14 +1,16 @@
 'use client';
 
-import { usePathname } from 'next/navigation';
-import MenuItemWrapper from '@/common/components/MenuItems/MenuItemWrapper';
 import {
 	mainMenuItems,
 	streamerMenuItems,
 	userMenuItems,
 } from '@/common/constants/menuItems.const';
+
+import MenuItemWrapper from '@/common/components/MenuItems/MenuItemWrapper';
+import { usePathname } from 'next/navigation';
 import { useSession } from 'next-auth/react';
 
+// ssr 생각
 export default function AsideMenu() {
 	const path = usePathname();
 	const user = useSession();

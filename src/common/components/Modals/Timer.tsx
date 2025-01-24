@@ -1,5 +1,5 @@
 import { ITimerProps } from '@/common/types/modal.interface';
-import useTimer from './hooks/useTImer';
+import useTimer from '@/common/hooks/useTImer';
 
 export default function Timer({ time }: ITimerProps) {
 	const { minutes, seconds } = useTimer(time);

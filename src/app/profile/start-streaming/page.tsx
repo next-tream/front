@@ -1,15 +1,14 @@
 'use client';
 
 import Chat from './_components/Chat';
+import LivePlayer from '@/common/components/LivePlayer';
 import PageTitle from '@/common/components/PageTitle';
 import StartStreamingButton from '@/app/profile/start-streaming/_components/StartStreamingButton';
 import SubInput from '@/app/profile/start-streaming/_components/SubInput';
-import LivePlayer from '@/common/components/LivePlayer';
-import useStartStreaming from './hook';
 import TextTagButtonsWrapper from '@/common/components/Buttons/TextTagButtonsWrapper';
-
-import { useToggle } from '@/common/hooks/useToggle';
+import useStartStreaming from './hook';
 import { useStreamingStateStore } from './_store/useStreamingStateStore';
+import { useToggle } from '@/common/hooks/useToggle';
 
 export default function StartStreamingPage() {
 	const { isToggle, onClickToggle } = useToggle(true);
@@ -31,7 +30,7 @@ export default function StartStreamingPage() {
 	return (
 		<div className="flex h-full w-full gap-2">
 			<div
-				className={`${isToggle ? 'w-2/3' : 'w-full'} scrollbar-none flexCol max-h-[calc(100vh-140px)] gap-3 overflow-scroll`}
+				className={`${isToggle ? 'w-2/3' : 'w-full'} flexCol max-h-[calc(100vh-140px)] gap-3 overflow-scroll scrollbar-none`}
 			>
 				<PageTitle title="LIVE STREAM" />
 				<LivePlayer />

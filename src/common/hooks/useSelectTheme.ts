@@ -2,7 +2,7 @@
 
 import { useState } from 'react';
 
-export default function useTagSelectionButton() {
+export default function useSelectTheme() {
 	const [selectedTags, setSelectedTags] = useState<number[]>([]);
 
 	const onChangeTagHandler = (id: number, checked: boolean) => {

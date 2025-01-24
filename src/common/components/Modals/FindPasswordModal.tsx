@@ -11,7 +11,7 @@ import Timer from '@/common/components/Modals/Timer';
 import requestAuthCode from '@/common/services/requestAuthCode';
 import { submitAction } from '@/common/actions/findPasswordFormAction';
 import { useFormState } from 'react-dom';
-import useOtpInput from '../Inputs/hooks/useOtpInput';
+import useOtpInput from '../../hooks/useOtpInput';
 import { useRouter } from 'next/navigation';
 import { useToast } from '@/common/hooks/useToast';
 

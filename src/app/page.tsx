@@ -1,8 +1,9 @@
-import { CarouselSpacing } from '@/common/components/Carousel/CarouselSpacing';
-import MainVideo from '@/common/components/Video/MainVideo';
-import MenuContainer from '@/common/components/MenuContainer';
-import PageTitle from '@/common/components/PageTitle';
 import { followingVideo, liveVideo, recommendVideo } from '@/common/constants/data';
+
+import { MainCarouselSpacing } from './_components/MainCarouselSpacing';
+import MainVideo from '@/app/_components/MainVideo';
+import MenuWrapper from '@/common/components/MenuWrapper';
+import PageTitle from '@/common/components/PageTitle';
 
 export default function Home() {
 	return (
@@ -11,17 +12,15 @@ export default function Home() {
 				<MainVideo />
 			</div>
 			<PageTitle id="recommendation" title="추천" index={0} />
-			<MenuContainer data={recommendVideo} />
+			<MenuWrapper data={recommendVideo} />
 			<div className="flexCol w-full gap-3 text-3xl font-semibold">
 				<PageTitle id="category" title="카테고리" index={1} />
-				<div className="w-full">
-					<CarouselSpacing />
-				</div>
+				<MainCarouselSpacing />
 			</div>
 			<PageTitle id="following" title="팔로잉" index={2} />
-			<MenuContainer data={followingVideo} />
+			<MenuWrapper data={followingVideo} />
 			<PageTitle id="live" title="라이브" index={3} />
-			<MenuContainer data={liveVideo} />
+			<MenuWrapper data={liveVideo} />
 		</div>
 	);
 }

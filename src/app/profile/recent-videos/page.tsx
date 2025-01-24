@@ -1,8 +1,9 @@
 'use client';
 
-import MenuContainer from '@/common/components/MenuContainer';
-import PageTitle from '@/common/components/PageTitle';
 import { followingVideo, liveVideo, recommendVideo } from '@/common/constants/data';
+
+import MenuWrapper from '@/common/components/MenuWrapper';
+import PageTitle from '@/common/components/PageTitle';
 import { useSession } from 'next-auth/react';
 
 export default function RecentVideos() {
@@ -12,9 +13,9 @@ export default function RecentVideos() {
 	return (
 		<div className="flexCol gap-7">
 			<PageTitle pointText={useName} title="님의 최근 시청 영상" />
-			<MenuContainer data={recommendVideo} />
-			<MenuContainer data={followingVideo} />
-			<MenuContainer data={liveVideo} />
+			<MenuWrapper data={recommendVideo} />
+			<MenuWrapper data={followingVideo} />
+			<MenuWrapper data={liveVideo} />
 		</div>
 	);
 }

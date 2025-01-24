@@ -4,7 +4,7 @@ import { streamerMenuItems, userMenuItems } from '@/common/constants/menuItems.c
 
 import { IUserStateProps } from './HeaderProfile';
 import MenuItemWrapper from '../../components/MenuItems/MenuItemWrapper';
-import StreamerInfoContainer from '../../components/StreamerInfoContainers/StreamerInfoContainer';
+import StreamerInfoContainer from '../../components/StreamerInfos/StreamerInfoContainer';
 import { useSession } from 'next-auth/react';
 
 export default function ProfileToggleContainer({ userInfo, isVisible }: IUserStateProps) {
