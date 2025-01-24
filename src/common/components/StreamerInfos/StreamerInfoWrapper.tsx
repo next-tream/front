@@ -1,7 +1,7 @@
-import StreamerInfoContainer from '@/common/components/StreamerInfoContainers/StreamerInfoContainer';
 import { IVideo } from '@/common/types/data.interface';
+import StreamerInfoContainer from '@/common/components/StreamerInfos/StreamerInfoContainer';
 
-export default function StreamerInfoContainerWrapper({
+export default function StreamerInfoWrapper({
 	isVisible,
 	data,
 }: {
@@ -10,7 +10,7 @@ export default function StreamerInfoContainerWrapper({
 }) {
 	return (
 		<div
-			className={`durationInOut flexCol gap-3 py-3 transition-all ${isVisible ? 'scaleOpacityFull' : 'scaleOpacityNone'}`}
+			className={`flexCol durationInOut gap-3 py-3 transition-all ${isVisible ? 'scaleOpacityFull' : 'scaleOpacityNone'}`}
 		>
 			{data.map((el, index) => (
 				<StreamerInfoContainer

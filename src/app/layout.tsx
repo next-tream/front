@@ -1,6 +1,6 @@
 import './globals.css';
 
-import AuthContext from '@/common/components/AuthContext';
+import AuthContext from '@/common/configs/AuthContext';
 import { ILayoutProps } from '@/common/types/children.interface';
 import Layout from '@/common/layouts/Layout';
 import { Toaster } from '@/common/components/ui/toaster';

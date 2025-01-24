@@ -1,14 +1,14 @@
+import { IVideo } from '@/common/types/data.interface';
 import Image from 'next/image';
 import LiveStatusContainer from '@/common/components/LiveStatusContainer';
-import StreamerInfoContainer from '@/common/components/StreamerInfoContainers/StreamerInfoContainer';
-import { IVideo } from '@/common/types/data.interface';
+import StreamerInfoContainer from '@/common/components/StreamerInfos/StreamerInfoContainer';
 
 export default function Video({ data }: { data: IVideo }) {
 	return (
 		<div className="flexCol h-full w-full gap-3">
-			<div className="relative h-full w-full group">
+			<div className="group relative h-full w-full">
 				<div className="h-full w-full">
-					<Image src={data.src} alt="recommend" fill className='rounded-md videoHover' />
+					<Image src={data.src} alt="recommend" fill className="videoHover rounded-md" />
 				</div>
 				{data.isLive && <LiveStatusContainer watchingCount={data.watchingCount} />}
 			</div>

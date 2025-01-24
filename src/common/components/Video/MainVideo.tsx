@@ -5,7 +5,7 @@ import { useEffect, useState } from 'react';
 import { IBroadcastingProps } from '@/app/streaming/[roomId]/_types/broadcasting.interface';
 import Image from 'next/image';
 import LiveStatusContainer from '../LiveStatusContainer';
-import StreamerInfoContainer from '../StreamerInfoContainers/StreamerInfoContainer';
+import StreamerInfoContainer from '../StreamerInfos/StreamerInfoContainer';
 import { requestBroadcastingRoomInformation } from '@/common/services/requestBroadcastingRoomInformation';
 import { toast } from '@/common/hooks/useToast';
 import { useRouter } from 'next/navigation';
@@ -29,6 +29,7 @@ export default function MainVideo() {
 		}
 	};
 
+	// mocking 해야하지만 귀찮아서 안 할 예정
 	// useEffect(() => {
 	// 	async function result() {
 	// 		const result = await requestBroadcastingRoomInformation('67875d27db452996f1683f84');
