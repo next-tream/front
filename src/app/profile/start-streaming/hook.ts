@@ -2,7 +2,7 @@ import { ChangeEvent, useState } from 'react';
 
 import { useSession } from 'next-auth/react';
 import { useStreamingStateStore } from './_store/useStreamingStateStore';
-import useTagSelectionButton from '@/common/hooks/useThemeSelectionButton';
+import useTagSelectionButton from '@/common/hooks/useSelectTheme';
 import { useToast } from '@/common/hooks/useToast';
 
 const useStartStreaming = () => {

@@ -5,7 +5,7 @@ import TagSelectionButtonsWrapper from '@/common/components/Buttons/TagSelection
 import { toast } from '@/common/hooks/useToast';
 import { useRouter } from 'next/navigation';
 import { useSession } from 'next-auth/react';
-import useTagSelectionButton from '@/common/hooks/useThemeSelectionButton';
+import useTagSelectionButton from '@/common/hooks/useSelectTheme';
 
 export default function ThemeSelectionModal() {
 	const router = useRouter();
