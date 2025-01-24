@@ -1,7 +1,7 @@
 'use client';
 
-import { TInputChangeEvent } from '@/common/types/handler.type';
 import { ITagSelectionButtonProps } from '@/common/types/button.interface';
+import { TInputChangeEvent } from '@/common/types/handler.type';
 
 export default function TagSelectionButton({
 	tag,

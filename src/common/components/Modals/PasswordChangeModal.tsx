@@ -2,10 +2,10 @@
 
 import BaseModal from '@/common/components/Modals/BaseModal';
 import TextInputsWrapper from '@/common/components/Inputs/TextInputsWrapper';
-import { useFormState } from 'react-dom';
 import { submitAction } from '@/common/actions/passwordChangeFormAction';
+import { toast } from '@/common/hooks/useToast';
 import { useEffect } from 'react';
-import { toast } from '@/hooks/use-toast';
+import { useFormState } from 'react-dom';
 import { useRouter } from 'next/navigation';
 
 export default function PasswordChangeModal({ email = '' }: { email?: string }) {

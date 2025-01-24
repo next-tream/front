@@ -1,11 +1,11 @@
 'use client';
 
-import MenuItemWrapper from './MenuItems/MenuItemWrapper';
 import { streamerMenuItems, userMenuItems } from '@/common/constants/menuItems.const';
-import StreamerInfoContainer from './StreamerInfoContainers/StreamerInfoContainer';
 
+import { IUserStateProps } from './HeaderProfile';
+import MenuItemWrapper from '../../components/MenuItems/MenuItemWrapper';
+import StreamerInfoContainer from '../../components/StreamerInfoContainers/StreamerInfoContainer';
 import { useSession } from 'next-auth/react';
-import { IUserStateProps } from './UserState';
 
 export default function ProfileToggleContainer({ userInfo, isVisible }: IUserStateProps) {
 	const session = useSession();

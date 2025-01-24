@@ -12,7 +12,7 @@ import { submitAction } from '@/common/actions/loginFormAction';
 import { useEffect } from 'react';
 import { useFormState } from 'react-dom';
 import { useRouter } from 'next/navigation';
-import { useToast } from '@/hooks/use-toast';
+import { useToast } from '@/common/hooks/useToast';
 
 export default function LoginModal() {
 	const { toast } = useToast();

@@ -11,6 +11,7 @@ export default function NaverLoginButton() {
 			console.error(error);
 		}
 	};
+
 	return (
 		<button onClick={onClickNaverLoginHandler}>
 			<Image

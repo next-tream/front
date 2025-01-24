@@ -1,5 +1,6 @@
-import { toast } from '@/hooks/use-toast';
 import { signOut, useSession } from 'next-auth/react';
+
+import { toast } from '@/common/hooks/useToast';
 
 const useLogout = () => {
 	const { data: session } = useSession();

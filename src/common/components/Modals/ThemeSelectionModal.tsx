@@ -1,12 +1,11 @@
 'use client';
 
-import { useSession } from 'next-auth/react';
-import { useRouter } from 'next/navigation';
-
 import BaseModal from '@/common/components/Modals/BaseModal';
 import TagSelectionButtonsWrapper from '@/common/components/Buttons/TagSelectionButtonsWrapper';
+import { toast } from '@/common/hooks/useToast';
+import { useRouter } from 'next/navigation';
+import { useSession } from 'next-auth/react';
 import useTagSelectionButton from '@/common/hooks/useThemeSelectionButton';
-import { toast } from '@/hooks/use-toast';
 
 export default function ThemeSelectionModal() {
 	const router = useRouter();

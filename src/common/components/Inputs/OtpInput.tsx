@@ -1,5 +1,6 @@
+import { InputOTP, InputOTPGroup, InputOTPSlot } from '../ui/input-otp';
+
 import { IOtpInputProps } from '@/common/types/input.interface';
-import { InputOTP, InputOTPGroup, InputOTPSlot } from '@/components/ui/input-otp';
 
 export default function OtpInput({ onChangeOtpHandle, otpCode, name }: IOtpInputProps) {
 	return (

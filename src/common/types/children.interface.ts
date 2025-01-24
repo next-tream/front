@@ -6,5 +6,5 @@ export interface IChildrenProps {
 
 export interface ILayoutProps extends IChildrenProps {
 	session: Session;
-	modal?: React.ReactNode;
+	modal: React.ReactNode;
 }

@@ -1,8 +1,8 @@
 'use client';
 
-import { useInputText } from './hooks/useInputText';
-import SearchBar from './SearchBar';
-import SearchHistoryList from './SearchHistoryList';
+import SearchBar from './HeaderSearchBar';
+import SearchHistoryList from './HeaderSearchHistoryList';
+import { useInputText } from '@/common/hooks/useInputText';
 
 export default function SearchWrapper() {
 	const { inputText, onChangeInput, onClickReset, onClickSearch } = useInputText();

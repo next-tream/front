@@ -1,19 +1,17 @@
 'use client';
 
+import { ChevronLeftIcon, ChevronRightIcon, EllipsisVerticalIcon } from 'lucide-react';
 import { useEffect, useRef } from 'react';
 
-import { ChevronLeftIcon, ChevronRightIcon, EllipsisVerticalIcon } from 'lucide-react';
-
-import SubInput from './SubInput';
+import ChatMessageList from './ChatMessageList';
 import Divider from '@/common/components/Divider';
-import SponsorshipRanking from './SponsorshipRanking';
-
 import { IChatProps } from '../type';
+import SponsorshipRanking from './SponsorshipRanking';
+import SubInput from './SubInput';
+import { toast } from '@/common/hooks/useToast';
 import useChat from '../hooks/useChatHook';
-import { toast } from '@/hooks/use-toast';
 import useRefreshToken from '@/common/utils/refreshToken';
 import { useRouter } from 'next/navigation';
-import ChatMessageList from './ChatMessageList';
 
 export default function Chat({ isToggle, roomId, onClickToggle }: IChatProps) {
 	const {

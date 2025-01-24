@@ -3,10 +3,10 @@
 import BaseModal from '@/common/components/Modals/BaseModal';
 import TextInputsWrapper from '@/common/components/Inputs/TextInputsWrapper';
 import { submitAction } from '@/common/actions/signupFormAction';
+import { useEffect } from 'react';
 import { useFormState } from 'react-dom';
 import { useRouter } from 'next/navigation';
-import { useToast } from '@/hooks/use-toast';
-import { useEffect } from 'react';
+import { useToast } from '@/common/hooks/useToast';
 
 export default function SignUpModal() {
 	const router = useRouter();

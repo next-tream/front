@@ -1,8 +1,8 @@
 'use client';
 
-import { useSession } from 'next-auth/react';
 import FollowerCardContainerWrapper from './_components/FollowerCardContainerWrapper';
 import { followerCard } from '@/common/constants/data';
+import { useSession } from 'next-auth/react';
 
 export default function FollowingPage() {
 	const user = useSession();

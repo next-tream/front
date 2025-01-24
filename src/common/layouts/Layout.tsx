@@ -1,4 +1,4 @@
-import Aside from '@/common/layouts/Aside';
+import Aside from '@/common/layouts/Aside/Aside';
 import Header from '@/common/layouts/Header/Header';
 import { IChildrenProps } from '@/common/types/children.interface';
 

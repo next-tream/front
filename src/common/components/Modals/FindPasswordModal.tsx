@@ -1,18 +1,19 @@
 'use client';
 
+import { useEffect, useState } from 'react';
+
+import { ArrowPathIcon } from '@heroicons/react/24/outline';
 import BaseModal from '@/common/components/Modals/BaseModal';
 import { IEmailAuthModalProps } from '@/common/types/modal.interface';
-import { ArrowPathIcon } from '@heroicons/react/24/outline';
-import Timer from '@/common/components/Modals/Timer';
 import OtpInput from '@/common/components/Inputs/OtpInput';
+import TextInputsWrapper from '../Inputs/TextInputsWrapper';
+import Timer from '@/common/components/Modals/Timer';
+import requestAuthCode from '@/common/services/requestAuthCode';
+import { submitAction } from '@/common/actions/findPasswordFormAction';
 import { useFormState } from 'react-dom';
 import useOtpInput from '../Inputs/hooks/useOtpInput';
-import TextInputsWrapper from '../Inputs/TextInputsWrapper';
-import { submitAction } from '@/common/actions/findPasswordFormAction';
 import { useRouter } from 'next/navigation';
-import requestAuthCode from '@/common/services/requestAuthCode';
-import { useEffect, useState } from 'react';
-import { useToast } from '@/hooks/use-toast';
+import { useToast } from '@/common/hooks/useToast';
 
 export const FindPasswordModal = ({ authenticationTime }: IEmailAuthModalProps) => {
 	const router = useRouter();

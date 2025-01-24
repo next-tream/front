@@ -10,7 +10,7 @@ import { useEffect } from 'react';
 import { useFormState } from 'react-dom';
 import useOtpInput from '../Inputs/hooks/useOtpInput';
 import { useRouter } from 'next/navigation';
-import { useToast } from '@/hooks/use-toast';
+import { useToast } from '@/common/hooks/useToast';
 
 export const EmailAuthModal = ({ authenticationTime, email = '' }: IEmailAuthModalProps) => {
 	const { otpCode, onChangeOtpHandle } = useOtpInput();
