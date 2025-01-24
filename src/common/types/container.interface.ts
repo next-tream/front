@@ -1,5 +1,3 @@
-import { IChildrenProps } from './children.interface';
-
 export interface ICategoryContainerProps {
 	title: string;
 	image: string;

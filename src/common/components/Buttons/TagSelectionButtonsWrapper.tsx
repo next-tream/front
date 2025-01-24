@@ -1,6 +1,6 @@
-import { tags } from '@/common/constants/themeSelectionButton.const';
-import TagSelectionButton from '@/common/components/Buttons/TagSelectionButton';
 import { ITagSelectionButtonsWrapperProps } from '@/common/types/button.interface';
+import TagSelectionButton from '@/common/components/Buttons/TagSelectionButton';
+import { tags } from '@/common/constants/themeSelectionButton.const';
 
 export default function TagSelectionButtonsWrapper({
 	isTag = false,

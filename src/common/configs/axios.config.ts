@@ -1,6 +1,7 @@
 import axios, { AxiosInstance } from 'axios';
-import { getServerSession } from 'next-auth';
+
 import { authOptions } from './nextAuth.config';
+import { getServerSession } from 'next-auth';
 
 export const api: AxiosInstance = axios.create({
 	baseURL: process.env.NEXT_PUBLIC_BASE_URL,

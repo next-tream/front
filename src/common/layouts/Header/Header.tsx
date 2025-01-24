@@ -1,7 +1,7 @@
 import Image from 'next/image';
 import Link from 'next/link';
-import SearchWrapper from '@/common/components/Search/SearchWrapper';
-import UserState from '@/common/components/UserState';
+import SearchWrapper from '@/common/layouts/Header/HeaderSearchWrapper';
+import UserState from './HeaderProfile';
 import { authOptions } from '@/common/configs/nextAuth.config';
 import { getServerSession } from 'next-auth';
 
@@ -17,7 +17,7 @@ export default async function Header() {
 			<div className="center mx-auto h-full w-full">
 				<SearchWrapper />
 			</div>
-
+			{/* 삼항연산자 */}
 			<div className="w-24">
 				{!session && (
 					<Link href="/?modal=login" className="basePrimaryBtn">

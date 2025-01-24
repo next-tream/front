@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react';
-import SearchHistoryFooterButton from './SearchHistoryFooterButton';
-import SearchHistoryItem from './SearchHistoryItem';
+
+import SearchHistoryFooterButton from './HeaderSearchHistoryButton';
+import SearchHistoryItem from './HeaderSearchHistoryItem';
 
 export default function SearchHistoryList({ isVisible }: { isVisible: boolean }) {
 	const [searchHistoryList, setSearchHistoryList] = useState<string[]>([]);

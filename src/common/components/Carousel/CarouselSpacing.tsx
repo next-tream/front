@@ -1,6 +1,7 @@
-import { category } from '@/common/constants/data';
+import { Carousel, CarouselContent, CarouselNext } from '../ui/carousel';
+
 import CarouselItemWrapper from './CarouselItemWrapper';
-import { Carousel, CarouselContent, CarouselNext } from '@/components/ui/carousel';
+import { category } from '@/common/constants/data';
 
 export function CarouselSpacing() {
 	return (

@@ -1,5 +1,5 @@
-import AsideMenu from '@/common/components/Layouts/AsideMenu';
-import AsideRecommendChannel from '@/common/components/Layouts/AsideRecommendChannel';
+import AsideMenu from '@/common/layouts/Aside/AsideMenu';
+import AsideRecommendChannel from '@/common/layouts/Aside/AsideRecommendChannel';
 
 export default function Aside() {
 	return (

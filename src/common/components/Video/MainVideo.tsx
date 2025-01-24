@@ -7,7 +7,7 @@ import Image from 'next/image';
 import LiveStatusContainer from '../LiveStatusContainer';
 import StreamerInfoContainer from '../StreamerInfoContainers/StreamerInfoContainer';
 import { requestBroadcastingRoomInformation } from '@/common/services/requestBroadcastingRoomInformation';
-import { toast } from '@/hooks/use-toast';
+import { toast } from '@/common/hooks/useToast';
 import { useRouter } from 'next/navigation';
 import { useSession } from 'next-auth/react';
 
@@ -29,13 +29,13 @@ export default function MainVideo() {
 		}
 	};
 
-	useEffect(() => {
-		async function result() {
-			const result = await requestBroadcastingRoomInformation('67875d27db452996f1683f84');
-			setResult(result);
-		}
-		result();
-	}, []);
+	// useEffect(() => {
+	// 	async function result() {
+	// 		const result = await requestBroadcastingRoomInformation('67875d27db452996f1683f84');
+	// 		setResult(result);
+	// 	}
+	// 	result();
+	// }, []);
 
 	return (
 		<div className="flexCol h-full w-1/2 gap-3">

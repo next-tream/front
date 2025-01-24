@@ -7,8 +7,14 @@ export default function BaseButton({ className, children, type, ...rest }: IBase
 	const { pending } = useFormStatus();
 
 	return (
-		<button className={className} onClick={rest.onClick} type={type} disabled={pending}>
-			{pending ? '요청 중...' : children}
-		</button>
+		<>
+			{pending ? (
+				<button className={className} onClick={rest.onClick} type={type} disabled={pending}>
+					{children}
+				</button>
+			) : (
+				<div>loading ui</div>
+			)}
+		</>
 	);
 }

@@ -1,4 +1,4 @@
-import { CarouselItem } from '@/components/ui/carousel';
+import { CarouselItem } from '../ui/carousel';
 import CategoryContainer from '@/common/components/CategoryContainer';
 import { ICategory } from '@/common/types/data.interface';
 

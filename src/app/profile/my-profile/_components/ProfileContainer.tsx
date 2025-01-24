@@ -1,5 +1,5 @@
 import CircleImage from '@/common/components/CircleImage';
-import { IProfileContainerProps } from '../type';
+import { IProfileContainerProps } from '../_types/profile.interface';
 import { PencilIcon } from '@heroicons/react/24/outline';
 import ProfileEditButton from '@/common/components/Buttons/ProfileEditButton';
 
@@ -19,9 +19,6 @@ export default function ProfileContainer({ nickname, introduceYourself }: IProfi
 						<PencilIcon className="mt-[0.4rem] size-6 border-b-[0.09rem] pb-1" />
 						&ensp;<p>{introduceYourself}</p>
 					</div>
-					{/* <div>
-						<TagSelectionButtonsWrapper isTag={true} />
-					</div> */}
 				</div>
 			</div>
 			<div>
